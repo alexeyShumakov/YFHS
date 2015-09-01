@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require bootstrap-sprockets
 #= require ember
 #= require ember-data
 #= require active-model-adapter
