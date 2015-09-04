@@ -3,6 +3,9 @@
 YFHS.LogInComponent = Ember.Component.extend({
   currentUser: Ember.inject.service('current-user')
   actions:
+    passwordNew: ()->
+      @.sendAction 'open', 'password-new'
+
     logIn:()->
       _this = @
       $.ajax({
@@ -18,7 +21,7 @@ YFHS.LogInComponent = Ember.Component.extend({
         ()->
           _this.set 'currentUser.isLogInError', false
           _this.get('currentUser').getUser()
-          _this.sendAction()
+          _this.sendAction('close')
         (data)->
           response = $.parseJSON data.responseText
           _this.set 'currentUser.logInError', response.error
