@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'users/get_current_user'
+
   resources :news
-  devise_for :users
+  devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'}
   root 'news#index'
 
   # Example of regular route:

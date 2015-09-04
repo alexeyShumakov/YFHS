@@ -1,5 +1,29 @@
-<h1>Application</h1>
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      {{#if currentUser.isLogIn}}
+        <div class="pull-right">
+          {{currentUser.data.email}}
+          <a href="#"{{action 'out'}}>Выйти</a>
+        </div>
+      {{else}}
+        <div class="btn-group pull-right">
+          <button {{action 'openModal' 'sign-up' }} class="btn btn-sm btn-default">Регистрация</button>
+          <button {{action 'openModal' 'log-in' }}  class="btn btn-sm btn-default">Войти</button>
+        </div>
+      {{/if}}
+      <div class="clearfix"></div>
+    </div>
+  </div>
+{{#link-to 'application'}}application{{/link-to}}
+{{#link-to 'news'}}news new{{/link-to}}
+  <ul>
+    {{#each model.news as |news|}}
+      <li>{{news.title}}</li>
+    {{/each}}
+  </ul>
 
-<p>Your content here.</p>
+  {{outlet 'modal'}}
+  {{outlet}}
 
-{{outlet}}
+</div>
