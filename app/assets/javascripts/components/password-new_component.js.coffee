@@ -16,6 +16,7 @@ YFHS.PasswordNewComponent = Ember.Component.extend({
       }).then(
         ()->
           _this.sendAction 'close'
+          _this.sendAction 'openHint', 'password-new-hint'
           _this.set 'isNewPasswordError', false
         (data)->
           response = $.parseJSON data.responseText

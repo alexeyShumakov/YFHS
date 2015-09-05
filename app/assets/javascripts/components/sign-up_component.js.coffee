@@ -11,6 +11,7 @@ YFHS.SignUpComponent = Ember.Component.extend
       user.set 'password_confirmation', @.get 'currentUser.passwordConfirmation'
       user.save().then(
         ()->
-          _this.sendAction()
+          _this.sendAction 'close'
+          _this.sendAction 'open', 'signuphint'
       )
 
