@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'one_box/show'
+
   get 'users/get_current_user'
 
   resources :news

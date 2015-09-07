@@ -16,7 +16,8 @@
     </div>
   </div>
 {{#link-to 'application'}}application{{/link-to}}
-{{#link-to 'news'}}news new{{/link-to}}
+{{#link-to 'news.new'}}news new{{/link-to}}
+{{#link-to 'news'}}news{{/link-to}}
   <ul>
     {{#each model.news as |news|}}
       <li>{{news.title}}</li>

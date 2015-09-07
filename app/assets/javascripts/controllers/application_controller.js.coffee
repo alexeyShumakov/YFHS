@@ -1,7 +1,7 @@
 # for more details see: http://emberjs.com/guides/controllers/
 
 YFHS.ApplicationController = Ember.Controller.extend
-  currentUser: Ember.inject.service('current-user')
+  currentUser: Ember.inject.service 'current-user'
   actions:
     out:()->
       _this = @

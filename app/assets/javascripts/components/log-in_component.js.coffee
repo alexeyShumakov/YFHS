@@ -21,11 +21,15 @@ YFHS.LogInComponent = Ember.Component.extend({
         ()->
           _this.set 'currentUser.isLogInError', false
           _this.get('currentUser').getUser()
-          _this.sendAction('close')
+          _this.sendAction 'close'
         (data)->
           response = $.parseJSON data.responseText
           _this.set 'currentUser.logInError', response.error
           _this.set 'currentUser.isLogInError', true
       )
+
+    signUp:()->
+      @.sendAction 'close'
+      @.sendAction 'open', 'sign-up'
 })
 

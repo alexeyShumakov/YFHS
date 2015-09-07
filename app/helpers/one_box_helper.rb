@@ -1,0 +1,2 @@
+module OneBoxHelper
+end

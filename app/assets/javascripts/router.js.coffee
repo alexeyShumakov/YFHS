@@ -3,5 +3,7 @@ YFHS.Router.reopen
   location: 'history'
 
 YFHS.Router.map ()->
-   @route('news')
+   @.route('news', ()->
+     @.route('new')
+   )
 
