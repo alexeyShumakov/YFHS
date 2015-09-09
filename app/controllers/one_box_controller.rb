@@ -4,7 +4,11 @@ class OneBoxController < ApplicationController
     if result.to_s.blank?
       render nothing: true, status: 404
     else
-      render text: result.placeholder_html
+      if params[:preview] == 'true'
+        render text: result.placeholder_html
+      else
+        render text: result
+      end
     end
   end
 end

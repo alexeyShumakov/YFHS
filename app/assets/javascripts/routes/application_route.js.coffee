@@ -16,7 +16,6 @@ YFHS.ApplicationRoute = Ember.Route.extend
   model: ()->
     Ember.RSVP.hash
       user: @.store.createRecord 'user'
-      news: @.store.findAll 'news'
 
   beforeModel: (transition)->
     if Ember.isPresent transition.queryParams.confirmation

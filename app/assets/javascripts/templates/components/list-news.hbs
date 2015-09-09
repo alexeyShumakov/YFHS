@@ -1,0 +1,11 @@
+<div id="news">
+  {{#each news as |news|}}
+    {{#unless news.isNew}}
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{news.title}}</div>
+        <div class="panel-body">{{markdown news.body}}</div>
+      </div>
+    {{/unless}}
+  {{/each}}
+</div>
+

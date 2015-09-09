@@ -1,9 +1,25 @@
 YFHS.OneBoxService = Ember.Service.extend
   CACHE: Ember.A()
-  replaceLinks: ()->
+  preview: (element)->
+    Ember.run.scheduleOnce('afterRender', @, ()->
+      $(element).find('.onebox-target').each ()->
+        elem = $ @
+        $.ajax('/one_box/show',
+          dataType: 'html'
+          data:
+            url: elem.attr 'href'
+            preview: false
+          cache: true
+        ).then(
+          (html)->
+            elem.replaceWith html
+        )
+    , element)
+
+  placeholder: (element)->
     _cache = @.get 'CACHE'
-    Ember.run.scheduleOnce 'afterRender', @, ()->
-      $('.onebox-target').each ()->
+    Ember.run.scheduleOnce('afterRender', @, ()->
+      $(element).find('.onebox-target').each ()->
         elem = $ @
         cacheElem = _cache.find (item)->
           if item.href == elem.attr('href')
@@ -15,6 +31,7 @@ YFHS.OneBoxService = Ember.Service.extend
             dataType: 'html'
             data:
               url: elem.attr 'href'
+              preview: true
             cache: true
           ).then(
             (html)->
@@ -27,3 +44,4 @@ YFHS.OneBoxService = Ember.Service.extend
                 href: elem.attr 'href'
                 html: elem.prop 'outerHTML'
           )
+    , element)
