@@ -4,3 +4,5 @@ YFHS.NewsNewRoute = Ember.Route.extend
   model: ()->
     @.store.createRecord 'news'
 
+  deactivate: ()->
+    @.modelFor(@.routeName).unloadRecord()

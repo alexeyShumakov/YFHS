@@ -36,11 +36,9 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @single_news.save
-        format.html { redirect_to @single_news, notice: 'News was successfully created.' }
-        format.json { render :show, status: :created, location: @single_news}
+        format.json { render json: @single_news, status: :created }
       else
-        format.html { render :new }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
+        format.json { render json: @single_news.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -77,6 +75,6 @@ class NewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_params
-      params.require(:news).permit(:title, :body)
+      params.require(:news).permit(:title, :body, :user_id)
     end
 end

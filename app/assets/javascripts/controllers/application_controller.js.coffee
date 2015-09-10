@@ -12,5 +12,4 @@ YFHS.ApplicationController = Ember.Controller.extend
       }).then(
         ()->
           _this.get('currentUser').set 'isLogIn', false
-          _this.get('currentUser.user').unloadRecord()
       )
