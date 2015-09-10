@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :news
   devise_for :users, :controllers => {confirmations: 'confirmations', passwords: 'passwords', sessions: 'sessions', registrations: 'registrations'}
+  resources :users, only: [:show]
   root 'news#index'
 
   # Example of regular route:

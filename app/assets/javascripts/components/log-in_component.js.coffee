@@ -1,7 +1,7 @@
 # for more details see: http://emberjs.com/guides/components/
 
 YFHS.LogInComponent = Ember.Component.extend({
-  currentUser: Ember.inject.service('current-user')
+  currentUser: Ember.inject.service()
   actions:
     passwordNew: ()->
       @.sendAction 'open', 'password-new'

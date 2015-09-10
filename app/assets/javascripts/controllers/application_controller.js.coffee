@@ -1,7 +1,7 @@
 # for more details see: http://emberjs.com/guides/controllers/
 
 YFHS.ApplicationController = Ember.Controller.extend
-  currentUser: Ember.inject.service 'current-user'
+  currentUser: Ember.inject.service()
   actions:
     out:()->
       _this = @
@@ -12,5 +12,5 @@ YFHS.ApplicationController = Ember.Controller.extend
       }).then(
         ()->
           _this.get('currentUser').set 'isLogIn', false
-          _this.get('currentUser').set 'data', ''
+          _this.get('currentUser.user').unloadRecord()
       )

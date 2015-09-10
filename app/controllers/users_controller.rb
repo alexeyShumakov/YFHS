@@ -6,4 +6,8 @@ class UsersController < ApplicationController
       render nothing: true, status: 404
     end
   end
+
+  def show
+    render json: User.find(params['id'])
+  end
 end

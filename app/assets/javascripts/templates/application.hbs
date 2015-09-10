@@ -3,7 +3,7 @@
     <div class="page-header">
       {{#if currentUser.isLogIn}}
         <div class="pull-right">
-          {{currentUser.data.email}}
+          {{currentUser.user.email}}
           <a href="#"{{action 'out'}}>Выйти</a>
         </div>
       {{else}}

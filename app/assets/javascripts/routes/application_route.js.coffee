@@ -1,10 +1,16 @@
 # For more information see: http://emberjs.com/guides/routing/
 
 YFHS.ApplicationRoute = Ember.Route.extend
-  currentUser: Ember.inject.service('current-user')
-  init: ()->
-    @._super.apply(@, arguments)
+  currentUser: Ember.inject.service()
+
+  beforeModel: (transition)->
     @.get('currentUser').getUser()
+    if Ember.isPresent transition.queryParams.confirmation
+      @.set 'confirmation', true
+
+  model: ()->
+    Ember.RSVP.hash
+      user: @.store.createRecord 'user'
 
   renderTemplate: (controller, model)->
     @._super controller, model
@@ -13,13 +19,6 @@ YFHS.ApplicationRoute = Ember.Route.extend
         into: 'application',
         outlet: 'modal'
 
-  model: ()->
-    Ember.RSVP.hash
-      user: @.store.createRecord 'user'
-
-  beforeModel: (transition)->
-    if Ember.isPresent transition.queryParams.confirmation
-      @.set 'confirmation', true
 
   actions:
     openModal: (name)->

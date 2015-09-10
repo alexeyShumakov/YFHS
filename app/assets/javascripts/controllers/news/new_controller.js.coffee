@@ -1,7 +1,7 @@
 # for more details see: http://emberjs.com/guides/controllers/
 
 YFHS.NewsNewController = Ember.Controller.extend
-  oneBox: Ember.inject.service 'one-box'
+  oneBox: Ember.inject.service()
   replaceLinks: Ember.observer 'model.body', ()->
     @.get('oneBox').placeholder('.news-preview')
 
