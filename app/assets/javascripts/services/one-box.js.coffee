@@ -1,20 +1,18 @@
 YFHS.OneBoxService = Ember.Service.extend
   CACHE: Ember.A()
   preview: (element)->
-    Ember.run.scheduleOnce('afterRender', @, ()->
-      $(element).find('.onebox-target').each ()->
-        elem = $ @
-        $.ajax('/one_box/show',
-          dataType: 'html'
-          data:
-            url: elem.attr 'href'
-            preview: false
-          cache: true
-        ).then(
-          (html)->
-            elem.replaceWith html
-        )
-    , element)
+    $(element).find('.onebox-target').each ()->
+      elem = $ @
+      $.ajax('/one_box/show',
+        dataType: 'html'
+        data:
+          url: elem.attr 'href'
+          preview: false
+        cache: true
+      ).then(
+        (html)->
+          elem.replaceWith html
+      )
 
   placeholder: (element)->
     _cache = @.get 'CACHE'

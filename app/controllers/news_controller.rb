@@ -14,6 +14,10 @@ class NewsController < ApplicationController
   # GET /news/1
   # GET /news/1.json
   def show
+    respond_to do |format|
+      format.html {}
+      format.json {render json: @single_news}
+    end
   end
 
   # GET /news/new
@@ -28,12 +32,12 @@ class NewsController < ApplicationController
   # POST /news
   # POST /news.json
   def create
-    @news = News.new(news_params)
+    @single_news = News.new(news_params)
 
     respond_to do |format|
-      if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
-        format.json { render :show, status: :created, location: @news }
+      if @single_news.save
+        format.html { redirect_to @single_news, notice: 'News was successfully created.' }
+        format.json { render :show, status: :created, location: @single_news}
       else
         format.html { render :new }
         format.json { render json: @news.errors, status: :unprocessable_entity }
@@ -45,7 +49,7 @@ class NewsController < ApplicationController
   # PATCH/PUT /news/1.json
   def update
     respond_to do |format|
-      if @news.update(news_params)
+      if @single_news.update(news_params)
         format.html { redirect_to @news, notice: 'News was successfully updated.' }
         format.json { render :show, status: :ok, location: @news }
       else
@@ -58,7 +62,7 @@ class NewsController < ApplicationController
   # DELETE /news/1
   # DELETE /news/1.json
   def destroy
-    @news.destroy
+    @single_news.destroy
     respond_to do |format|
       format.html { redirect_to news_index_url, notice: 'News was successfully destroyed.' }
       format.json { head :no_content }
@@ -68,7 +72,7 @@ class NewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_news
-      @news = News.find(params[:id])
+      @single_news = News.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
