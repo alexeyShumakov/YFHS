@@ -1,3 +1,3 @@
 class NewsSerializer < ApplicationSerializer
-  attributes :id, :title, :body
+  attributes :id, :title, :body, :user
 end
