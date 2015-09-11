@@ -3,3 +3,4 @@
 YFHS.SingleNewsRoute = Ember.Route.extend
   model: (params)->
     @.store.findRecord 'news', params['news_id']
+

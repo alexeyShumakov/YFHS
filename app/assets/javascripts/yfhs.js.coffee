@@ -2,7 +2,6 @@
 #= require_tree ./mixins
 #= require_tree ./models
 #= require_tree ./controllers
-#= require_tree ./views
 #= require_directory ./lib
 #= require_tree ./lib/extensions
 #= require_tree ./helpers

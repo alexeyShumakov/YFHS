@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   get 'one_box/show'
 
   get 'users/get_current_user'
