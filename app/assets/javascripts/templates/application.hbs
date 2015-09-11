@@ -1,19 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="page-header">
-      {{#if currentUser.isLogIn}}
-        <div class="pull-right">
-          {{currentUser.user.email}}
-          <a href="#"{{action 'out'}}>Выйти</a>
-        </div>
-      {{else}}
-        <div class="btn-group pull-right">
-          <button {{action 'openModal' 'sign-up' }} class="btn btn-sm btn-default">Регистрация</button>
-          <button {{action 'openModal' 'log-in' }}  class="btn btn-sm btn-default">Войти</button>
-        </div>
-      {{/if}}
-      <div class="clearfix"></div>
-    </div>
+    {{render 'header'}}
   </div>
   {{#link-to 'application'}}application{{/link-to}}
   {{#link-to 'news.new'}}news new{{/link-to}}

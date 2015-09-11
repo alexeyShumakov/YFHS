@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'passenger'
 gem 'devise'
 gem 'ember-rails'
-gem 'ember-source', '~> 2.0.0'
+gem 'ember-source', '~> 2.0.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

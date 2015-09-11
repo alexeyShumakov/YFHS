@@ -10,5 +10,6 @@
 #= require_tree ./templates
 #= require_tree ./routes
 #= require_tree ./services
+#= require_tree ./initializers
 #= require ./router
 #= require_self

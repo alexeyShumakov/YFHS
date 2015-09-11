@@ -1,7 +1,6 @@
 # For more information see: http://emberjs.com/guides/routing/
 
 YFHS.ApplicationRoute = Ember.Route.extend
-  currentUser: Ember.inject.service()
 
   beforeModel: (transition)->
     @.get('currentUser').getUser()

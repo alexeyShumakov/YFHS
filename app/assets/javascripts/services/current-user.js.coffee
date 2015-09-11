@@ -7,6 +7,7 @@ YFHS.CurrentUserService = Ember.Service.extend
   logInError: ''
   isLogInError: false
   isLogIn: false
+  loading: true
   user: ''
   getUser: ()->
     _this = @
@@ -15,6 +16,9 @@ YFHS.CurrentUserService = Ember.Service.extend
         _this.get('store').findRecord('user', data.user.id).then(
           (user)->
             _this.set 'isLogIn', true
+            _this.set 'loading', false
             _this.set 'user', user
         )
+      ()->
+        _this.set 'loading', false
     )

@@ -1,7 +1,6 @@
 # for more details see: http://emberjs.com/guides/components/
 
 YFHS.SignUpComponent = Ember.Component.extend
-  currentUser: Ember.inject.service()
   actions:
     signUp:()->
       _this = @
