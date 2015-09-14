@@ -11,7 +11,6 @@ YFHS.NewsNewController = Ember.Controller.extend
       @.set 'model.user', @.get('currentUser.user')
       @.get('model').save().then(
         ()->
-          newModel = _this.store.createRecord 'news'
-          _this.set 'model', newModel
+          _this.send 'newModel'
       )
 

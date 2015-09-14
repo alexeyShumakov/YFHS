@@ -6,3 +6,7 @@ YFHS.NewsNewRoute = Ember.Route.extend
 
   deactivate: ()->
     @.modelFor(@.routeName).unloadRecord()
+
+  actions:
+    newModel: ()->
+      @.refresh()
