@@ -4,3 +4,11 @@ YFHS.SingleNewsRoute = Ember.Route.extend
   model: (params)->
     @.store.findRecord 'news', params['news_id']
 
+  actions:
+    delete: ->
+      _this = @
+      @.modelFor(@.routeName).destroyRecord().then(
+        ->
+          _this.transitionTo 'news'
+      )
+

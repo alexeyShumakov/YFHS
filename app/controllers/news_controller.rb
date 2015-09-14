@@ -48,11 +48,9 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @single_news.update(news_params)
-        format.html { redirect_to @news, notice: 'News was successfully updated.' }
-        format.json { render :show, status: :ok, location: @news }
+        format.json { render json: @single_news, status: :ok }
       else
-        format.html { render :edit }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
+        format.json { render json: @single_news.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,7 +60,6 @@ class NewsController < ApplicationController
   def destroy
     @single_news.destroy
     respond_to do |format|
-      format.html { redirect_to news_index_url, notice: 'News was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
