@@ -1,20 +1,14 @@
 <div class="page-header">
-  {{#if currentUser.loading}}
-    <i class="pull-right">Загружаем данные...</i>
-    <div class="clearfix"></div>
+  {{#if currentUser.isLogIn}}
+    <div class="pull-right">
+      {{currentUser.user.email}}
+      <a href="#"{{action 'out'}}>Выйти</a>
+    </div>
   {{else}}
-    {{#if currentUser.isLogIn}}
-      <div class="pull-right">
-        {{currentUser.user.email}}
-        <a href="#"{{action 'out'}}>Выйти</a>
-      </div>
-    {{else}}
-      <div class="btn-group pull-right">
-        <button {{action 'openModal' 'sign-up' }} class="btn btn-sm btn-default">Регистрация</button>
-        <button {{action 'openModal' 'log-in' }}  class="btn btn-sm btn-default">Войти</button>
-      </div>
-    {{/if}}
-    <div class="clearfix"></div>
+    <div class="btn-group pull-right">
+      <button {{action 'openModal' 'sign-up' }} class="btn btn-sm btn-default">Регистрация</button>
+      <button {{action 'openModal' 'log-in' }}  class="btn btn-sm btn-default">Войти</button>
+    </div>
   {{/if}}
+  <div class="clearfix"></div>
 </div>
-

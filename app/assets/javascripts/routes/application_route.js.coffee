@@ -29,5 +29,3 @@ YFHS.ApplicationRoute = Ember.Route.extend
       @.disconnectOutlet
         outlet: 'modal',
         parentView: 'application'
-
-
