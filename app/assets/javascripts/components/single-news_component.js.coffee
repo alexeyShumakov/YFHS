@@ -7,10 +7,6 @@ YFHS.SingleNewsComponent = Ember.Component.extend
     @.get('oneBox').preview(id)
   actions:
     delete: ()->
-      _this = @
-      @.get('news').destroyRecord().then(
-        ()->
-          _this.sendAction 'redirect', 'news'
-      )
+      @.get('news').destroyRecord()
 
 

@@ -1,0 +1,12 @@
+<div class="btn">
+  <span class="{{if isLiked 'isLiked'}} glyphicon glyphicon-heart"></span>
+</div>
+{{model.likesCount}}
+{{#if isShowUsers}}
+  <ul>
+    {{#each model.likes as |like|}}
+      <li>{{like.user.email}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+
