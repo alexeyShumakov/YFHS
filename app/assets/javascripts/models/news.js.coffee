@@ -6,5 +6,3 @@ YFHS.News = DS.Model.extend
   user: DS.belongsTo 'user'
   comments: DS.hasMany 'comment'
   likes: DS.hasMany 'like'
-  likesCount: Ember.computed 'likes', ()->
-    @.get 'likes.length'
