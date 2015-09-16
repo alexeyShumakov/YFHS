@@ -1,15 +1,61 @@
-<div class="container">
-  {{#if currentUser.loading}}
-    <div class="loader"></div>
-    <div class="clearfix"></div>
-  {{else}}
-    <div class="row">
-      {{render 'header'}}
+{{#if currentUser.loading}}
+  <div class="loader"></div>
+  <div class="clearfix"></div>
+{{else}}
+
+  {{render 'header'}}
+
+  <div class="container">
+    <nav>
+      <ul class="nav nav-justified">
+        <li>{{#link-to 'application'}}application{{/link-to}}</li>
+        <li>{{#link-to 'news.new'}}news new{{/link-to}}</li>
+        <li>{{#link-to 'news'}}news{{/link-to}}</li>
+      </ul>
+    </nav>
+
+    <div class="col-md-9">
+      {{outlet}}
     </div>
-    {{#link-to 'application'}}application{{/link-to}}
-    {{#link-to 'news.new'}}news new{{/link-to}}
-    {{#link-to 'news'}}news{{/link-to}}
-    {{outlet 'modal'}}
-    {{outlet}}
-  {{/if}}
-</div>
+    <div class="col-md-3">
+      <div class="well">
+        <ul>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+        </ul>
+      </div>
+      <div class="well">
+        <ul>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+        </ul>
+      </div>
+      <div class="well">
+        <ul>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+          <li>some text</li>
+        </ul>
+      </div>
+    </div>
+      {{outlet 'modal'}}
+  </div>
+  {{render 'footer'}}
+{{/if}}

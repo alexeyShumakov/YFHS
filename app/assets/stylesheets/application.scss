@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "loader";
+@import "likes";
+@import "footer";
 
 .overlay {
   z-index: 10;
@@ -13,7 +15,7 @@
 }
 .custom-alert{
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   right: 10px;
   bottom: 10px;
   width: 450px;
@@ -24,6 +26,6 @@
   left: 25%;
   z-index: 11;
 }
-span.isLiked {
-  color: rgb(255, 65, 35);
+iframe{
+  max-width: 100%;
 }
