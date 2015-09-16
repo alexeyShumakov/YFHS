@@ -1,12 +1,17 @@
-<div class="btn">
+<div {{action 'toggleLike'}} class="btn">
   <span class="{{if isLiked 'isLiked'}} glyphicon glyphicon-heart"></span>
 </div>
-{{model.likesCount}}
+{{likesCount}}
 {{#if isShowUsers}}
-  <ul>
-    {{#each model.likes as |like|}}
-      <li>{{like.user.email}}</li>
-    {{/each}}
-  </ul>
+  <div class="whoLiked popover right">
+    <h3 class="popover-title">Кому понравилось?</h3>
+    <div class="popover-content">
+      <ul>
+        {{#each sliceLikes as |like|}}
+          <li>{{like.user.email}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 {{/if}}
 
