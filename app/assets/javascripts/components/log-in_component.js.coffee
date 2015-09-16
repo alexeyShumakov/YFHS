@@ -21,6 +21,7 @@ YFHS.LogInComponent = Ember.Component.extend({
           _this.set 'currentUser.isLogInError', false
           _this.get('currentUser').getUser()
           _this.sendAction 'close'
+          window.location.reload true
         (data)->
           response = $.parseJSON data.responseText
           _this.set 'currentUser.logInError', response.error

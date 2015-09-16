@@ -11,4 +11,5 @@ YFHS.ApplicationController = Ember.Controller.extend
       }).then(
         ()->
           _this.get('currentUser').set 'isLogIn', false
+          window.location.reload true
       )

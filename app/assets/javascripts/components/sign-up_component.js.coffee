@@ -12,5 +12,6 @@ YFHS.SignUpComponent = Ember.Component.extend
         ()->
           _this.sendAction 'close'
           _this.sendAction 'open', 'signuphint'
+          window.location.reload true
       )
 
