@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cards
   resources :likes
   resources :comments
   get 'one_box/show'

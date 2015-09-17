@@ -1,0 +1,21 @@
+# for more details see: http://emberjs.com/guides/models/defining-models/
+
+YFHS.Card = DS.Model.extend
+  cardId: DS.attr 'string'
+  name: DS.attr 'string'
+  cardSet: DS.attr 'string'
+  type: DS.attr 'string'
+  faction: DS.attr 'string'
+  rarity: DS.attr 'string'
+  cost: DS.attr 'number'
+  attack: DS.attr 'number'
+  health: DS.attr 'number'
+  text: DS.attr 'string'
+  flavor: DS.attr 'string'
+  artist: DS.attr 'string'
+  collectible: DS.attr 'boolean'
+  elite: DS.attr 'boolean'
+  imgId: DS.attr 'string'
+  imgGoldId: DS.attr 'string'
+  locale: DS.attr 'string'
+  mechanics: DS.attr 'json'

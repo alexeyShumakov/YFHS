@@ -30,6 +30,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'faraday'
+
+gem "refile", require: "refile/rails"
+gem "refile-mini_magick"
 
 gem 'passenger'
 gem 'devise'
