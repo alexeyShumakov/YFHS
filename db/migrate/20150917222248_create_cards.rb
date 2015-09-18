@@ -1,10 +1,13 @@
 class CreateCards < ActiveRecord::Migration
   def change
     create_table :cards do |t|
-      t.string :card_id
+      t.string :card_game_id
       t.string :name
       t.string :card_set
+      t.integer :durability
       t.string :type
+      t.string :race
+      t.string :player_class
       t.string :faction
       t.string :rarity
       t.integer :cost
@@ -15,8 +18,6 @@ class CreateCards < ActiveRecord::Migration
       t.string :artist
       t.boolean :collectible
       t.boolean :elite
-      t.string :img_id
-      t.string :img_gold_id
       t.string :locale
       t.json :mechanics
 

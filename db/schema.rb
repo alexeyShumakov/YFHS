@@ -11,16 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917222248) do
+ActiveRecord::Schema.define(version: 20150918001053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cards", force: :cascade do |t|
-    t.string   "card_id"
+    t.string   "card_game_id"
     t.string   "name"
     t.string   "card_set"
+    t.integer  "durability"
     t.string   "type"
+    t.string   "race"
+    t.string   "player_class"
     t.string   "faction"
     t.string   "rarity"
     t.integer  "cost"
@@ -31,12 +34,18 @@ ActiveRecord::Schema.define(version: 20150917222248) do
     t.string   "artist"
     t.boolean  "collectible"
     t.boolean  "elite"
-    t.string   "img_id"
-    t.string   "img_gold_id"
     t.string   "locale"
     t.json     "mechanics"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
+    t.string   "img_gold_file_name"
+    t.string   "img_gold_content_type"
+    t.integer  "img_gold_file_size"
+    t.datetime "img_gold_updated_at"
   end
 
   create_table "comments", force: :cascade do |t|

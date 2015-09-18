@@ -32,8 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 gem 'faraday'
 
-gem "refile", require: "refile/rails"
-gem "refile-mini_magick"
+gem "paperclip"
 
 gem 'passenger'
 gem 'devise'
