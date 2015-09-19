@@ -1,10 +1,10 @@
 # for more details see: http://emberjs.com/guides/models/defining-models/
 
 YFHS.Card = DS.Model.extend
-  cardId: DS.attr 'string'
+  card_id: DS.attr 'string'
   name: DS.attr 'string'
-  cardSet: DS.attr 'string'
-  type: DS.attr 'string'
+  card_set: DS.attr 'string'
+  card_type: DS.attr 'string'
   faction: DS.attr 'string'
   rarity: DS.attr 'string'
   cost: DS.attr 'number'
@@ -15,7 +15,7 @@ YFHS.Card = DS.Model.extend
   artist: DS.attr 'string'
   collectible: DS.attr 'boolean'
   elite: DS.attr 'boolean'
-  imgId: DS.attr 'string'
-  imgGoldId: DS.attr 'string'
+  img_url: DS.attr 'string'
+  img_gold_url: DS.attr 'string'
   locale: DS.attr 'string'
-  mechanics: DS.attr 'json'
+#  mechanics: DS.attr 'json'

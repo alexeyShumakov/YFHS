@@ -4,7 +4,12 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
+    @cards = Card.all.where.not card_type: 'Hero'
+    respond_to do |format|
+
+      format.json {render json: @cards}
+      format.html {}
+    end
   end
 
   # GET /cards/1
@@ -69,6 +74,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:card_id, :name, :card_set, :type, :faction, :rarity, :cost, :attack, :health, :text, :flavor, :artist, :collectible, :elite, :img_id, :img_gold_id, :locale, :mechanics)
+      params.require(:card).permit(:name, :card_set, :card_type, :faction, :rarity, :cost, :attack, :health, :text, :flavor, :artist, :collectible, :elite, :img_url, :img_gold_url, :locale)
     end
 end

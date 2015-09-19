@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918001053) do
+ActiveRecord::Schema.define(version: 20150918062704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150918001053) do
     t.string   "name"
     t.string   "card_set"
     t.integer  "durability"
-    t.string   "type"
+    t.string   "card_type"
     t.string   "race"
     t.string   "player_class"
     t.string   "faction"
