@@ -1,0 +1,5 @@
+# for more details see: http://emberjs.com/guides/models/defining-models/
+
+YFHS.PlayerClass = DS.Model.extend
+  name: DS.attr 'string'
+  cards: DS.hasMany 'card'

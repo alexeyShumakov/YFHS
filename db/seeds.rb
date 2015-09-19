@@ -1,5 +1,6 @@
 require 'faraday'
 require 'json'
+PlayerClass.delete_all
 Card.delete_all
 conn =  Faraday.new(url: 'https://omgvamp-hearthstone-v1.p.mashape.com')
 response = conn.get do |req|
@@ -42,5 +43,27 @@ response_json.each do |_, value|
         end
       end
     end
+  end
+end
+
+player_classes = {
+  Priest: 'Жрец',
+  Rogue: 'Разбойница',
+  Warrior: 'Воин',
+  Warlock: 'Чернокнижник',
+  Mage: 'Маг',
+  Druid: 'Друид',
+  Hunter: 'Охотник',
+  Shaman: 'Шаман',
+  Paladin: 'Паладин'
+}
+player_classes.each do |key, value|
+  new_pc = PlayerClass.find_by name: key.to_s
+  new_pc.name = value
+  new_pc.save
+  pc_cards = Card.where player_class_str: key
+  pc_cards.each do |card|
+    card.player_class = new_pc
+    card.save
   end
 end

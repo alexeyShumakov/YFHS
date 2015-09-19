@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918062704) do
+ActiveRecord::Schema.define(version: 20150919095612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150918062704) do
     t.integer  "durability"
     t.string   "card_type"
     t.string   "race"
-    t.string   "player_class"
+    t.string   "player_class_str"
     t.string   "faction"
     t.string   "rarity"
     t.integer  "cost"
@@ -46,7 +46,10 @@ ActiveRecord::Schema.define(version: 20150918062704) do
     t.string   "img_gold_content_type"
     t.integer  "img_gold_file_size"
     t.datetime "img_gold_updated_at"
+    t.integer  "player_class_id"
   end
+
+  add_index "cards", ["player_class_id"], name: "index_cards_on_player_class_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -79,6 +82,12 @@ ActiveRecord::Schema.define(version: 20150918062704) do
 
   add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
 
+  create_table "player_classes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -102,6 +111,7 @@ ActiveRecord::Schema.define(version: 20150918062704) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cards", "player_classes"
   add_foreign_key "comments", "news"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "news"
