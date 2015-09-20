@@ -29,3 +29,40 @@
 iframe{
   max-width: 100%;
 }
+.custom-tab {
+  font-size: small;
+}
+.cost-badge {
+  margin-left: 20px;
+  display: inline-block;
+  .active {
+    background-color: #4ea5ff;
+  }
+  .badge {
+    cursor: pointer;
+  }
+}
+.class-list {
+  margin-top: 15px;
+}
+.card-container{
+  min-height: 630px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  position: relative;
+  .arrow {
+    top: 50%;
+    position: absolute;
+    z-index: 3;
+  }
+  .arrow-right {
+    right: 20px;
+  }
+  .arrow-left {
+    left: 10px;
+  }
+  .card-img {
+    max-width: 210px;
+  }
+}

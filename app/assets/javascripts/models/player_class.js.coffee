@@ -2,4 +2,5 @@
 
 YFHS.PlayerClass = DS.Model.extend
   name: DS.attr 'string'
+  en_name: DS.attr 'string'
   cards: DS.hasMany 'card'
