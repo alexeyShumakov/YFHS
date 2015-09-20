@@ -7,13 +7,7 @@
       {{input placeholder='Поиск' value=keyword class='form-control'}}
     </div>
   </div>
-  <div class="cost-badge">
-    {{#each costs as |cost|}}
-      <span class="{{if cost.isActive 'active'}} badge" {{action 'costToggle' cost costs}}>
-        {{cost.valueStr}}
-      </span>
-    {{/each}}
-  </div>
+  {{list-costs action='updateCost'}}
 </form>
 <ul class="class-list nav nav-pills nav-justified">
   {{#each tabs as |tab|}}

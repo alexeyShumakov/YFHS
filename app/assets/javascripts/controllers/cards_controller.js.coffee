@@ -76,15 +76,8 @@ YFHS.CardsController = Ember.Controller.extend({
       unless Ember.isEqual(@.get('currentPage'), 0 )
         @.decrementProperty('currentPage')
 
-    costToggle: (model, models)->
-      if model.get('isActive')
-        model.set 'isActive', false
-        @.set 'cost' , null
-      else
-        models.forEach (model)->
-          model.set 'isActive', false
-        model.set 'isActive', true
-        @.set 'cost' , model.get 'value'
+    updateCost: (value)->
+      @.set 'cost', value
 
     tabToggle: (tab, tabs)->
       if tab.get('isActive')
