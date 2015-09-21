@@ -1,10 +1,6 @@
 # for more details see: http://emberjs.com/guides/controllers/
 
 YFHS.CardsController = Ember.Controller.extend({
-  keyword: null
-  cost: null
-  currentCards: null
-  playerClass: null
   currentPage: 0
 
   currentCardsSliced: Ember.computed 'currentCards', ()->
@@ -21,7 +17,7 @@ YFHS.CardsController = Ember.Controller.extend({
     else
       Math.floor len/6
 
-  search: Ember.observer 'currentPage', 'keyword', 'cost', 'playerClass', ()->
+  search: Ember.observer 'model.cards', 'currentPage', 'keyword', 'cost', 'playerClass', ()->
     cards = @.get 'model.cards'
     cards = cards.sortBy 'cost'
     cards = @.costFilter(cards)
@@ -79,13 +75,6 @@ YFHS.CardsController = Ember.Controller.extend({
     updateCost: (value)->
       @.set 'cost', value
 
-    tabToggle: (tab, tabs)->
-      if tab.get('isActive')
-        tab.set 'isActive', false
-        @.set 'playerClass' , null
-      else
-        tabs.forEach (tab)->
-          tab.set 'isActive', false
-        tab.set 'isActive', true
-        @.set 'playerClass' , tab.get 'en_name'
+    updatePlayerClass: (value)->
+      @.set 'playerClass', value
 })

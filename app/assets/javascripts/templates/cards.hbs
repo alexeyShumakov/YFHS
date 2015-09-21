@@ -9,15 +9,8 @@
   </div>
   {{list-costs action='updateCost'}}
 </form>
-<ul class="class-list nav nav-pills nav-justified">
-  {{#each tabs as |tab|}}
-    <li class="custom-tab {{if tab.isActive 'active'}}" role="presentation" {{action 'tabToggle' tab tabs}}>
-      <a href="#">
-        {{tab.name}}
-      </a>
-    </li>
-  {{/each}}
-</ul>
+{{list-classes action='updatePlayerClass'}}
+
 <div class="card-container">
   <button class="btn arrow arrow-left" {{action 'prevSlide'}}>
     <span class="glyphicon glyphicon-arrow-left"></span>
