@@ -27,10 +27,49 @@
       <span class="glyphicon glyphicon-arrow-right"></span>
     </button>
   </div>
+  <form>
+    <div class="form-group">
+      <label for="deck-description">Описание</label>
+      <textarea id="deck-description" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+  </form>
+  <h3>Описание:предпросмотр</h3>
+  <div class="well">
+    <p>some-text</p>
+    <p>some-text</p>
+    <p>some-text</p>
+    <p>some-text</p>
+    <p>some-text</p>
+  </div>
   {{outlet}}
 </div>
 <div class="col-md-3">
-  some text
+  <div class="builder-sidebar">
+    <form>
+      <div class="form-group">
+        <label for="deck-name">Название</label>
+        <input type="text" class="form-control" id="deck-name">
+      </div>
+      <div class="form-group">
+        <label for="deck-type">Тип</label>
+        <select name="" id="deck-type" class="form-control">
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+          <option value="">4</option>
+          <option value="">5</option>
+        </select>
+      </div>
+      <div class="btn btn-block btn-primary btn-lg">Создать колоду</div>
+    </form>
+    <div class="well">
+      mana-curve
+    </div>
+
+    <div class="well">
+      card-list
+    </div>
+  </div>
   {{render 'sidebar'}}
 </div>
 
