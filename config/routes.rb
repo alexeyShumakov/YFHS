@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'builder' => 'builder#index'
+  get 'builder/deck'
+  get 'builder/synergy'
+  get 'builder/d/:id' => 'builder#deck'
+
   resources :player_classes
   resources :cards
   resources :likes
@@ -8,7 +13,7 @@ Rails.application.routes.draw do
   get 'users/get_current_user'
 
   resources :news
-  devise_for :users, :controllers => {confirmations: 'confirmations', passwords: 'passwords', sessions: 'sessions', registrations: 'registrations'}
+  devise_for :users, controllers: { confirmations: 'confirmations', passwords: 'passwords', sessions: 'sessions', registrations: 'registrations' }
   resources :users, only: [:show]
   root 'news#index'
 

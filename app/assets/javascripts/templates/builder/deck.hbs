@@ -1,0 +1,10 @@
+<h1>Выбери класс</h1>
+<ul>
+  {{#each model as |pClass|}}
+    <li>
+      {{#link-to 'builder.player_class' pClass.id}}{{pClass.name}}{{/link-to}}
+    </li>
+  {{/each}}
+</ul>
+{{outlet}}
+

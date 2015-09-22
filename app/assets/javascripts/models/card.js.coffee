@@ -17,7 +17,5 @@ YFHS.Card = DS.Model.extend
   elite: DS.attr 'boolean'
   img_url: DS.attr 'string'
   img_gold_url: DS.attr 'string'
-  player_class: DS.belongsTo 'player-class'
   player_class_str: DS.attr 'string'
   locale: DS.attr 'string'
-#  mechanics: DS.attr 'json'

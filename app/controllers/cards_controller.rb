@@ -6,7 +6,6 @@ class CardsController < ApplicationController
   def index
     @cards = Card.all.where.not card_type: 'Hero'
     respond_to do |format|
-
       format.json {render json: @cards}
       format.html {}
     end
@@ -74,6 +73,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:name, :card_set, :card_type, :faction, :rarity, :cost, :attack, :health, :text, :flavor, :artist, :collectible, :elite, :img_url, :img_gold_url, :locale)
+      params.require(:card).permit(:player_class_str, :name, :card_set, :card_type, :faction, :rarity, :cost, :attack, :health, :text, :flavor, :artist, :collectible, :elite, :img_url, :img_gold_url, :locale)
     end
 end

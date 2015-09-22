@@ -29,6 +29,11 @@
 iframe{
   max-width: 100%;
 }
+.panel-body {
+  img {
+    max-width: 90%;
+  }
+}
 .custom-tab {
   font-size: small;
 }
