@@ -1,2 +1,8 @@
-{{#link-to 'builder.deck'}}Собрать колоду{{/link-to}}
-{{#link-to 'builder.synergy'}}Собрать синергию {{/link-to}}
+<div class="col-md-9">
+  {{#link-to 'builder.deck'}}Собрать колоду{{/link-to}}
+  {{#link-to 'builder.synergy'}}Собрать синергию {{/link-to}}
+  {{outlet}}
+</div>
+<div class="col-md-3">
+  {{render 'sidebar'}}
+</div>

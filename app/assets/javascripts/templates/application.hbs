@@ -16,48 +16,8 @@
       </ul>
     </nav>
 
-    <div class="col-md-9">
-      {{outlet}}
-    </div>
-    <div class="col-md-3">
-      <div class="well">
-        <ul>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-        </ul>
-      </div>
-      <div class="well">
-        <ul>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-        </ul>
-      </div>
-      <div class="well">
-        <ul>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-          <li>some text</li>
-        </ul>
-      </div>
-    </div>
-      {{outlet 'modal'}}
+    {{outlet}}
+    {{outlet 'modal'}}
   </div>
   {{render 'footer'}}
 {{/if}}

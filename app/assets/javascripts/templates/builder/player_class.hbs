@@ -1,30 +1,36 @@
-<form class="form-inline">
-  <div class="form-group">
-    <div class="input-group">
-      <div class="input-group-addon">
-        <label class="glyphicon glyphicon-search"></label>
+<div class="col-md-9">
+  <form class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon">
+          <label class="glyphicon glyphicon-search"></label>
+        </div>
+        {{input placeholder='Поиск' value=keyword class='form-control'}}
       </div>
-      {{input placeholder='Поиск' value=keyword class='form-control'}}
     </div>
+    {{list-costs action='updateCost'}}
+  </form>
+  {{list-classes action='updatePlayerClass' playerClasses=playerClasses}}
+
+  <div class="card-container">
+    <button class="btn arrow arrow-left" {{action 'prevSlide'}}>
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+
+    {{#each currentCardsSliced as |card|}}
+      <div class="col-md-4">
+        <img class="card-img" src="{{card.img_url}}" alt="">
+      </div>
+    {{/each}}
+
+    <button class="btn arrow arrow-right" {{action 'nextSlide'}}>
+      <span class="glyphicon glyphicon-arrow-right"></span>
+    </button>
   </div>
-  {{list-costs action='updateCost'}}
-</form>
-{{list-classes action='updatePlayerClass' playerClasses=playerClasses}}
-
-<div class="card-container">
-  <button class="btn arrow arrow-left" {{action 'prevSlide'}}>
-    <span class="glyphicon glyphicon-arrow-left"></span>
-  </button>
-
-  {{#each currentCardsSliced as |card|}}
-    <div class="col-md-4">
-      <img class="card-img" src="{{card.img_url}}" alt="">
-    </div>
-  {{/each}}
-
-  <button class="btn arrow arrow-right" {{action 'nextSlide'}}>
-    <span class="glyphicon glyphicon-arrow-right"></span>
-  </button>
+  {{outlet}}
 </div>
-{{outlet}}
+<div class="col-md-3">
+  some text
+  {{render 'sidebar'}}
+</div>
 
