@@ -1,75 +1,81 @@
-<div class="col-md-9">
-  <form class="form-inline">
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-addon">
-          <label class="glyphicon glyphicon-search"></label>
-        </div>
-        {{input placeholder='Поиск' value=keyword class='form-control'}}
-      </div>
-    </div>
-    {{list-costs action='updateCost'}}
-  </form>
-  {{list-classes action='updatePlayerClass' playerClasses=playerClasses}}
-
-  <div class="card-container">
-    <button class="btn arrow arrow-left" {{action 'prevSlide'}}>
-      <span class="glyphicon glyphicon-arrow-left"></span>
-    </button>
-
-    {{#each currentCardsSliced as |card|}}
-      <div class="col-md-4">
-        <img class="card-img" src="{{card.img_url}}" alt="">
-      </div>
-    {{/each}}
-
-    <button class="btn arrow arrow-right" {{action 'nextSlide'}}>
-      <span class="glyphicon glyphicon-arrow-right"></span>
-    </button>
-  </div>
-  <form>
-    <div class="form-group">
-      <label for="deck-description">Описание</label>
-      <textarea id="deck-description" cols="30" rows="10" class="form-control"></textarea>
-    </div>
-  </form>
-  <h3>Описание:предпросмотр</h3>
-  <div class="well">
-    <p>some-text</p>
-    <p>some-text</p>
-    <p>some-text</p>
-    <p>some-text</p>
-    <p>some-text</p>
-  </div>
-  {{outlet}}
+<div class="row">
+  <h2 class="text-center">Конструктор колод.</h2>
 </div>
-<div class="col-md-3">
-  <div class="builder-sidebar">
+<div class="row">
+  <div class="col-md-9">
+    <form class="form-inline">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <label class="glyphicon glyphicon-search"></label>
+          </div>
+          {{input placeholder='Поиск' value=keyword class='form-control'}}
+        </div>
+      </div>
+      {{list-costs action='updateCost'}}
+    </form>
+    {{list-classes action='updatePlayerClass' playerClasses=playerClasses}}
+
+    <div class="card-container">
+      <button class="btn arrow arrow-left" {{action 'prevSlide'}}>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+      </button>
+
+      {{#each currentCardsSliced as |card|}}
+        <div class="col-md-4">
+          <img class="card-img" src="{{card.img_url}}" alt="">
+        </div>
+      {{/each}}
+
+      <button class="btn arrow arrow-right" {{action 'nextSlide'}}>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+      </button>
+    </div>
     <form>
       <div class="form-group">
-        <label for="deck-name">Название</label>
-        <input type="text" class="form-control" id="deck-name">
+        <label for="deck-description">Описание</label>
+        <textarea id="deck-description" cols="30" rows="10" class="form-control"></textarea>
       </div>
-      <div class="form-group">
-        <label for="deck-type">Тип</label>
-        <select name="" id="deck-type" class="form-control">
-          <option value="">1</option>
-          <option value="">2</option>
-          <option value="">3</option>
-          <option value="">4</option>
-          <option value="">5</option>
-        </select>
-      </div>
-      <div class="btn btn-block btn-primary btn-lg">Создать колоду</div>
     </form>
+    <h3>Описание:предпросмотр</h3>
     <div class="well">
-      mana-curve
+      <p>some-text</p>
+      <p>some-text</p>
+      <p>some-text</p>
+      <p>some-text</p>
+      <p>some-text</p>
     </div>
-
-    <div class="well">
-      card-list
-    </div>
+    {{outlet}}
   </div>
-  {{render 'sidebar'}}
+  <div class="col-md-3">
+    <div class="builder-sidebar">
+      <form>
+        <div class="form-group">
+          <label for="deck-name">Название</label>
+          <input type="text" class="form-control" id="deck-name">
+        </div>
+        <div class="form-group">
+          <label for="deck-type">Тип</label>
+          <select name="" id="deck-type" class="form-control">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+            <option value="">5</option>
+          </select>
+        </div>
+        <div class="btn btn-block btn-primary btn-lg">Создать колоду</div>
+      </form>
+      <div class="well">
+        mana-curve
+      </div>
+
+      <div class="well">
+        card-list
+      </div>
+    </div>
+    {{render 'sidebar'}}
+  </div>
+
 </div>
 
