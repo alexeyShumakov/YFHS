@@ -61,6 +61,9 @@ player_classes = {
   Shaman: 'Шаман',
   Paladin: 'Паладин'
 }
+%w(aggro mid-range combo control).each do |d_type|
+  DeckType.create( name: d_type )
+end
 player_classes.each do |key, value|
   new_pc = PlayerClass.create
   new_pc.name = value
