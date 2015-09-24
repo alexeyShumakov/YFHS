@@ -14,6 +14,7 @@ class CardsController < ApplicationController
   # GET /cards/1
   # GET /cards/1.json
   def show
+    render json: @card
   end
 
   # GET /cards/new

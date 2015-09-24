@@ -5,7 +5,10 @@ class DecksController < ApplicationController
   # GET /decks.json
   def index
     @decks = Deck.all
-    render json: @decks
+    respond_to do |format|
+      format.json { render json: @decks }
+      format.html {}
+    end
   end
 
   # GET /decks/1

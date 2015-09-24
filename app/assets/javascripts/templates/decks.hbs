@@ -1,0 +1,12 @@
+<ul>
+  {{#each model as |deck|}}
+    <li>{{deck.name}}
+      <ul>cards
+        {{#each deck.cards as |deckCard|}}
+          <li>{{deckCard.card.name}} <b>{{deckCard.showCount}}</b></li>
+        {{/each}}
+      </ul>
+    </li>
+  {{/each}}
+</ul>
+{{outlet}}
