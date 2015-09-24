@@ -56,9 +56,8 @@
         </div>
         <div class="form-group">
           <label for="deck-type">Тип</label>
-          <select onchange= {{action (mut model.deck.deckType) value='target.value'}} id="deck-type" class="form-control">
-            <option disabled selected> -- выберете тип колоды -- </option>
-            {{#each dTypes as |type|}}
+          <select onchange= {{action (mut deckTypeId) value='target.value'}} id="deck-type" class="form-control">
+            {{#each model.deckTypes as |type|}}
               <option  value="{{type.id}}">{{type.name}}</option>
             {{/each}}
           </select>

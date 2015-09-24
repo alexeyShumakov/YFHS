@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924100927) do
+ActiveRecord::Schema.define(version: 20150924110901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,12 +81,14 @@ ActiveRecord::Schema.define(version: 20150924100927) do
 
   create_table "decks", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "deck_type_id"
+    t.integer  "player_class_id"
   end
 
   add_index "decks", ["deck_type_id"], name: "index_decks_on_deck_type_id", using: :btree
+  add_index "decks", ["player_class_id"], name: "index_decks_on_player_class_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
@@ -144,6 +146,7 @@ ActiveRecord::Schema.define(version: 20150924100927) do
   add_foreign_key "comments", "news"
   add_foreign_key "comments", "users"
   add_foreign_key "decks", "deck_types"
+  add_foreign_key "decks", "player_classes"
   add_foreign_key "likes", "news"
   add_foreign_key "likes", "users"
   add_foreign_key "news", "users"

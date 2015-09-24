@@ -2,13 +2,14 @@
 
 YFHS.BuilderPlayerClassController = Ember.Controller.extend
   store: Ember.inject.service()
-  dTypes: [
-    {id:1, name: 'aggro'},
-    {id:2, name: 'control'},
-    {id:3, name: 'mid-range'},
-    {id:4, name: 'otk'},
-  ]
   currentPage: 0
+  deckTypeId: null
+  deckTypeItem: Ember.observer 'deckTypeId', ()->
+    dTypes = @.get('model.deckTypes')
+    deckType = dTypes.findBy('id', @.get('deckTypeId'))
+    @.set('model.deck.deckType', deckType)
+    @.get('model.deck').save()
+
 
   currentCardsSliced: Ember.computed 'currentCards', ()->
     currentPage = @.get 'currentPage'

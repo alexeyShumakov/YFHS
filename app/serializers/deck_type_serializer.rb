@@ -1,4 +1,4 @@
 class DeckTypeSerializer < ApplicationSerializer
   attributes :id, :name
-  has_many :deck
+  has_many :decks
 end
