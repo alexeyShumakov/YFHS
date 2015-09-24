@@ -1,6 +1,13 @@
 # for more details see: http://emberjs.com/guides/controllers/
 
 YFHS.BuilderPlayerClassController = Ember.Controller.extend
+  store: Ember.inject.service()
+  dTypes: [
+    {id:1, name: 'aggro'},
+    {id:2, name: 'control'},
+    {id:3, name: 'mid-range'},
+    {id:4, name: 'otk'},
+  ]
   currentPage: 0
 
   currentCardsSliced: Ember.computed 'currentCards', ()->
@@ -67,6 +74,24 @@ YFHS.BuilderPlayerClassController = Ember.Controller.extend
 #  End Filter
 
   actions:
+    saveDeck: ()->
+      @.get('model.deck').save()
+    removeFromDeck: (builderCard)->
+      @.get('model.deck').removeCard builderCard
+
+    addCardToDeck: (card)->
+      deck = @.get 'model.deck'
+      unless deck.get('isWhole')
+        currentBuilderCard = deck.get('cards').findBy 'card.id', card.get 'id'
+        if Ember.isPresent currentBuilderCard
+          unless card.get('isLegendary')
+            card.set 'isActive', false
+            if currentBuilderCard.get('count') < 2
+              currentBuilderCard.incrementProperty 'count'
+              currentBuilderCard.save()
+        else
+          deck.pushCard card
+
     nextSlide: ()->
       unless Ember.isEqual(@.get('totalPages'), @.get('currentPage') )
         @.incrementProperty('currentPage')

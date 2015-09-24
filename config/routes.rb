@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :builder_cards
   resources :decks
   get 'builder' => 'builder#index'
   get 'builder/deck'

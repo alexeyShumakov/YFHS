@@ -19,4 +19,9 @@ YFHS.Card = DS.Model.extend
   img_gold_url: DS.attr 'string'
   player_class_str: DS.attr 'string'
   locale: DS.attr 'string'
-  deck: DS.belongsTo 'deck'
+  builderCards: DS.hasMany 'builder_card'
+
+  isLegendary: Ember.computed 'rarity', ()->
+    Ember.isEqual @.get('rarity'), 'Legendary'
+
+  isActive: true

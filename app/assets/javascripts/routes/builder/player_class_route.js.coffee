@@ -5,6 +5,11 @@ YFHS.BuilderPlayerClassRoute = Ember.Route.extend
     Ember.RSVP.hash
       playerClass: @.store.findRecord 'player_class', params['id']
       cards: @.store.findAll 'card'
+      deck: @.store.createRecord 'deck'
+
+  afterModel: (model)->
+    model.deck.save()
+
   setupController: (controller, model)->
     @._super controller, model
     playerClasses = Ember.A([

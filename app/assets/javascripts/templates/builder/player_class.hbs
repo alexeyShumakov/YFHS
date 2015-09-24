@@ -23,7 +23,7 @@
 
       {{#each currentCardsSliced as |card|}}
         <div class="col-md-4">
-          <img class="card-img" src="{{card.img_url}}" alt="">
+          <img {{action 'addCardToDeck' card}} class="{{unless card.isActive 'card-disable'}} card-img" src="{{card.img_url}}" alt="{{card.name}}">
         </div>
       {{/each}}
 
@@ -52,26 +52,34 @@
       <form>
         <div class="form-group">
           <label for="deck-name">Название</label>
-          <input type="text" class="form-control" id="deck-name">
+          {{input type='text' value=model.deck.name class='form-control' id='deck-name'}}
         </div>
         <div class="form-group">
           <label for="deck-type">Тип</label>
-          <select name="" id="deck-type" class="form-control">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
+          <select onchange= {{action (mut model.deck.deckType) value='target.value'}} id="deck-type" class="form-control">
+            <option disabled selected> -- выберете тип колоды -- </option>
+            {{#each dTypes as |type|}}
+              <option  value="{{type.id}}">{{type.name}}</option>
+            {{/each}}
           </select>
         </div>
-        <div class="btn btn-block btn-primary btn-lg">Создать колоду</div>
+        <div {{action 'saveDeck'}} class="btn btn-block btn-primary btn-lg">Создать колоду</div>
       </form>
       <div class="well">
         mana-curve
       </div>
 
       <div class="well">
-        card-list
+        {{model.deck.totalCards}}/30
+        <hr>
+        <ul>
+          {{#each model.deck.sortedCards as |builderCard|}}
+            <li {{action 'removeFromDeck' builderCard}}>
+              {{builderCard.card.name}}
+              {{builderCard.showCount}}
+            </li>
+          {{/each}}
+        </ul>
       </div>
     </div>
     {{render 'sidebar'}}

@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  belongs_to :deck
+  has_many :builder_cards
   belongs_to :player_class
   has_attached_file :img
   validates_attachment_content_type :img, content_type: /\Aimage\/.*\Z/
