@@ -2,6 +2,9 @@
 
 YFHS.BuilderPlayerClassController = Ember.Controller.extend
   store: Ember.inject.service()
+  oneBox: Ember.inject.service()
+  replaceLinks: Ember.observer 'model.deck.description', ()->
+    @.get('oneBox').placeholder('.onebox-well')
   currentPage: 0
   deckTypeId: null
   deckTypeItem: Ember.observer 'deckTypeId', ()->

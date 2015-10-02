@@ -34,16 +34,12 @@
     <form>
       <div class="form-group">
         <label for="deck-description">Описание</label>
-        <textarea id="deck-description" cols="30" rows="10" class="form-control"></textarea>
+        {{textarea value=model.deck.description id='deck-description' cols='30' rows='10' class='form-control'}}
       </div>
     </form>
     <h3>Описание:предпросмотр</h3>
-    <div class="well">
-      <p>some-text</p>
-      <p>some-text</p>
-      <p>some-text</p>
-      <p>some-text</p>
-      <p>some-text</p>
+    <div class="well onebox-well">
+      {{markdown model.deck.description}}
     </div>
     {{outlet}}
   </div>
@@ -92,7 +88,6 @@
         </table>
       </div>
     </div>
-    {{render 'sidebar'}}
   </div>
 
 </div>
