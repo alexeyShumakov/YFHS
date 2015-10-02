@@ -7,6 +7,7 @@ YFHS.User = DS.Model.extend
   password_confirmation: DS.attr 'string'
   # ===
 
+  decks: DS.hasMany 'deck'
   news: DS.hasMany 'news'
   comments: DS.hasMany 'comment'
   likes: DS.hasMany 'like'

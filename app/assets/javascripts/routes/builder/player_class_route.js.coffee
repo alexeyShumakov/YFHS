@@ -9,6 +9,9 @@ YFHS.BuilderPlayerClassRoute = Ember.Route.extend
       deckTypes: @.store.findAll 'deck_type'
 
   afterModel: (model)->
+    if @.get('currentUser.isLogIn')
+      model.deck.set 'user', @.get('currentUser.user')
+
     model.deck.set 'playerClass', model.playerClass
     model.deck.set 'name', model.playerClass.get('name')
     model.deck.set 'deckType', model.deckTypes.get('firstObject')

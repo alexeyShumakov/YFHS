@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002114626) do
+ActiveRecord::Schema.define(version: 20151002122225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,10 +86,12 @@ ActiveRecord::Schema.define(version: 20151002114626) do
     t.integer  "deck_type_id"
     t.integer  "player_class_id"
     t.string   "description"
+    t.integer  "user_id"
   end
 
   add_index "decks", ["deck_type_id"], name: "index_decks_on_deck_type_id", using: :btree
   add_index "decks", ["player_class_id"], name: "index_decks_on_player_class_id", using: :btree
+  add_index "decks", ["user_id"], name: "index_decks_on_user_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
@@ -148,6 +150,7 @@ ActiveRecord::Schema.define(version: 20151002114626) do
   add_foreign_key "comments", "users"
   add_foreign_key "decks", "deck_types"
   add_foreign_key "decks", "player_classes"
+  add_foreign_key "decks", "users"
   add_foreign_key "likes", "news"
   add_foreign_key "likes", "users"
   add_foreign_key "news", "users"
