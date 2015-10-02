@@ -2,7 +2,7 @@
   <h2 class="text-center">Конструктор колод.</h2>
 </div>
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-8">
     <form class="form-inline">
       <div class="form-group">
         <div class="input-group">
@@ -47,7 +47,7 @@
     </div>
     {{outlet}}
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <div class="builder-sidebar">
       <form>
         <div class="form-group">
@@ -64,21 +64,32 @@
         </div>
         <div {{action 'saveDeck'}} class="btn btn-block btn-primary btn-lg">Создать колоду</div>
       </form>
-      <div class="well">
-        mana-curve
-      </div>
+        {{mana-curve deck=model.deck}}
 
-      <div class="well">
-        {{model.deck.totalCards}}/30
-        <hr>
-        <ul>
-          {{#each model.deck.sortedCards as |builderCard|}}
-            <li {{action 'removeFromDeck' builderCard}}>
-              {{builderCard.card.name}}
-              {{builderCard.showCount}}
-            </li>
-          {{/each}}
-        </ul>
+      <div class="well card-list">
+        <h3 class="card-list__count pull-right">
+          {{model.deck.totalCards}}/30
+        </h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="col-md-10">Название</th>
+              <th class="col-md-2">Мана</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.deck.sortedCards as |builderCard|}}
+              <tr class="card-list__item"  {{action 'removeFromDeck' builderCard}}>
+                <td class="col-md-10">
+                  <b class="{{builderCard.card.rarity}}">{{builderCard.card.name}}</b>
+                  <i>{{builderCard.showCount}}</i>
+                </td>
+
+                <td class="col-md-2">{{builderCard.card.cost}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
       </div>
     </div>
     {{render 'sidebar'}}

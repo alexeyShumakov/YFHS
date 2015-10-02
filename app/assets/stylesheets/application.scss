@@ -4,6 +4,9 @@
 @import "likes";
 @import "footer";
 @import "deck-builder";
+@import "curve-item";
+@import "mana-curve";
+@import "card-list";
 
 .overlay {
   z-index: 10;
@@ -52,7 +55,7 @@ iframe{
   margin-top: 15px;
 }
 .card-container{
-  min-height: 630px;
+  min-height: 540px;
   margin-top: 20px;
   border: 1px solid #ddd;
   border-radius: 2px;
@@ -69,6 +72,7 @@ iframe{
     left: 10px;
   }
   .card-img {
-    max-width: 210px;
+    cursor: pointer;
+    max-width: 180px;
   }
 }

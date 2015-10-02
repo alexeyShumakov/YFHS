@@ -13,7 +13,7 @@ YFHS.Deck = DS.Model.extend
     Ember.isEqual @.get('totalCards'), 30
 
   totalCards: Ember.computed 'cards.@each.count', ()->
-    sum = 0;
+    sum = 0
     @.get('cards').forEach (card)->
       sum += card.get('count')
     sum

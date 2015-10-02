@@ -26,3 +26,8 @@ YFHS.BuilderPlayerClassRoute = Ember.Route.extend
     controller.set 'playerClassConst', model.playerClass.get('en_name')
     controller.set 'cost', null
     controller.set 'keyword', null
+
+  deactivate: ()->
+    @.modelFor(@.routeName).deck.get('cards').forEach (item)->
+      item.set('card.isActive', true)
+
