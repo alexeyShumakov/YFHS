@@ -1,12 +1,24 @@
-<ul>
-  {{#each model as |deck|}}
-    <li>{{deck.name}}-- {{deck.playerClass.name}}
-      <ul>cards
-        {{#each deck.cards as |deckCard|}}
-          <li>{{deckCard.card.name}} <b>{{deckCard.showCount}}</b></li>
-        {{/each}}
-      </ul>
-    </li>
-  {{/each}}
-</ul>
-{{outlet}}
+<div class="col-md-8">
+  <div class="list-group">
+    {{#each model as |deck|}}
+      <div class="deck-list-item list-group-item">
+        <div class="deck-list-item__col deck-list-item__className text-center pull-left">
+          {{deck.playerClass.name}}
+        </div>
+        <div class="deck-list-item__col pull-left">
+          <div><b>{{deck.name}}</b></div>
+          от <i>{{deck.user.email}}</i>
+        </div>
+        <div class="deck-list-item__col">
+        </div>
+        <span class="glyphicon glyphicon-chevron-down"></span>
+        <div class="clearfix"></div>
+      </div>
+    {{/each}}
+  </div>
+  {{outlet}}
+</div>
+
+<div class="col-md-4">
+  {{render 'sidebar'}}
+</div>
