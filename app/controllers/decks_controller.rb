@@ -5,6 +5,9 @@ class DecksController < ApplicationController
   # GET /decks.json
   def index
     @decks = Deck.all
+    unless params[:player_class].blank?
+      @decks = PlayerClass.where(en_name: params[:player_class])
+    end
     respond_to do |format|
       format.json { render json: @decks }
       format.html {}
@@ -69,6 +72,6 @@ class DecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deck_params
-      params.require(:deck).permit(:player_class_id, :description, :user_id ,:deck_type_id, :name, :builder_card_ids => [])
+      params.require(:deck).permit(:player_class, :player_class_id, :description, :user_id ,:deck_type_id, :name, :builder_card_ids => [])
     end
 end

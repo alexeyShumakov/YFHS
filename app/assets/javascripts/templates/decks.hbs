@@ -10,5 +10,15 @@
 </div>
 
 <div class="col-md-4">
+  <div class="list-group">
+    <div class="list-group-item">
+      {{#link-to 'decks' (query-params player_class=null)}}Все классы{{/link-to}}
+    </div>
+    {{#each model.playerClasses as |playerClass|}}
+    <div class="list-group-item">
+      {{#link-to 'decks' (query-params player_class=playerClass.en_name)}}{{playerClass.name}}{{/link-to}}
+    </div>
+    {{/each}}
+  </div>
   {{render 'sidebar'}}
 </div>
