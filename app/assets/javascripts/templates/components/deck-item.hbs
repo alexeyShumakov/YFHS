@@ -1,0 +1,72 @@
+<div class="deck-list-item__name pull-left">
+  <div><b>{{deck.name}}</b></div>
+  от <i>{{deck.user.email}}</i>
+</div>
+<div class="deck-list-item__col deck-list-item__className text-center pull-left">
+    {{deck.playerClass.name}}
+</div>
+<div class="deck-list-item__col">
+  <ul class="list-unstyled deck-graph pull-left">
+    {{#each deck.mana as |mana|}}
+      <li class="deck-graph__item"><span class="deck-graph__item-value" style={{mana.size}}></span></li>
+    {{/each}}
+  </ul>
+</div>
+<div class="deck-list-item__col pull-left">
+  <b>rating</b>
+</div>
+<div class="deck-list-item__col pull-left">
+  {{deck.deckType.name}}
+</div>
+<span {{action 'showDetails'}} class="pull-right deck-list-item__chevron glyphicon glyphicon-chevron-{{if isDetailed 'down' 'left'}}"></span>
+<div class="clearfix"></div>
+{{#if isDetailed}}
+  <hr>
+  <div class="deck-list-item__details">
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="col-md-10">Название</th>
+            <th class="col-md-2">Мана</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each deck.sortedCards as |builderCard|}}
+            <tr class="card-list__item"  {{action 'showImage' builderCard on='mouseEnter'}}>
+              <td class="col-md-10">
+                <b class="{{builderCard.card.rarity}}">{{builderCard.card.name}}</b>
+                <i>{{builderCard.showCount}}</i>
+              </td>
+
+              <td class="col-md-2">{{builderCard.card.cost}}</td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <div>
+          {{#each deck.mana as |mana|}}
+            <div class="curve-item">
+              <div class="curve-item__count">{{mana.count}}</div>
+              <div class="curve-item__column" style={{mana.size}}></div>
+              <div class="curve-item__name">{{mana.name}}</div>
+            </div>
+          {{/each}}
+        </div>
+        {{#if currentCardImg}}
+          <img class="center-block deck-list-item__card-img" src="{{currentCardImg}}" alt="">
+        {{/if}}
+      </div>
+    </div>
+    {{#if deck.description}}
+      <hr>
+      <h3>Описание</h3>
+      <div class="well deck-list-item__description">
+        {{markdown deck.description}}
+      </div>
+    {{/if}}
+  </div>
+{{/if}}

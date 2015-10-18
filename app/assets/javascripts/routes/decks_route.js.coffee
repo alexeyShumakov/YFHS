@@ -2,4 +2,6 @@
 
 YFHS.DecksRoute = Ember.Route.extend
   model: ()->
-    @.store.findAll 'deck'
+    Ember.RSVP.hash
+      decks: @store.findAll 'deck'
+      cards: @store.findAll 'card'

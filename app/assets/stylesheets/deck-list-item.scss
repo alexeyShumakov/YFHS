@@ -1,6 +1,20 @@
 .deck-list-item__col {
   margin: 0 3px;
+
+}
+.deck-list-item__name {
+  width: 290px;
 }
 .deck-list-item__className {
   width: 90px;
+}
+.deck-list-item__card-img {
+  width: 220px;
+}
+.deck-list-item__chevron {
+  color: rgba(210, 170, 45, 0.45);
+  &:hover {
+    color: #f4c732;
+  }
+  cursor: pointer;
 }

@@ -8,7 +8,13 @@
 @import "mana-curve";
 @import "card-list";
 @import "deck-list-item";
-
+@import "deck-graph";
+body {
+  background: url('backgroundlight.jpg');
+  .main-container {
+    background-color: #ffffff;
+  }
+}
 .overlay {
   z-index: 10;
   position: fixed;

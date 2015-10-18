@@ -1,18 +1,8 @@
 <div class="col-md-8">
   <div class="list-group">
-    {{#each model as |deck|}}
+    {{#each model.decks as |deck|}}
       <div class="deck-list-item list-group-item">
-        <div class="deck-list-item__col deck-list-item__className text-center pull-left">
-          {{deck.playerClass.name}}
-        </div>
-        <div class="deck-list-item__col pull-left">
-          <div><b>{{deck.name}}</b></div>
-          от <i>{{deck.user.email}}</i>
-        </div>
-        <div class="deck-list-item__col">
-        </div>
-        <span class="glyphicon glyphicon-chevron-down"></span>
-        <div class="clearfix"></div>
+        {{deck-item deck=deck}}
       </div>
     {{/each}}
   </div>
