@@ -20,6 +20,10 @@ class DecksController < ApplicationController
     render json: @deck
   end
 
+  def search
+
+  end
+
   # GET /decks/new
   def new
     @deck = Deck.new
