@@ -32,8 +32,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 gem 'faraday'
 
-gem "paperclip"
-
+gem 'paperclip'
+gem 'pg_search'
 gem 'passenger'
 gem 'devise'
 gem 'ember-rails'
@@ -54,3 +54,6 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
+group :development do
+  gem 'better_errors'
+end

@@ -3,6 +3,13 @@
 </div>
 
 <div class="col-md-4">
+
+  <div class="input-group margin-bottom">
+    {{input value=nameText class='form-control' placeholder='Поиск по названию...' type='Text' enter='nameSearch'}}
+      <span class="input-group-btn">
+        <button {{action 'nameSearch' nameText}} class="btn btn-default" type="button">Go!</button>
+      </span>
+  </div>
   <div class="list-group">
     <div class="list-group-item">
       {{#link-to 'decks.search' (query-params player_class=null)}}Все классы{{/link-to}}
@@ -11,6 +18,17 @@
     <div class="list-group-item">
       {{#link-to 'decks.search' (query-params player_class=playerClass.en_name)}}{{playerClass.name}}{{/link-to}}
     </div>
+    {{/each}}
+  </div>
+
+  <div class="list-group">
+    <div class="list-group-item">
+      {{#link-to 'decks.search' (query-params deck_type=null)}}Все типы{{/link-to}}
+    </div>
+    {{#each model.deckTypes as |deckType|}}
+      <div class="list-group-item">
+        {{#link-to 'decks.search' (query-params deck_type=deckType.name)}}{{deckType.name}}{{/link-to}}
+      </div>
     {{/each}}
   </div>
   {{render 'sidebar'}}

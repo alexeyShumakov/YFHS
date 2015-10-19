@@ -5,4 +5,5 @@ YFHS.DecksRoute = Ember.Route.extend
     Ember.RSVP.hash
       decks: @store.query 'deck', params
       cards: @store.findAll 'card'
+      deckTypes: @store.findAll 'deck_type'
       playerClasses: @store.findAll 'player_class'

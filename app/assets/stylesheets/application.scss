@@ -15,6 +15,13 @@ body {
     background-color: #ffffff;
   }
 }
+.margin-bottom {
+  margin-bottom: 20px;
+}
+.list-group a.active {
+  color: #D6AF30;
+  font-weight: bold;
+}
 .overlay {
   z-index: 10;
   position: fixed;
