@@ -6,5 +6,8 @@ YFHS.DecksController = Ember.Controller.extend({
       if Ember.isEmpty name
         name = null
       @transitionToRoute 'decks.search', {queryParams: {name: name}}
+  clearProp: ()->
+    @setProperties
+      nameText: null
 })
 

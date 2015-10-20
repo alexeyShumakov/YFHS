@@ -6,5 +6,11 @@ YFHS.DecksSearchController = Ember.Controller.extend({
   deck_type: null
   name: null
 
+  clearProp: ()->
+    @.setProperties
+      player_class: null
+      deck_type: null
+      name: null
+
 })
 

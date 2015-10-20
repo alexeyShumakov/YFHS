@@ -11,4 +11,7 @@ YFHS.DecksSearchRoute = Ember.Route.extend({
   model: (params)->
     Ember.RSVP.hash
       decks: @store.query 'deck', params
+
+  deactivate: ()->
+    @controller.clearProp()
 })
