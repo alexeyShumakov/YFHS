@@ -17,8 +17,13 @@ class DecksController < ApplicationController
       @deck_type = DeckType.find_by name: params[:deck_type]
       @decks = @decks.where(deck_type: @deck_type)
     end
+    if params[:page].blank?
+      @decks = @decks.page(1)
+    else
+      @decks = @decks.page(params[:page])
+    end
     respond_to do |format|
-      format.json { render json: @decks }
+      format.json { render json: @decks, meta: {total: @decks.total_pages} }
       format.html {}
     end
   end
@@ -85,6 +90,6 @@ class DecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deck_params
-      params.require(:deck).permit(:deck_type, :player_class, :player_class_id, :description, :user_id ,:deck_type_id, :name, :builder_card_ids => [])
+      params.require(:deck).permit(:page, :deck_type, :player_class, :player_class_id, :description, :user_id ,:deck_type_id, :name, :builder_card_ids => [])
     end
 end

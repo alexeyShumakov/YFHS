@@ -13,4 +13,3 @@ YFHS.DecksSearchController = Ember.Controller.extend({
       name: null
 
 })
-

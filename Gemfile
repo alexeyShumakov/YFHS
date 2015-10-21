@@ -34,6 +34,7 @@ gem 'faraday'
 
 gem 'paperclip'
 gem 'pg_search'
+gem 'kaminari'
 gem 'passenger'
 gem 'devise'
 gem 'ember-rails'
