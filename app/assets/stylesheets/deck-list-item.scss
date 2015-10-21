@@ -3,7 +3,12 @@
 
 }
 .deck-list-item__name {
-  width: 290px;
+    div {
+      width: 290px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 }
 .deck-list-item__className {
   width: 90px;
