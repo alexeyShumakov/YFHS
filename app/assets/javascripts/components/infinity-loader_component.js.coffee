@@ -6,8 +6,10 @@ YFHS.InfinityLoaderComponent = Ember.Component.extend
   params: Ember.computed 'nextPage', ()->
     nextPage = @get 'nextPage'
     params = @get 'queryParams'
+    if Ember.isBlank params
+      params =
+        page: nextPage
     params['page'] = nextPage
-    console.log params
     params
   loading: false
 
