@@ -4,11 +4,8 @@
 
 <div class="col-md-4">
 
-  <div class="input-group margin-bottom">
-    {{input value=nameText class='form-control' placeholder='Поиск по названию...' type='Text' enter='nameSearch'}}
-      <span class="input-group-btn">
-        <button {{action 'nameSearch' nameText}} class="btn btn-default" type="button">Go!</button>
-      </span>
+  <div class="form-group margin-bottom">
+    {{input value=nameText class='form-control' placeholder='Поиск по названию...' type='Text' key-up='nameSearch'}}
   </div>
   <div class="list-group">
     <div class="list-group-item">

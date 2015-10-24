@@ -14,7 +14,8 @@ YFHS.DecksSearchRoute = Ember.Route.extend({
 
   setupController: (controller, model, params)->
     @._super controller, model
-    controller.set('params', params.queryParams);
+    controller.set('params', params.queryParams)
+    @controllerFor( 'decks').set 'nameText', params.queryParams.name
 
   deactivate: ()->
     @controller.clearProp()
