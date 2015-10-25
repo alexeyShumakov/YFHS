@@ -1,6 +1,7 @@
 class DecksController < ApplicationController
   include SearchHelper
   before_action :set_deck, only: [:increase_vote, :decrease_vote, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:increase_vote, :decrease_vote]
 
   # GET /decks
   # GET /decks.json
