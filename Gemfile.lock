@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/twitter/activerecord-reputation-system.git
+  revision: df77666a5d61ce74781b11a84c1a8944cff10779
+  specs:
+    activerecord-reputation-system (3.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -34,7 +40,6 @@ GEM
       activemodel (= 4.2.3)
       activesupport (= 4.2.3)
       arel (~> 6.0)
-    activerecord-reputation-system (3.0.1)
     activesupport (4.2.3)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -218,7 +223,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-reputation-system
+  activerecord-reputation-system!
   better_errors
   bootstrap-sass (~> 3.3.5)
   byebug

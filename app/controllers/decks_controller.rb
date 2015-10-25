@@ -1,26 +1,16 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: [:show, :edit, :update, :destroy]
+  include SearchHelper
+  before_action :set_deck, only: [:increase_vote, :decrease_vote, :show, :edit, :update, :destroy]
 
   # GET /decks
   # GET /decks.json
   def index
-    @decks = Deck.all
-    unless params[:name].blank?
-      @decks = Deck.search_by_name params[:name]
-    end
-    unless params[:player_class].blank?
-      @player_class = PlayerClass.find_by en_name: params[:player_class]
-      @decks = @decks.where player_class: @player_class
-    end
+    search_decks
 
-    unless params[:deck_type].blank?
-      @deck_type = DeckType.find_by name: params[:deck_type]
-      @decks = @decks.where(deck_type: @deck_type)
-    end
-    if params[:page].blank?
-      @decks = @decks.page(1)
-    else
-      @decks = @decks.page(params[:page])
+    if user_signed_in?
+      @decks.each do |deck|
+        update_vote_status deck
+      end
     end
     respond_to do |format|
       format.json { render json: @decks, meta: {total: @decks.total_pages} }
@@ -31,10 +21,25 @@ class DecksController < ApplicationController
   # GET /decks/1
   # GET /decks/1.json
   def show
+    if user_signed_in?
+      update_vote_status @deck
+    end
     render json: @deck
   end
 
   def search
+  end
+
+  # GET /decks/1/increase_vote
+  def increase_vote
+    @deck.update_vote 1, current_user
+    render nothing: true, status: :ok
+  end
+
+  # GET /decks/1/decrease_vote
+  def decrease_vote
+    @deck.update_vote -1, current_user
+    render nothing: true, status: :ok
 
   end
 
@@ -83,6 +88,11 @@ class DecksController < ApplicationController
   end
 
   private
+    def update_vote_status(deck)
+      if deck.has_evaluation? :vote, current_user
+        deck.update_vote_status current_user
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_deck
       @deck = Deck.find(params[:id])
@@ -90,6 +100,6 @@ class DecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deck_params
-      params.require(:deck).permit(:page, :deck_type, :player_class, :player_class_id, :description, :user_id ,:deck_type_id, :name, :builder_card_ids => [])
+      params.require(:deck).permit(:page, :deck_type, :player_class, :player_class_id, :description, :user_id ,:deck_type_id, :name)
     end
 end

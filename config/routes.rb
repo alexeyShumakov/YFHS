@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   resources :deck_types
   resources :builder_cards
+
   get 'decks/search'
-  resources :decks
+
+  resources :decks do
+    member do
+      get 'increase_vote'
+      get 'decrease_vote'
+    end
+  end
+
   get 'builder' => 'builder#index'
   get 'builder/deck'
   get 'builder/synergy'

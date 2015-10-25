@@ -16,6 +16,29 @@
 .deck-list-item__card-img {
   width: 220px;
 }
+.deck-list-item__plus {
+  &:hover {
+    color: rgba(49, 150, 48, 0.65)
+  }
+  cursor: pointer;
+  color: rgba(49, 150, 48, 0.3)
+}
+.plus-active {
+  cursor: pointer;
+  color: #319630;
+}
+.deck-list-item__minus {
+  &:hover {
+    color: rgba(158, 49, 48, 0.66);
+
+  }
+  cursor: pointer;
+  color: rgba(158, 49, 48, 0.3);
+}
+.minus-active {
+  cursor: pointer;
+  color: rgb(158, 49, 48);
+}
 .deck-list-item__chevron {
   color: rgba(210, 170, 45, 0.45);
   &:hover {

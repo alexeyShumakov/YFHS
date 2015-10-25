@@ -13,3 +13,10 @@ YFHS.DeckItemComponent = Ember.Component.extend
     showImage: (card)->
       @set 'currentCardImg', card.get('card.img_url')
 
+    increaseVote: ()->
+      @get('deck').increaseVote()
+      @get('deck').reload()
+
+    decreaseVote: ()->
+      @get('deck').decreaseVote()
+      @get('deck').reload()

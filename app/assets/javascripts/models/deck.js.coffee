@@ -3,6 +3,11 @@
 YFHS.Deck = DS.Model.extend
   name: DS.attr 'string'
   description: DS.attr 'string'
+
+  votes: DS.attr 'number'
+  userIncreaseVote: DS.attr 'boolean'
+  userDecreaseVote: DS.attr 'boolean'
+
   deckType: DS.belongsTo 'deck_type'
   user: DS.belongsTo 'user'
   playerClass: DS.belongsTo 'player_class'
@@ -70,4 +75,10 @@ YFHS.Deck = DS.Model.extend
       count = manaItem.get 'count'
       manaItem.set 'size', "height:#{count * unitSize}%".htmlSafe()
     mana
+
+
+  increaseVote: ()->
+    Ember.$.getJSON "/decks/#{@get 'id'}/increase_vote"
+  decreaseVote: ()->
+    Ember.$.getJSON "/decks/#{@get 'id'}/decrease_vote"
 
