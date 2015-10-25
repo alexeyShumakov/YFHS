@@ -3,6 +3,9 @@ class Deck < ActiveRecord::Base
   has_reputation :vote, source: :user
   pg_search_scope :search_by_name, against: :name,
                   using: {tsearch: {prefix: true}}
+  attr_accessor :user_increase_vote, :user_decrease_vote
+  after_initialize :init
+
   has_many :builder_cards, dependent: :destroy
   belongs_to :user
   belongs_to :deck_type
@@ -12,12 +15,12 @@ class Deck < ActiveRecord::Base
     find_with_reputation(:vote, :all).order('vote DESC')
   end
 
-
-  attr_accessor :user_increase_vote, :user_decrease_vote
-
-  after_initialize :init
   def init
     @user_increase_vote = @user_decrease_vote = false
+  end
+
+  def votes
+    reputation_for :vote
   end
 
   def update_vote_status(user)
@@ -38,9 +41,5 @@ class Deck < ActiveRecord::Base
     else
       add_evaluation :vote, weight, user
     end
-  end
-
-  def votes
-    reputation_for :vote
   end
 end
