@@ -30,8 +30,10 @@ class Deck < ActiveRecord::Base
     if has_evaluation? :vote, user
       if evaluation_by(:vote, user) == 0
         increase_evaluation :vote, weight, user
+      elsif evaluation_by(:vote, user) > 0
+        decrease_evaluation :vote, weight.abs, user
       else
-        decrease_evaluation :vote, weight, user
+        increase_evaluation :vote, weight.abs, user
       end
     else
       add_evaluation :vote, weight, user
