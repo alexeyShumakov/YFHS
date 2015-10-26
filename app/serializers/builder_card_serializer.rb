@@ -1,3 +1,4 @@
 class BuilderCardSerializer < ApplicationSerializer
-  attributes :id, :count, :card_id, :deck_id
+  attributes :id, :count, :deck_id
+  has_one :card
 end
