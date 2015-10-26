@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022064317) do
+ActiveRecord::Schema.define(version: 20151026202717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,25 +28,15 @@ ActiveRecord::Schema.define(version: 20151022064317) do
   add_index "builder_cards", ["deck_id"], name: "index_builder_cards_on_deck_id", using: :btree
 
   create_table "cards", force: :cascade do |t|
-    t.string   "card_game_id"
     t.string   "name"
     t.string   "card_set"
-    t.integer  "durability"
     t.string   "card_type"
-    t.string   "race"
     t.string   "player_class_str"
-    t.string   "faction"
     t.string   "rarity"
     t.integer  "cost"
     t.integer  "attack"
     t.integer  "health"
-    t.string   "text"
-    t.string   "flavor"
-    t.string   "artist"
     t.boolean  "collectible"
-    t.boolean  "elite"
-    t.string   "locale"
-    t.json     "mechanics"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.string   "img_file_name"

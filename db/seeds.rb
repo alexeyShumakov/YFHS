@@ -17,7 +17,6 @@ response_json.each do |_, value|
       if card['collectible']
         if card.key? 'img'
           card_model = Card.new
-          card_model.card_game_id = card['cardId']
           card_model.name = card['name']
           card_model.card_set = card['cardSet']
           card_model.card_type = card['type']
@@ -25,13 +24,8 @@ response_json.each do |_, value|
           card_model.attack = card['attack']
           card_model.cost = card['cost']
           card_model.health = card['health']
-          card_model.durability = card['durability']
-          card_model.text = card['text']
-          card_model.flavor = card['flavor']
           card_model.collectible = card['collectible']
-          card_model.elite = card['elite']
           card_model.player_class_str = card['playerClass']
-          card_model.mechanics = card['mechanics']
           card_model.img = URI.parse(card['img'])
           card_model.img_gold = URI.parse(card['imgGold'])
           puts card['name']

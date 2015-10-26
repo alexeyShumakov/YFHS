@@ -30,6 +30,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'oj'
+gem 'fast_blank'
 gem 'faraday'
 gem 'activerecord-reputation-system', git: 'https://github.com/twitter/activerecord-reputation-system.git'
 gem 'paperclip'
