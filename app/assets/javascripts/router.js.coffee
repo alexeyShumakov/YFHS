@@ -4,8 +4,8 @@ YFHS.Router.reopen
 
 YFHS.Router.map ()->
   @route 'cards'
+  @route 'deck', path: 'decks/:id'
   @route 'decks', ()->
-    @route 'show', path: ':id'
     @route 'search'
   @route 'builder', ()->
     @route 'deck'
