@@ -21,7 +21,10 @@ class DecksController < ApplicationController
     if user_signed_in?
       update_vote_status @deck
     end
-    render json: @deck
+    respond_to do |format|
+      format.json { render json: @deck }
+      format.html {}
+    end
   end
 
   def search

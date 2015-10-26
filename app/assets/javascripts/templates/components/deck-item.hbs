@@ -1,5 +1,5 @@
 <div class="deck-list-item__name pull-left">
-  <div><b>{{deck.name}}</b></div>
+  <div><b>{{#link-to 'decks.show' deck.id}}{{deck.name}}{{/link-to}}</b></div>
   от <i>{{deck.user.email}}</i>
 </div>
 <div class="deck-list-item__col deck-list-item__className text-center pull-left">
