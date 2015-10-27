@@ -39,6 +39,10 @@
   cursor: pointer;
   color: rgb(158, 49, 48);
 }
+.deck-list-item__large-votes {
+  font-size: 20px;
+  margin-top: 20px;
+}
 .deck-list-item__chevron {
   color: rgba(210, 170, 45, 0.45);
   &:hover {

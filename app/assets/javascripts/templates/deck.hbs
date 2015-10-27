@@ -1,14 +1,22 @@
 <div class="row">
   <div class="col-md-8">
-    <div class="row">
-      <h1>{{model.name}}</h1>
-      <h2>класс:{{model.playerClass.name}}</h2>
-      <h2>тип колоды:{{model.deckType.name}}</h2>
+    <div class="deck-list-item__large-votes pull-right">
+      <span {{action 'increaseVote' model}} class="no-select glyphicon glyphicon-thumbs-up  {{if model.userIncreaseVote 'plus-active' 'deck-list-item__plus'}}"></span>
+      <b>{{model.votes}}</b>
+      <span {{action 'decreaseVote' model}} class="no-select glyphicon glyphicon-thumbs-down  {{if model.userDecreaseVote 'minus-active' 'deck-list-item__minus'}}"></span>
     </div>
-    <div class="row">
-      <div class="well deck-description">
-        {{markdown-onebox text=model.description}}
-      </div>
+    <h2>{{model.name}}</h2>
+    <ul class="list-unstyled">
+      <li><b>класс:</b> {{model.playerClass.name}}</li>
+      <li><b>тип:</b> {{model.deckType.name}}</li>
+      <li><b>создана:</b> {{formated-date model.createdAt}}</li>
+    </ul>
+    <div class="bordered">
+      {{model.user.email}}
+    </div>
+    <h4 class="text-center">Описание</h4>
+    <div class="deck-description">
+      {{markdown-onebox text=model.description}}
     </div>
   </div>
   <div  class="col-md-4">

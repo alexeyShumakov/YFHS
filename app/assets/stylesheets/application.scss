@@ -98,3 +98,11 @@ iframe{
   -ms-user-select: none;
   user-select: none;
 }
+video {
+  max-width: 100%;
+}
+.bordered {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}

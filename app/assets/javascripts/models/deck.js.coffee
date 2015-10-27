@@ -3,6 +3,7 @@
 YFHS.Deck = DS.Model.extend
   name: DS.attr 'string'
   description: DS.attr 'string'
+  createdAt: DS.attr 'string'
 
   votes: DS.attr 'number'
   userIncreaseVote: DS.attr 'boolean'
