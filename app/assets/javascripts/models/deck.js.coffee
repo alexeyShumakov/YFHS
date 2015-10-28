@@ -42,7 +42,7 @@ YFHS.Deck = DS.Model.extend
       builderCard.deleteRecord()
     builderCard.save()
 
-  mana: Ember.computed ()->
+  mana: Ember.computed 'totalCards', ()->
     mana = [
       Ember.Object.create({cost: 0, name: 0, count: 0 }),
       Ember.Object.create({cost: 1, name: 1, count: 0 }),

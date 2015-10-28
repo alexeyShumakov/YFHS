@@ -43,10 +43,8 @@
     </div>
     {{#if deck.description}}
       <hr>
-      <h3>Описание</h3>
-      <div class="well deck-list-item__description">
-        {{markdown-onebox text=deck.description}}
-      </div>
+      <h3 class="text-center">Описание</h3>
+      {{markdown-onebox text=deck.description}}
     {{/if}}
   </div>
 {{/if}}
