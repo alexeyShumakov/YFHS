@@ -66,26 +66,7 @@
         <h3 class="card-list__count pull-right">
           {{model.deck.totalCards}}/30
         </h3>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th class="col-md-10">Название</th>
-              <th class="col-md-2">Мана</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.deck.sortedCards as |builderCard|}}
-              <tr class="card-list__item"  {{action 'removeFromDeck' builderCard}}>
-                <td class="col-md-10">
-                  <b class="{{builderCard.card.rarity}}">{{builderCard.card.name}}</b>
-                  <i>{{builderCard.showCount}}</i>
-                </td>
-
-                <td class="col-md-2">{{builderCard.card.cost}}</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
+        {{deck-cards deck=model.deck editable=true action='removeFromDeck'}}
       </div>
     </div>
   </div>

@@ -29,27 +29,7 @@
         </div>
       {{/each}}
     </div>
-
-    <table class="table table-bordered">
-      <thead>
-      <tr>
-        <th class="col-md-10">Название</th>
-        <th class="col-md-2">Мана</th>
-      </tr>
-      </thead>
-      <tbody>
-      {{#each model.sortedCards as |builderCard|}}
-        <tr class="card-list__item"  {{action 'showImage' builderCard on='mouseEnter'}}>
-          <td class="col-md-10">
-            <b class="{{builderCard.card.rarity}}">{{builderCard.card.name}}</b>
-            <i>{{builderCard.showCount}}</i>
-          </td>
-
-          <td class="col-md-2">{{builderCard.card.cost}}</td>
-        </tr>
-      {{/each}}
-      </tbody>
-    </table>
+    {{deck-cards deck=model editable=false}}
   </div>
 </div>
 {{outlet}}
