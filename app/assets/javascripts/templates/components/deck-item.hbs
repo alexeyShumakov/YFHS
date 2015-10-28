@@ -17,9 +17,7 @@
 </div>
 <span {{action 'showDetails'}} class="pull-right deck-list-item__chevron glyphicon glyphicon-chevron-{{if isDetailed 'down' 'left'}}"></span>
 <div class="deck-list-item__col pull-right">
-  {{deck.votes}}
-  <span {{action 'increaseVote'}} class="no-select glyphicon glyphicon-thumbs-up  {{if deck.userIncreaseVote 'plus-active' 'deck-list-item__plus'}}"></span>
-  <span {{action 'decreaseVote'}} class="no-select glyphicon glyphicon-thumbs-down  {{if deck.userDecreaseVote 'minus-active' 'deck-list-item__minus'}}"></span>
+  {{vote-comp model=deck}}
 </div>
 <div class="clearfix"></div>
 {{#if isDetailed}}

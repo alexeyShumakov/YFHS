@@ -1,9 +1,7 @@
 <div class="row">
   <div class="col-md-8">
-    <div class="deck-list-item__large-votes pull-right">
-      <span {{action 'increaseVote' model}} class="no-select glyphicon glyphicon-thumbs-up  {{if model.userIncreaseVote 'plus-active' 'deck-list-item__plus'}}"></span>
-      <b>{{model.votes}}</b>
-      <span {{action 'decreaseVote' model}} class="no-select glyphicon glyphicon-thumbs-down  {{if model.userDecreaseVote 'minus-active' 'deck-list-item__minus'}}"></span>
+    <div class="pull-right vote_large">
+      {{vote-comp model=model}}
     </div>
     <h2>{{model.name}}</h2>
     <ul class="list-unstyled">
