@@ -5,10 +5,6 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
   description: DS.attr 'string'
   createdAt: DS.attr 'string'
 
-  votes: DS.attr 'number'
-  userIncreaseVote: DS.attr 'boolean'
-  userDecreaseVote: DS.attr 'boolean'
-
   deckType: DS.belongsTo 'deck_type'
   user: DS.belongsTo 'user'
   playerClass: DS.belongsTo 'player_class'

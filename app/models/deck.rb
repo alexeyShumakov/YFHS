@@ -9,8 +9,4 @@ class Deck < ActiveRecord::Base
                   using: {tsearch: {prefix: true}}
 
   has_reputation :vote, source: :user
-  attr_accessor :user_increase_vote, :user_decrease_vote
-  def votes
-    reputation_for :vote
-  end
 end

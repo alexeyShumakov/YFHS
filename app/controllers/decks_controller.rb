@@ -5,9 +5,6 @@ class DecksController < ApplicationController
   def index
     search_decks :deck
 
-    @decks.each do |deck|
-      VoteService.new(deck).set_vote_status current_user
-    end
     respond_to do |format|
       format.json { render json: @decks, meta: {total: @decks.total_pages} }
       format.html {}
@@ -15,7 +12,6 @@ class DecksController < ApplicationController
   end
 
   def show
-    VoteService.new(@deck).set_vote_status current_user
     respond_to do |format|
       format.json { render json: @deck }
       format.html {}

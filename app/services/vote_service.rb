@@ -7,14 +7,6 @@ class VoteService
     klass_symbol.to_s.capitalize.constantize.find_with_reputation(:vote, :all).order('vote DESC')
   end
 
-  def set_vote_status(user)
-    if @model.has_evaluation? :vote, user
-      @evaluation_value = @model.evaluation_by :vote, user
-      @model.user_increase_vote = @evaluation_value > 0 ? true : false
-      @model.user_decrease_vote = @evaluation_value < 0 ? true : false
-    end
-  end
-
   def update_vote(weight, user)
     if @model.has_evaluation? :vote, user
       if @model.evaluation_by(:vote, user) == 0
