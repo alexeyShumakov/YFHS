@@ -6,10 +6,10 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="panel-body">{{markdown news.body}}</div>
+  <div class="panel-body">{{markdown-onebox text=news.body}}</div>
+  <div class="pull-right">{{vote-comp model=news}}</div>
   <div class="panel-footer">
     {{#link-to 'single_news' news}}go to news {{/link-to}}
-    {{like-comp model=news}}
   </div>
 </div>
 

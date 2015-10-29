@@ -21,7 +21,6 @@ Rails.application.routes.draw do
 
   resources :player_classes
   resources :cards
-  resources :likes
   resources :comments
   get 'one_box/show'
 

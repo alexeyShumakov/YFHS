@@ -3,5 +3,4 @@ class UserSerializer < ApplicationSerializer
   # has_many :decks
   has_many :news
   has_many :comments
-  has_many :likes
 end
