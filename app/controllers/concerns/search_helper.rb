@@ -1,7 +1,7 @@
 module SearchHelper
   extend ActiveSupport::Concern
-  def search_decks
-    @decks = Deck.most_voted
+  def search_decks(klass_symbol)
+    @decks = VoteService.most_voted klass_symbol
     @decks = @decks.search_by_name(params[:name]) unless params[:name].blank?
     unless params[:player_class].blank?
       @player_class = PlayerClass.find_by en_name: params[:player_class]

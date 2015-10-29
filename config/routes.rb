@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'votes/increase'
+  post 'votes/decrease'
+
   resources :deck_types
   resources :builder_cards
 

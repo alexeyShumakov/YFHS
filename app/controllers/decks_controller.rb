@@ -1,15 +1,12 @@
 class DecksController < ApplicationController
   include SearchHelper
-  before_action :set_deck, only: [:increase_vote, :decrease_vote, :show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:increase_vote, :decrease_vote]
+  before_action :set_deck, only: [:show, :edit, :update, :destroy]
 
   def index
-    search_decks
+    search_decks :deck
 
-    if user_signed_in?
-      @decks.each do |deck|
-        update_vote_status deck
-      end
+    @decks.each do |deck|
+      VoteService.new(deck).set_vote_status current_user
     end
     respond_to do |format|
       format.json { render json: @decks, meta: {total: @decks.total_pages} }
@@ -18,9 +15,7 @@ class DecksController < ApplicationController
   end
 
   def show
-    if user_signed_in?
-      update_vote_status @deck
-    end
+    VoteService.new(@deck).set_vote_status current_user
     respond_to do |format|
       format.json { render json: @deck }
       format.html {}
@@ -28,16 +23,6 @@ class DecksController < ApplicationController
   end
 
   def search
-  end
-
-  def increase_vote
-    @deck.update_vote 1, current_user
-    render nothing: true, status: :ok
-  end
-
-  def decrease_vote
-    @deck.update_vote -1, current_user
-    render nothing: true, status: :ok
   end
 
   def new
@@ -77,11 +62,6 @@ class DecksController < ApplicationController
   end
 
   private
-    def update_vote_status(deck)
-      if deck.has_evaluation? :vote, current_user
-        deck.update_vote_status current_user
-      end
-    end
     def set_deck
       @deck = Deck.find(params[:id])
     end

@@ -1,6 +1,6 @@
 # for more details see: http://emberjs.com/guides/models/defining-models/
 
-YFHS.Deck = DS.Model.extend
+YFHS.Deck = DS.Model.extend YFHS.Votable,
   name: DS.attr 'string'
   description: DS.attr 'string'
   createdAt: DS.attr 'string'
@@ -76,10 +76,4 @@ YFHS.Deck = DS.Model.extend
       count = manaItem.get 'count'
       manaItem.set 'size', "height:#{count * unitSize}%".htmlSafe()
     mana
-
-
-  increaseVote: ()->
-    Ember.$.getJSON "/decks/#{@get 'id'}/increase_vote"
-  decreaseVote: ()->
-    Ember.$.getJSON "/decks/#{@get 'id'}/decrease_vote"
 
