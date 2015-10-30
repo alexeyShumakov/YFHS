@@ -2,5 +2,6 @@
 
 YFHS.Comment = DS.Model.extend
   user: DS.belongsTo 'user'
-  news: DS.belongsTo 'news'
+  commentable_id: DS.attr 'number'
+  commentable_type: DS.attr 'string'
   body: DS.attr 'string'
