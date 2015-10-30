@@ -8,15 +8,16 @@ YFHS.SingleNewsController = Ember.Controller.extend({
 
   actions:
     saveComment: ()->
-      _this = @
-      comment = @.store.createRecord 'comment'
-      comment.setProperties
-        user: @.get 'currentUser.user'
-        news: @.get 'model'
-        body: @.get 'comment'
-      comment.save().then(
-        ()->
-          _this.set 'comment', ''
-      )
+      unless Ember.isBlank @get('comment')
+        _this = @
+        comment = @.store.createRecord 'comment'
+        comment.setProperties
+          user: @.get 'currentUser.user'
+          news: @.get 'model'
+          body: @.get 'comment'
+        comment.save().then(
+          ()->
+            _this.set 'comment', ''
+        )
 })
 
