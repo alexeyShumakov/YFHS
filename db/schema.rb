@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029204802) do
+ActiveRecord::Schema.define(version: 20151030122935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,13 +54,14 @@ ActiveRecord::Schema.define(version: 20151029204802) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "news_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "comments", ["news_id"], name: "index_comments_on_news_id", using: :btree
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "deck_types", force: :cascade do |t|
@@ -172,7 +173,6 @@ ActiveRecord::Schema.define(version: 20151029204802) do
   add_foreign_key "builder_cards", "cards"
   add_foreign_key "builder_cards", "decks"
   add_foreign_key "cards", "player_classes"
-  add_foreign_key "comments", "news"
   add_foreign_key "comments", "users"
   add_foreign_key "decks", "deck_types"
   add_foreign_key "decks", "player_classes"
