@@ -3,10 +3,14 @@
 YFHS.MarkdownOneboxComponent = Ember.Component.extend({
   oneBox: Ember.inject.service()
   didInsertElement: ()->
-    id = '#' + @get('elementId')
+    unless @get 'placeholder'
+      @get('oneBox').preview @getId()
+
+  getId: ()->
+    '#' + @get('elementId')
+
+  obs: Ember.observer 'text', ()->
     if @get 'placeholder'
-      Ember.observer 'text', ()->
-        @.get('oneBox').placeholder id
-    else
-      @get('oneBox').preview id
+      @get('oneBox').placeholder @getId()
+
 })
