@@ -1,14 +1,17 @@
 # for more details see: http://emberjs.com/guides/components/
 
 YFHS.DeckItemComponent = Ember.Component.extend
+  loading: false
+  store: Ember.inject.service()
   actions:
     showDetails: ()->
-      @toggleProperty 'isDetailed'
-
-    increaseVote: ()->
-      @get('deck').increaseVote()
-      @get('deck').reload()
-
-    decreaseVote: ()->
-      @get('deck').decreaseVote()
-      @get('deck').reload()
+      _this = @
+      if @get 'isDetailed'
+        @toggleProperty 'isDetailed'
+      else
+        @set 'loading', true
+        @get('store').query('builder_card', {deck_id: @get('deck.id')}).then(
+          ()->
+            _this.set 'loading', false
+            _this.toggleProperty 'isDetailed'
+        )

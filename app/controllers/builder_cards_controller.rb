@@ -4,7 +4,7 @@ class BuilderCardsController < ApplicationController
   # GET /builder_cards
   # GET /builder_cards.json
   def index
-    @builder_cards = BuilderCard.all
+    @builder_cards = BuilderCard.where deck_id: params[:deck_id]
     render json: @builder_cards
   end
 
