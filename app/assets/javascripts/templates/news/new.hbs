@@ -12,7 +12,7 @@
     <button {{action 'save'}} class="btn btn-primary">опубликовать</button>
   </form>
   <div class="news-preview">
-    {{markdown model.body}}
+    {{markdown-onebox text=model.body placeholder=true}}
   </div>
 
 {{else}}
