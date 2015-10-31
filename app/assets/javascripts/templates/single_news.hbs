@@ -9,21 +9,4 @@
   <div class="panel-body">{{markdown-onebox text=model.body}}</div>
 </div>
 
-{{list-comments comments=model.comments}}
-{{#if currentUser.isLogIn}}
-  <form>
-    <div class="form-group">
-      <label for="comment-body">comment</label>
-      {{textarea value=comment class='form-control' id='comment-body'}}
-    </div>
-    <button {{action 'saveComment'}} class="btn btn-primary">опубликовать</button>
-  </form>
-  <div class="comment-preview">
-    {{markdown-onebox text=comment placehodel=true}}
-  </div>
-
-{{else}}
-  <div class="alert alert-success">
-    Что бы писать комментарии нужно войти, или зарегистрироваться.
-  </div>
-{{/if}}
+{{comments-block comments=model.comments commentable=model}}
