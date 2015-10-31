@@ -8,6 +8,7 @@ response = conn.get do |req|
   req.headers['X-Mashape-Key'] = 'QFoPqBzZPBmshJ2Pq9hptKbD5WX0p18oBYFjsnLkliETS6QyN7'
   req.params['locale'] = 'ruRU'
 end
+
 response_json = JSON.parse response.body
 
 response_json.each do |_, value|
@@ -59,5 +60,18 @@ player_classes.each do |key, value|
   pc_cards.each do |card|
     card.player_class = new_pc
     card.save
+  end
+
+  user = User.create email: 'test@mail.com', password: 'password', password_confirmation: 'password', confirmed_at: Date.today
+  deck_type = DeckType.first
+  player_class = PlayerClass.first
+  cards = Card.where(player_class: player_class).last 30
+  100.times do
+    deck = Deck.create player_class: player_class, name: 'Моя колода', description: 'Описание', user: user, deck_type: deck_type
+    cards.each do |card|
+      builder_card = BuilderCard.create deck: deck, card: card, count: 1
+      deck.builder_cards << builder_card
+    end
+    deck.save
   end
 end
