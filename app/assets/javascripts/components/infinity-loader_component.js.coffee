@@ -30,8 +30,9 @@ YFHS.InfinityLoaderComponent = Ember.Component.extend
               _this.incrementProperty('nextPage')
           )
   didInsertElement: ()->
+    @.set('guid', Ember.guidFor @)
     _this= @
-    $(window).on 'scroll', ()->
+    $(window).on "scroll.#{@get 'guid'}", ()->
       Ember.run.debounce(_this, _this.load, 100)
   willDestroyElement: ()->
-    $(window).off 'scroll'
+    $(window).off "scroll.#{@get 'guid'}"
