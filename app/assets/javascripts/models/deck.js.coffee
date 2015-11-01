@@ -4,6 +4,7 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
   name: DS.attr 'string'
   description: DS.attr 'string'
   createdAt: DS.attr 'string'
+  curve: DS.attr 'string'
 
   deckType: DS.belongsTo 'deck_type'
   user: DS.belongsTo 'user'
@@ -16,6 +17,10 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
   isWhole: Ember.computed 'totalCards', ()->
     Ember.isEqual @.get('totalCards'), 30
 
+  curveArray: Ember.computed 'curve', ()->
+    valueArr = @get('curve').split ','
+    valueArr.map (value)->
+      "height:#{value}%".htmlSafe()
   totalCards: Ember.computed 'cards.@each.count', ()->
     sum = 0
     @.get('cards').forEach (card)->

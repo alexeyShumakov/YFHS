@@ -7,8 +7,8 @@
 </div>
 <div class="deck-list-item__col">
   <ul class="list-unstyled deck-graph pull-left">
-    {{#each deck.mana as |mana|}}
-      <li class="deck-graph__item"><span class="deck-graph__item-value" style={{mana.size}}></span></li>
+    {{#each deck.curveArray as |mana|}}
+      <li class="deck-graph__item"><span class="deck-graph__item-value" style={{mana}}></span></li>
     {{/each}}
   </ul>
 </div>
