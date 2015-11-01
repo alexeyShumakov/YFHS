@@ -1,14 +1,18 @@
 <div>
-  {{#each comments as |comment|}}
-    <div class="bordered margin-bottom">
-      <i>{{comment.user.email}}</i>
-      <div class="pull-right">
-        {{vote-comp model=comment}}
+  {{#if commentsLoading}}
+    <div class="loader"></div>
+  {{else}}
+    {{#each comments as |comment|}}
+      <div class="bordered margin-bottom">
+        <i>{{comment.user.email}}</i>
+        <div class="pull-right">
+          {{vote-comp model=comment}}
+        </div>
+        <hr>
+        {{markdown-onebox text=comment.body}}
       </div>
-      <hr>
-      {{markdown-onebox text=comment.body}}
-    </div>
-  {{/each}}
+    {{/each}}
+  {{/if}}
 
   {{#if currentUser.isLogIn}}
     <form>

@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.where commentable_type: params[:commentable_type], commentable_id: params[:commentable_id]
+    render json: @comments
   end
 
   # GET /comments/1
