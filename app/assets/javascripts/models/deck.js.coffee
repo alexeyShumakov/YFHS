@@ -3,8 +3,9 @@
 YFHS.Deck = DS.Model.extend YFHS.Votable,
   name: DS.attr 'string'
   description: DS.attr 'string'
-  createdAt: DS.attr 'string'
+  createdAt: DS.attr 'date'
   curve: DS.attr 'string'
+  commentsCount: DS.attr 'number'
 
   deckType: DS.belongsTo 'deck_type'
   user: DS.belongsTo 'user'

@@ -1,6 +1,7 @@
 class Deck < ActiveRecord::Base
   include PgSearch
   has_many :builder_cards, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user
   belongs_to :deck_type
   belongs_to :player_class
@@ -10,6 +11,9 @@ class Deck < ActiveRecord::Base
 
   has_reputation :vote, source: :user
   paginates_per 20
+  def comments_count
+    comments.size
+  end
   def curve
     curve = []
     0.upto(7) {|cost| curve << cards_count_by_cost(cost)}

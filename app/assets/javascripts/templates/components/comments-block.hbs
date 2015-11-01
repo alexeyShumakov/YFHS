@@ -1,24 +1,9 @@
 <div>
-  {{#if commentsLoading}}
-    <div class="loader"></div>
-  {{else}}
-    {{#each comments as |comment|}}
-      <div class="bordered margin-bottom">
-        <i>{{comment.user.email}}</i>
-        <div class="pull-right">
-          {{vote-comp model=comment}}
-        </div>
-        <hr>
-        {{markdown-onebox text=comment.body}}
-      </div>
-    {{/each}}
-  {{/if}}
 
   {{#if currentUser.isLogIn}}
     <form>
       <div class="form-group">
-        <label for="comment-body">comment</label>
-        {{textarea value=comment class='form-control' id='comment-body'}}
+        {{textarea value=comment class='form-control'}}
       </div>
       <button {{action 'saveComment'}} class="btn btn-primary">опубликовать</button>
     </form>
@@ -31,4 +16,22 @@
       Что бы писать комментарии нужно войти, или зарегистрироваться.
     </div>
   {{/if}}
+
+  {{#if commentsLoading}}
+    <div class="loader"></div>
+  {{else}}
+    {{#each uniqComments as |comment|}}
+      <div class="bordered margin-bottom">
+        <b>{{comment.user.email}}</b>, <i>{{formated-date comment.createdAt}}</i>
+        <div class="pull-right">
+          {{vote-comp model=comment}}
+        </div>
+        <hr>
+        {{markdown-onebox text=comment.body}}
+      </div>
+    {{else}}
+    {{/each}}
+    {{infinity-loader queryParams=params model=comments modelName='comment'}}
+  {{/if}}
+
 </div>

@@ -1,6 +1,6 @@
 <div class="deck-list-item__name pull-left">
   <div><b>{{#link-to 'deck' deck.id}}{{deck.name}}{{/link-to}}</b></div>
-  от <i>{{deck.user.email}}</i>
+  от <i>{{deck.user.email}}</i>, {{formated-date deck.createdAt}}
 </div>
 <div class="deck-list-item__col deck-list-item__className text-center pull-left">
     {{deck.playerClass.name}}
@@ -22,6 +22,11 @@
 {{/if}}
 <div class="deck-list-item__col pull-right">
   {{vote-comp model=deck}}
+</div>
+<div class="deck-list-item__comment-icon pull-right">
+  {{deck.commentsCount}}
+  <span class=" glyphicon glyphicon-comment"></span>
+
 </div>
 <div class="clearfix"></div>
 {{#if isDetailed}}
@@ -48,5 +53,8 @@
       <h3 class="text-center">Описание</h3>
       {{markdown-onebox text=deck.description}}
     {{/if}}
+    <hr>
+    <h3 class="text-center">Комментарии</h3>
+    {{comments-block commentable=deck}}
   </div>
 {{/if}}

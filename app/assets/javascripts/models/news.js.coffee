@@ -4,4 +4,3 @@ YFHS.News = DS.Model.extend YFHS.Votable,
   title: DS.attr 'string'
   body: DS.attr 'string'
   user: DS.belongsTo 'user'
-  comments: DS.hasMany 'comment'

@@ -3,6 +3,23 @@
 YFHS.CommentsBlockComponent = Ember.Component.extend({
   store: Ember.inject.service()
   commentsLoading: true
+  uniqComments: Ember.computed.uniq 'sortedComments'
+  sortedComments: Ember.computed.sort 'comments', (a,b)->
+    aTime = moment(a.get 'createdAt')
+    bTime = moment(b.get 'createdAt')
+    if aTime > bTime
+      -1
+    else if aTime < bTime
+      1
+    else
+      0
+
+  params: Ember.computed ()->
+    model = @get('commentable')
+    qParams =
+      commentable_type: model.get('constructor.modelName').capitalize()
+      commentable_id: model.get 'id'
+
   didInsertElement: ()->
     _this = @
     model = @get('commentable')
@@ -28,7 +45,8 @@ YFHS.CommentsBlockComponent = Ember.Component.extend({
           body: @get 'comment'
         comment.save().then(
           ()->
-            _this.get('comments').pushObject(comment)
+            model.reload()
+            _this.get('comments.content').pushObject(comment._internalModel)
             _this.set 'comment', ''
         )
 })
