@@ -31,7 +31,7 @@
     <h4 class="text-center">Комментарии</h4>
     {{#each uniqComments as |comment|}}
       <div class="bordered margin-bottom">
-        <b>{{comment.user.email}}</b>, <i>{{formated-date comment.createdAt}}</i>
+        {{user-popup user=comment.user}}, <i>{{formated-date comment.createdAt}}</i>
         <div class="pull-right">
           {{vote-comp model=comment}}
         </div>
