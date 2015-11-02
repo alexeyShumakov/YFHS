@@ -2,14 +2,21 @@
 
   {{#if currentUser.isLogIn}}
     <form>
+      <b>Комментрировать</b>
       <div class="form-group">
-        {{textarea value=comment class='form-control'}}
+        {{textarea value=comment rows='4' class='form-control comment-block__textarea'}}
       </div>
-      <button {{action 'saveComment'}} class="btn btn-primary">опубликовать</button>
+      <div class="btn-group margin-bottom">
+        <button {{action 'saveComment'}} class="btn btn-primary">опубликовать</button>
+        <button {{action 'togglePre'}} class="btn btn-default">{{if isHidePre 'показать' 'скрыть'}} превью</button>
+
+      </div>
     </form>
-    <div class="comment-preview">
-      {{markdown-onebox text=comment placeholder=true}}
-    </div>
+      <div class="{{if isHidePre 'hidden'}}">
+        <div class="comment-review margin-bottom">
+          {{markdown-onebox text=comment placeholder=true}}
+        </div>
+      </div>
 
   {{else}}
     <div class="alert alert-success">
@@ -20,6 +27,8 @@
   {{#if commentsLoading}}
     <div class="loader"></div>
   {{else}}
+    <hr>
+    <h4 class="text-center">Комментарии</h4>
     {{#each uniqComments as |comment|}}
       <div class="bordered margin-bottom">
         <b>{{comment.user.email}}</b>, <i>{{formated-date comment.createdAt}}</i>

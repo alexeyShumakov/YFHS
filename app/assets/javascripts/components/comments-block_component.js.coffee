@@ -3,6 +3,7 @@
 YFHS.CommentsBlockComponent = Ember.Component.extend({
   store: Ember.inject.service()
   commentsLoading: true
+  isHidePre: false
   uniqComments: Ember.computed.uniq 'sortedComments'
   sortedComments: Ember.computed.sort 'comments', (a,b)->
     aTime = moment(a.get 'createdAt')
@@ -33,6 +34,8 @@ YFHS.CommentsBlockComponent = Ember.Component.extend({
     )
   comment: ''
   actions:
+    togglePre: ()->
+      @toggleProperty 'isHidePre'
     saveComment: ()->
       model = @get('commentable')
       unless Ember.isBlank @get('comment')
