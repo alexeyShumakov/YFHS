@@ -15,7 +15,11 @@ module SearchHelper
     unless params[:user_id].blank?
       @decks = @decks.where user_id: params[:user_id]
     end
-    @decks = params[:page].blank? ? @decks.page(1) : @decks.page(params[:page])
+    if params[:page].to_i == -1
+      @decks = @decks.page(1).per(Deck.count)
+    else
+      @decks = params[:page].blank? ? @decks.page(1) : @decks.page(params[:page])
+    end
     @decks = params[:limit].blank? ? @decks : @decks.limit(params[:limit].to_i)
 
   end

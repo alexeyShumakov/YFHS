@@ -1,0 +1,29 @@
+<a href="#" {{action 'toggleOpen'}}>Мои колоды<span class="caret"></span></a>
+<ul class="dropdown-menu my-decks__dropdown">
+{{#if open}}
+    {{#each decks as |deck|}}
+      <li class="my-decks__name">
+        {{#link-to 'deck' deck.id}}
+           <b><span class="text-capitalize">{{deck.deckType.name}}</span>-{{deck.playerClass.name}}: </b>{{deck.name}}
+          <div>
+            <span class="glyphicon glyphicon-thumbs-up"></span>{{deck.votes}}
+            <span class="glyphicon glyphicon-comment"></span> {{deck.commentsCount}}
+          </div>
+        {{/link-to}}
+      </li>
+    {{else}}
+      Нет дек =(
+    {{/each}}
+  {{#unless isAllDecks}}
+    {{#if moreDecks}}
+      <li>
+        {{#if loading}}
+          <a><i>загрузка...</i></a>
+        {{else}}
+          <a href="#"{{action 'showAll'}}>Показать все</a>
+        {{/if}}
+      </li>
+    {{/if}}
+  {{/unless}}
+{{/if}}
+</ul>
