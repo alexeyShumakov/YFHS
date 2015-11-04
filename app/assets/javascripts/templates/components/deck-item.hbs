@@ -1,6 +1,6 @@
 <div class="deck-list-item__name pull-left">
-  <div><b>{{#link-to 'deck' deck.id}}{{deck.name}}{{/link-to}}</b></div>
-  от <i>{{deck.user.email}}</i>, {{formated-date deck.createdAt}}
+  <div class="name"><b>{{#link-to 'deck' deck.id}}{{deck.name}}{{/link-to}}</b></div>
+  от {{user-popup user=deck.user}}, {{formated-date deck.createdAt}}
 </div>
 <div class="deck-list-item__col deck-list-item__className text-center pull-left">
     {{deck.playerClass.name}}
