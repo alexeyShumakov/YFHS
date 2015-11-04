@@ -2,6 +2,7 @@
 
 YFHS.VoteCompComponent = Ember.Component.extend({
   classNames: ['vote']
+  tagName: 'span'
   actions:
     increaseVote: ()->
       @get('model').increaseVote()

@@ -1,8 +1,27 @@
-<b>{{user.email}}</b>
+<a href="#" class="usr-link">{{user.email}}</a>
 {{#if isShowPopup}}
-  some-info <br>
-  some-info <br>
-  some-info <br>
-  some-info <br>
-  some-info <br>
+  <div class="user-popup__popup">
+    <div class="text-center">
+      <a href="#">{{user.email}}</a>
+    </div>
+    <div class="user-popup__decks">
+      {{#each decks as |deck|}}
+          <div class="user-popup__deck">
+            <div class="user-popup__deck-info">
+              <ul class="list-unstyled deck-graph">
+                {{#each deck.curveArray as |mana|}}
+                  <li class="deck-graph__item"><span class="deck-graph__item-value" style={{mana}}></span></li>
+                {{/each}}
+              </ul>
+              <span class="vote_mono">{{vote-comp model=deck}}</span>
+              <span class="glyphicon glyphicon-comment"></span> {{deck.commentsCount}}
+            </div>
+            <div class='user-popup__deck-name'>{{#link-to 'deck' deck.id }}{{deck.name}}{{/link-to}}</div>
+          </div>
+      {{else}}
+        nope!
+      {{/each}}
+      <div class="text-center"><a href="#" >все колоды</a></div>
+    </div>
+  </div>
 {{/if}}
