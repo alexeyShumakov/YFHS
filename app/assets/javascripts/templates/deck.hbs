@@ -13,9 +13,10 @@
       {{model.user.email}}
     </div>
     <h4 class="text-center">Описание</h4>
-    <div class="deck-description">
+    <div class="deck-description margin-bottom">
       {{markdown-onebox text=model.description}}
     </div>
+    {{comments-block commentable=model}}
   </div>
   <div  class="col-md-4">
     <div class="well mana-curve">
