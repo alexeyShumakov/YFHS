@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :confirmable , :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  validates :nickname, length: { in: 5..40 }, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
 end

@@ -6,6 +6,7 @@ YFHS.SignUpComponent = Ember.Component.extend
       _this = @
       user = @.get 'user'
       user.set 'email', @.get 'currentUser.email'
+      user.set 'nickname', @get 'currentUser.nickname'
       user.set 'password', @.get 'currentUser.password'
       user.set 'password_confirmation', @.get 'currentUser.passwordConfirmation'
       user.save().then(
