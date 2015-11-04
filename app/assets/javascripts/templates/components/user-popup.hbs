@@ -19,9 +19,11 @@
             <div class='user-popup__deck-name'>{{#link-to 'deck' deck.id }}{{deck.name}}{{/link-to}}</div>
           </div>
       {{else}}
-        nope!
+        Не собрал ни одной колоды, пока.
       {{/each}}
-      <div class="text-center"><a href="#" >все колоды</a></div>
+      {{#if decks}}
+        <div class="text-center"><a href="#" >все колоды</a></div>
+      {{/if}}
     </div>
   </div>
 {{/if}}

@@ -2,30 +2,18 @@
 
 YFHS.ApplicationRoute = Ember.Route.extend
 
-  beforeModel: (transition)->
-    @.get('currentUser').getUser()
-    if Ember.isPresent transition.queryParams.confirmation
-      @.set 'confirmation', true
-
   model: ()->
+    @get('currentUser').getUser()
     Ember.RSVP.hash
-      user: @.store.createRecord 'user'
-
-  renderTemplate: (controller, model)->
-    @._super controller, model
-    if  @.get 'confirmation'
-      @.render 'log-in',
-        into: 'application',
-        outlet: 'modal'
-
+      user: @store.createRecord 'user'
 
   actions:
     openModal: (name)->
-      @.render name,
+      @render name,
         into: 'application',
         outlet: 'modal'
 
     closeModal: ()->
-      @.disconnectOutlet
+      @disconnectOutlet
         outlet: 'modal',
         parentView: 'application'
