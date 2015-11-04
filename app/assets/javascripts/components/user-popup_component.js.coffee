@@ -14,7 +14,7 @@ YFHS.UserPopupComponent = Ember.Component.extend({
     if Ember.isBlank @get 'decks'
       params =
         user_id: @get 'user.id'
-        limit: 5
+        limit: 3
       @get('store').query('deck', params).then(
         (decks)->
           _this.set 'decks', decks
