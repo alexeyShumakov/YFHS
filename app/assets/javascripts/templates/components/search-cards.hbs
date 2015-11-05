@@ -1,0 +1,28 @@
+<form class="form-inline">
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <label class="glyphicon glyphicon-search"></label>
+      </div>
+      {{input placeholder='Поиск' value=keyword class='form-control'}}
+    </div>
+  </div>
+  {{list-costs action='updateCost'}}
+</form>
+{{list-classes action='updatePlayerClass' playerClasses=playerClasses}}
+
+<div class="card-container">
+  <button class="btn arrow arrow-left" {{action 'prevSlide'}}>
+    <span class="glyphicon glyphicon-arrow-left"></span>
+  </button>
+
+  {{#each sliderCards as |card|}}
+    <div {{action 'clickCard' card}} class="col-md-4">
+      <img class="{{unless card.isActive 'card-disable'}} card-img" src="{{card.img_url}}" alt="">
+    </div>
+  {{/each}}
+
+  <button class="btn arrow arrow-right" {{action 'nextSlide'}}>
+    <span class="glyphicon glyphicon-arrow-right"></span>
+  </button>
+</div>

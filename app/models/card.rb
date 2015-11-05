@@ -1,6 +1,7 @@
 class Card < ActiveRecord::Base
   has_many :builder_cards
   belongs_to :player_class
+  default_scope {order('cost')}
   has_attached_file :img
   validates_attachment_content_type :img, content_type: /\Aimage\/.*\Z/
 

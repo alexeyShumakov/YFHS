@@ -3,14 +3,14 @@
 YFHS.BuilderPlayerClassRoute = Ember.Route.extend
   model: (params)->
     Ember.RSVP.hash
-      playerClass: @.store.findRecord 'player_class', params['id']
-      cards: @.store.findAll 'card'
-      deck: @.store.createRecord 'deck'
-      deckTypes: @.store.findAll 'deck_type'
+      playerClass: @store.findRecord 'player_class', params['id']
+      cards: @store.findAll 'card'
+      deck: @store.createRecord 'deck'
+      deckTypes: @store.findAll 'deck_type'
 
   afterModel: (model)->
-    if @.get('currentUser.isLogIn')
-      model.deck.set 'user', @.get('currentUser.user')
+    if @get('currentUser.isLogIn')
+      model.deck.set 'user', @get('currentUser.user')
 
     model.deck.set 'playerClass', model.playerClass
     model.deck.set 'name', model.playerClass.get('name')
@@ -18,19 +18,15 @@ YFHS.BuilderPlayerClassRoute = Ember.Route.extend
     model.deck.save()
 
   setupController: (controller, model)->
-    @._super controller, model
+    @_super controller, model
     playerClasses = Ember.A([
       Ember.Object.create {title: 'Нейтральные', name: 'Neutral', isActive: false}
       Ember.Object.create {title: model.playerClass.get('name'), name: model.playerClass.get('en_name'), isActive: true}
     ])
-    controller.set 'deckTypeId', model.deck.get('deckType.id')
     controller.set 'playerClasses', playerClasses
-    controller.set 'playerClass', model.playerClass.get('en_name')
-    controller.set 'playerClassConst', model.playerClass.get('en_name')
-    controller.set 'cost', null
-    controller.set 'keyword', null
+    controller.set 'currentPlayerClass', model.playerClass.get('en_name')
 
   deactivate: ()->
-    @.modelFor(@.routeName).deck.get('cards').forEach (item)->
+    @modelFor(@routeName).deck.get('cards').forEach (item)->
       item.set('card.isActive', true)
 

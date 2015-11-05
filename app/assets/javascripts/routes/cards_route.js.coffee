@@ -19,6 +19,3 @@ YFHS.CardsRoute = Ember.Route.extend
         Ember.Object.create {title: 'Паладин', name: 'Paladin', isActive: false}
       ])
     controller.set 'playerClasses', playerClasses
-    controller.set 'playerClass', null
-    controller.set 'cost', null
-    controller.set 'keyword', null

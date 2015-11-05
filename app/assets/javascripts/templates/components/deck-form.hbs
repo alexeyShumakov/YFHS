@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-8">
+
+    {{search-cards cards=cards playerClasses=playerClasses action='addCardToDeck' currentPlayerClass=currentPlayerClass}}
+    <form>
+      <div class="form-group">
+        <label for="deck-description">Описание</label>
+        {{textarea value=deck.description id='deck-description' cols='30' rows='10' class='form-control'}}
+      </div>
+    </form>
+    <h3>Описание:предпросмотр</h3>
+    <div class="bordered margin-bottom deck-builder__description">
+      {{markdown-onebox text=deck.description placeholder=true}}
+    </div>
+    {{outlet}}
+  </div>
+  <div class="col-md-4">
+    <div class="builder-sidebar">
+      <form>
+        <div class="form-group">
+          <label for="deck-name">Название</label>
+          {{input type='text' value=deck.name class='form-control' id='deck-name'}}
+        </div>
+        <div class="form-group">
+          <label for="deck-type">Тип</label>
+          <select onchange= {{action (mut deckTypeId) value='target.value'}} id="deck-type" class="form-control">
+            {{#each deckTypes as |type|}}
+              <option  value="{{type.id}}">{{type.name}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div {{action 'saveDeck'}} class="btn btn-block btn-primary btn-lg">Coхранить колоду</div>
+      </form>
+      {{mana-curve deck=deck}}
+
+      <div class="well card-list">
+        <h3 class="card-list__count pull-right">
+          {{deck.totalCards}}/30
+        </h3>
+        {{deck-cards deck=deck editable=true action='removeFromDeck'}}
+      </div>
+    </div>
+  </div>
+
+</div>
+
