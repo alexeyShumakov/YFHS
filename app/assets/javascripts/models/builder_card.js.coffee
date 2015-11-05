@@ -5,6 +5,13 @@ YFHS.BuilderCard = DS.Model.extend
   deck: DS.belongsTo 'deck'
   count: DS.attr 'number'
 
+  disableCard: ()->
+    if (@get('count')) > 1 or @get('card.isLegendary')
+      @set 'card.isActive', false
+  enableCard: ()->
+    @set 'card.isActive', true
+
+
   showCount: Ember.computed 'count', ()->
     if @.get('count') >= 2
       @.get('count')

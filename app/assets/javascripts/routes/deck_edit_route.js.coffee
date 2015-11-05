@@ -11,7 +11,7 @@ YFHS.DeckEditRoute = Ember.Route.extend({
   afterModel: (model)->
     _this = @
     model.bCards.forEach (bCard)->
-      bCard.set 'card.isActive', false
+      bCard.disableCard()
 
     model.deck.get('playerClass').then(
       (pc)->
@@ -29,6 +29,6 @@ YFHS.DeckEditRoute = Ember.Route.extend({
     controller.set 'currentPlayerClass', pc.get('en_name')
 
   deactivate: ()->
-    @modelFor(@routeName).deck.get('cards').forEach (item)->
-      item.set('card.isActive', true)
+    @modelFor(@routeName).bCards.forEach (card)->
+      card.enableCard()
 })

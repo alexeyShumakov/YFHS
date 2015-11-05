@@ -28,5 +28,5 @@ YFHS.BuilderPlayerClassRoute = Ember.Route.extend
 
   deactivate: ()->
     @modelFor(@routeName).deck.get('cards').forEach (item)->
-      item.set('card.isActive', true)
+      item.disableCard()
 
