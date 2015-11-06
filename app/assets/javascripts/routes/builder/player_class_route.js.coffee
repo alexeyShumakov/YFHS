@@ -4,7 +4,6 @@ YFHS.BuilderPlayerClassRoute = Ember.Route.extend
   model: (params)->
     Ember.RSVP.hash
       playerClass: @store.findRecord 'player_class', params['id']
-      cards: @store.findAll 'card'
       deck: @store.createRecord 'deck'
       deckTypes: @store.findAll 'deck_type'
 
@@ -21,12 +20,7 @@ YFHS.BuilderPlayerClassRoute = Ember.Route.extend
     @_super controller, model
     playerClasses = Ember.A([
       Ember.Object.create {title: 'Нейтральные', name: 'Neutral', isActive: false}
-      Ember.Object.create {title: model.playerClass.get('name'), name: model.playerClass.get('en_name'), isActive: true}
+      Ember.Object.create {title: model.playerClass.get('name'), name: model.playerClass.get('en_name'), isActive: false}
     ])
     controller.set 'playerClasses', playerClasses
     controller.set 'currentPlayerClass', model.playerClass.get('en_name')
-
-  deactivate: ()->
-    @modelFor(@routeName).deck.get('cards').forEach (item)->
-      item.disableCard()
-

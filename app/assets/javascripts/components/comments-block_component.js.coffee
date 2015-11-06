@@ -1,6 +1,7 @@
 # for more details see: http://emberjs.com/guides/components/
 
 YFHS.CommentsBlockComponent = Ember.Component.extend({
+  classNames: ['margin-bottom']
   store: Ember.inject.service()
   commentsLoading: true
   isHidePre: false

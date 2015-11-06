@@ -39,3 +39,21 @@
     transform: rotate(360deg);
   }
 }
+
+.rotate-loader {
+  -webkit-animation: cssAnimation 0.8866s infinite linear;
+  -moz-animation: cssAnimation 0.8866s infinite linear;
+  -o-animation: cssAnimation 0.8866s infinite linear;
+}
+@-webkit-keyframes cssAnimation {
+  from { -webkit-transform: rotate(0deg) scale(1) skew(1deg) translate(0px); }
+  to { -webkit-transform: rotate(360deg) scale(1) skew(1deg) translate(0px); }
+}
+@-moz-keyframes cssAnimation {
+  from { -moz-transform: rotate(0deg) scale(1) skew(1deg) translate(0px); }
+  to { -moz-transform: rotate(360deg) scale(1) skew(1deg) translate(0px); }
+}
+@-o-keyframes cssAnimation {
+  from { -o-transform: rotate(0deg) scale(1) skew(1deg) translate(0px); }
+  to { -o-transform: rotate(360deg) scale(1) skew(1deg) translate(0px); }
+}

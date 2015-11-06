@@ -4,9 +4,28 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all.where.not card_type: 'Hero'
+    @cards = Card.all.where.not(card_type: 'Hero')
+    @cards = @cards.search_by_name(params[:keyword]) unless params[:keyword].blank?
+    unless params[:current_player_class].blank?
+      @cards = @cards.where(player_class_str: [params[:current_player_class], nil])
+    end
+    unless params[:player_class].blank?
+      if params[:player_class] == 'Neutral'
+        @cards = @cards.where player_class_str: nil
+      else
+        @cards = @cards.where player_class_str: params[:player_class]
+      end
+    end
+    unless params[:cost].blank?
+      @cards = @cards.where cost: params[:cost]
+    end
+    if params[:page].blank?
+      @cards = @cards.page 1
+    else
+      @cards = @cards.page params[:page]
+    end
     respond_to do |format|
-      format.json {render json: @cards}
+      format.json {render json: @cards, meta: {total: @cards.total_pages} }
       format.html {}
     end
   end
@@ -14,7 +33,10 @@ class CardsController < ApplicationController
   # GET /cards/1
   # GET /cards/1.json
   def show
-    render json: @card
+    respond_to do |format|
+      format.json {render json: @card}
+      format.html {}
+    end
   end
 
   # GET /cards/new

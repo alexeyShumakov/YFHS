@@ -1,6 +1,8 @@
 # for more details see: http://emberjs.com/guides/models/defining-models/
 
-YFHS.Card = DS.Model.extend
+YFHS.Card = DS.Model.extend YFHS.Votable,
+  commentsCount: DS.attr 'number'
+
   name: DS.attr 'string'
   card_set: DS.attr 'string'
   card_type: DS.attr 'string'

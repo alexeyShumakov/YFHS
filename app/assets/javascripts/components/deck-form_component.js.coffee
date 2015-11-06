@@ -2,6 +2,12 @@
 
 YFHS.DeckFormComponent = Ember.Component.extend({
   deckTypeId: null
+  didInsertElement: ()->
+    @get('deck.cards').forEach (bCard)->
+      bCard.disableCard()
+  willDestroyElement: ()->
+    @get('deck.cards').forEach (bCard)->
+      bCard.enableCard()
   deckTypeItem: Ember.observer 'deckTypeId', ()->
     dTypes = @get('deckTypes')
     deckType = dTypes.findBy('id', @get('deckTypeId'))

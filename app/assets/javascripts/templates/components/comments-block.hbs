@@ -27,8 +27,10 @@
   {{#if commentsLoading}}
     <div class="loader"></div>
   {{else}}
-    <hr>
-    <h4 class="text-center">Комментарии</h4>
+    {{#if uniqComments}}
+      <hr>
+      <h4 class="text-center">Комментарии</h4>
+    {{/if}}
     {{#each uniqComments as |comment|}}
       <div class="bordered margin-bottom">
         {{user-popup user=comment.user}}, <i>{{formated-date comment.createdAt}}</i>

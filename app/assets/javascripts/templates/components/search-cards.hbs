@@ -2,7 +2,11 @@
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-addon">
-        <label class="glyphicon glyphicon-search"></label>
+        {{#if isLoading}}
+          <label class="glyphicon glyphicon-refresh rotate-loader"></label>
+        {{else}}
+          <label class="glyphicon glyphicon-search"></label>
+        {{/if}}
       </div>
       {{input placeholder='Поиск' value=keyword class='form-control'}}
     </div>
@@ -16,12 +20,11 @@
     <span class="glyphicon glyphicon-arrow-left"></span>
   </button>
 
-  {{#each sliderCards as |card|}}
+  {{#each cards as |card|}}
     <div {{action 'clickCard' card}} class="col-md-4">
       <img class="{{unless card.isActive 'card-disable'}} card-img" src="{{card.img_url}}" alt="">
     </div>
   {{/each}}
-
   <button class="btn arrow arrow-right" {{action 'nextSlide'}}>
     <span class="glyphicon glyphicon-arrow-right"></span>
   </button>

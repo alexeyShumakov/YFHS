@@ -2,6 +2,6 @@
 
 YFHS.CardsController = Ember.Controller.extend({
   actions:
-    testAction: (card)->
-      console.log card.get('name')
+    transitionToCard: (card)->
+      @transitionToRoute 'card', card.get('id')
 })

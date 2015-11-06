@@ -1,91 +1,45 @@
 # for more details see: http://emberjs.com/guides/components/
 
 YFHS.SearchCardsComponent = Ember.Component.extend({
-  currentPage: 0
+  store: Ember.inject.service()
+  currentPage: 1
   cost: null
   keyword: null
-  filteredCards: []
+  isLoading: false
+  search: ()->
+    unless @get 'isLoading'
+      _this = @
+      params = @get 'qParams'
+      @set 'isLoading', true
+      @get('store').query('card', params).then(
+        (cards)->
+          _this.set('cards', cards)
+          _this.set 'isLoading', false
+      )
 
   didInsertElement: ()->
-    if Ember.isPresent @get('currentPlayerClass')
-      @set 'playerClass', @get('currentPlayerClass')
-    else
-      @set 'playerClass', null
+    Ember.run.debounce(@, @.search, 100)
 
-
-
-  sliderCards: Ember.computed 'cards', 'currentPage', 'keyword', 'cost', 'playerClass', ()->
-    currentPage = @get 'currentPage'
-    cards = @get 'cards'
-    cards = cards.sortBy 'cost'
-    cards = @costFilter(cards)
-    cards = @keywordFilter(cards)
-    cards = @classFilter(cards)
-
-    cards = cards.filter (card)->
-      card.get('card_type') != 'Hero'
-    @set 'filteredCards', cards
-    cards.slice(currentPage*6, currentPage*6 + 6)
-
+  qParams: Ember.computed 'currentPage', 'cost', 'keyword', 'playerClass', ()->
+    {
+      page: @get 'currentPage'
+      cost: @get 'cost'
+      keyword: @get 'keyword'
+      player_class: @get 'playerClass'
+      current_player_class: @get 'currentPlayerClass'
+    }
+  setCards: Ember.observer 'keyword', 'currentPage', 'cost', 'playerClass', ()->
+    Ember.run.debounce(@, @.search, 100)
 
   pageResetter: Ember.observer 'keyword', 'cost', 'playerClass', ()->
-    @set 'currentPage', 0
-
-  totalPages: Ember.computed 'filteredCards', ()->
-    len = @get 'filteredCards.length'
-    if Ember.isEqual(len % 6, 0)
-      Math.floor(len/6 - 1)
-    else
-      Math.floor len/6
-
-#  Filters
-
-  classFilter: (cards)->
-    _this = @
-    playerClass = @get 'playerClass'
-
-    if Ember.isPresent @get('currentPlayerClass')
-      cards = cards.filter (card)->
-        (Ember.isBlank card.get('player_class_str')) or (Ember.isEqual card.get('player_class_str'), _this.get('currentPlayerClass'))
-
-    if Ember.isPresent playerClass
-      if Ember.isEqual playerClass, 'Neutral'
-        cards = cards.filter (card)->
-          Ember.isBlank card.get('player_class_str')
-      else
-        cards = cards.filter (card)->
-          Ember.isEqual card.get('player_class_str'), playerClass
-    else
-      cards
-
-  costFilter: (cards)->
-    cost = @get 'cost'
-    if Ember.isPresent @get 'cost'
-      if Ember.isEqual cost, 7
-        cards = cards.filter (card)->
-          card.get('cost') >= cost
-      else
-        cards = cards.filter (card)->
-          Ember.isEqual card.get('cost'), cost
-    else
-      cards
-
-  keywordFilter: (cards)->
-    if Ember.isPresent @get 'keyword'
-      keyword = @get('keyword').toLowerCase()
-      cards = cards.filter (card)->
-        card.get('name').toLowerCase().indexOf(keyword) != -1
-    else
-      cards
-
-#  End Filter
+    @set 'currentPage', 1
 
   actions:
     nextSlide: ()->
-      unless Ember.isEqual(@get('totalPages'), @get('currentPage') )
+      unless Ember.isEqual(@get('cards.meta.total'), @get('currentPage') )
         @incrementProperty('currentPage')
     prevSlide: ()->
-      unless Ember.isEqual(@get('currentPage'), 0 )
+      unless Ember.isEqual(@get('currentPage'), 1 )
         @decrementProperty('currentPage')
 
     updateCost: (value)->

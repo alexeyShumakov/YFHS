@@ -1,6 +1,5 @@
 <div class="col-md-9">
-  {{search-cards cards=model.cards playerClasses=playerClasses action='testAction'}}
-  {{outlet}}
+    {{search-cards playerClasses=playerClasses action='transitionToCard'}}
 </div>
 <div class="col-md-3">
   {{render 'sidebar'}}
