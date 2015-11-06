@@ -22,6 +22,8 @@ YFHS.MyDecksComponent = Ember.Component.extend({
     @set 'open', false
 
   actions:
+    removeDeck: (deck)->
+      deck.destroyRecord()
     showAll: ()->
       @set 'loading', true
       store = @get 'store'

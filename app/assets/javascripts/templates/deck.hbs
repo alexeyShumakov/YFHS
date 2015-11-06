@@ -1,35 +1,39 @@
-<div class="row">
-  {{#link-to 'deck_edit' model.id}}edit{{/link-to}}
-  <div class="col-md-8">
-    <div class="pull-right vote_large">
-      {{vote-comp model=model}}
+{{#if model.isDeleted}}
+  <h2 class="text-center">Колода удалена</h2>
+{{else}}
+  <div class="row">
+    {{#link-to 'deck_edit' model.id}}edit{{/link-to}}
+    <div class="col-md-8">
+      <div class="pull-right vote_large">
+        {{vote-comp model=model}}
+      </div>
+      <h2>{{model.name}}</h2>
+      <ul class="list-unstyled">
+        <li><b>класс:</b> {{model.playerClass.name}}</li>
+        <li><b>тип:</b> {{model.deckType.name}}</li>
+        <li><b>создана:</b> {{formated-date model.createdAt}}</li>
+      </ul>
+      <div class="bordered">
+        {{model.user.email}}
+      </div>
+      <h4 class="text-center">Описание</h4>
+      <div class="deck-description margin-bottom">
+        {{markdown-onebox text=model.description}}
+      </div>
+      {{comments-block commentable=model}}
     </div>
-    <h2>{{model.name}}</h2>
-    <ul class="list-unstyled">
-      <li><b>класс:</b> {{model.playerClass.name}}</li>
-      <li><b>тип:</b> {{model.deckType.name}}</li>
-      <li><b>создана:</b> {{formated-date model.createdAt}}</li>
-    </ul>
-    <div class="bordered">
-      {{model.user.email}}
+    <div  class="col-md-4">
+      <div class="well mana-curve">
+        {{#each model.mana as |mana|}}
+          <div class="curve-item">
+            <div class="curve-item__count">{{mana.count}}</div>
+            <div class="curve-item__column" style={{mana.size}}></div>
+            <div class="curve-item__name">{{mana.name}}</div>
+          </div>
+        {{/each}}
+      </div>
+      {{deck-cards deck=model editable=false}}
     </div>
-    <h4 class="text-center">Описание</h4>
-    <div class="deck-description margin-bottom">
-      {{markdown-onebox text=model.description}}
-    </div>
-    {{comments-block commentable=model}}
   </div>
-  <div  class="col-md-4">
-    <div class="well mana-curve">
-      {{#each model.mana as |mana|}}
-        <div class="curve-item">
-          <div class="curve-item__count">{{mana.count}}</div>
-          <div class="curve-item__column" style={{mana.size}}></div>
-          <div class="curve-item__name">{{mana.name}}</div>
-        </div>
-      {{/each}}
-    </div>
-    {{deck-cards deck=model editable=false}}
-  </div>
-</div>
-{{outlet}}
+  {{outlet}}
+{{/if}}

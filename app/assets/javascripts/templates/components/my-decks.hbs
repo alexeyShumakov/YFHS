@@ -3,13 +3,28 @@
 {{#if open}}
     {{#each decks as |deck|}}
       <li class="my-decks__name">
-        {{#link-to 'deck' deck.id}}
-           <b><span class="text-capitalize">{{deck.deckType.name}}</span>-{{deck.playerClass.name}}: </b>{{deck.name}}
+        <a href="#">
+          {{#link-to 'deck' deck.id}}
+            <b class="text-capitalize">{{deck.deckType.name}}-{{deck.playerClass.name}}: </b>{{deck.name}}
+          {{/link-to}}
+
           <div>
-            <span class="glyphicon glyphicon-thumbs-up"></span>{{deck.votes}}
-            <span class="glyphicon glyphicon-comment"></span> {{deck.commentsCount}}
+            {{#link-to 'deck' deck.id}}
+              <span class="glyphicon glyphicon-thumbs-up"></span>{{deck.votes}}
+            {{/link-to}}
+
+            {{#link-to 'deck' deck.id}}
+              <span class="glyphicon glyphicon-comment"></span> {{deck.commentsCount}}
+            {{/link-to}}
+
+            <div class="my-decks__control pull-right">
+              <span {{action 'removeDeck' deck}}class=" my-decks__control-item glyphicon glyphicon-remove"></span>
+              {{#link-to 'deck_edit' deck.id}}
+                <span class="my-decks__control-item glyphicon glyphicon-pencil"></span>
+              {{/link-to}}
+            </div>
           </div>
-        {{/link-to}}
+        </a>
       </li>
     {{else}}
       Нет дек =(

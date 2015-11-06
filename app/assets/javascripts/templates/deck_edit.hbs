@@ -1,4 +1,9 @@
-<div class="row">
-  <h2 class="text-center">Изменить колоду.</h2>
-</div>
-{{deck-form deckTypes=model.deckTypes deck=model.deck cards=model.cards playerClasses=playerClasses action='addCardToDeck' currentPlayerClass=currentPlayerClass}}
+{{#if model.deck.isDeleted}}
+  <h2 class="text-center">Колода удалена</h2>
+{{else}}
+
+  <div class="row">
+    <h2 class="text-center">Изменить колоду.</h2>
+  </div>
+  {{deck-form deckTypes=model.deckTypes deck=model.deck cards=model.cards playerClasses=playerClasses action='addCardToDeck' currentPlayerClass=currentPlayerClass}}
+{{/if}}

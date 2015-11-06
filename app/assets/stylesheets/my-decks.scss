@@ -4,7 +4,22 @@
   overflow-y: auto;
 }
 .my-decks__name {
+  &:hover .my-decks__control {
+    display: inline;
+  }
+  .my-decks__control {
+    display: none;
+  }
+
+  .my-decks__control-item {
+    color: #a1a1a1;
+    margin: 0 3px;
+    &:hover {
+      color: #262626;
+    }
+  }
   a {
+    color: #262626;
     width: 370px;
     white-space: nowrap;
     text-overflow: ellipsis;

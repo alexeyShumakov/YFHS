@@ -53,7 +53,7 @@ class DecksController < ApplicationController
   def destroy
     @deck.destroy
     respond_to do |format|
-      format.json { render nothing: true, status: :ok}
+      format.json { head :no_content }
     end
   end
 
