@@ -17,7 +17,11 @@ class CardsController < ApplicationController
       end
     end
     unless params[:cost].blank?
-      @cards = @cards.where cost: params[:cost]
+      if params[:cost].to_i >= 7
+        @cards = @cards.where 'cost >= 7'
+      else
+        @cards = @cards.where cost: params[:cost]
+      end
     end
     if params[:page].blank?
       @cards = @cards.page 1
