@@ -6,6 +6,9 @@ class Deck < ActiveRecord::Base
   belongs_to :deck_type
   belongs_to :player_class
 
+  before_save :set_curve
+  before_update :set_curve
+
   pg_search_scope :search_by_name, against: :name,
                   using: {tsearch: {prefix: true}}
 
@@ -14,19 +17,28 @@ class Deck < ActiveRecord::Base
   def comments_count
     comments.size
   end
-  def curve
-    curve = []
-    0.upto(7) {|cost| curve << cards_count_by_cost(cost)}
-    set_curve_size(curve, curve.max)
+  def set_curve
+    curve_arr = []
+    0.upto(7).each do |cost|
+      curve_arr << cards_count_by_cost(cost)
+    end
+    items = set_items curve_arr
+    self.curve = {items: items}.to_json
   end
   private
+    def set_items(curve_arr)
+      items = []
+      unit_size = get_unit_size curve_arr.max
+      curve_arr.each_with_index do |value, index|
+         items << { title: index >= 7 ? '7+' : index, value: value, size: value * unit_size }
+      end
+      items
+    end
     def cards_count_by_cost (cost)
       cards = builder_cards.select {|c| cost >= 7 ? c.card.cost >= cost : c.card.cost == cost}
       cards.sum &:count
     end
-    def set_curve_size (curve, max_count)
-      max_count = max_count <= 8 ? 12.5 : 100.0/max_count
-      curve = curve.map {|count| (count * max_count).round 2}
-      curve.join ','
+    def get_unit_size(max_count)
+      max_count <= 8 ? 12.5 : 100.0/max_count
     end
 end

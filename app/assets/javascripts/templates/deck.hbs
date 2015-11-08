@@ -24,12 +24,12 @@
     </div>
     <div  class="col-md-4">
       <div class="well mana-curve">
-        {{#each model.mana as |mana|}}
-          <div class="curve-item">
-            <div class="curve-item__count">{{mana.count}}</div>
-            <div class="curve-item__column" style={{mana.size}}></div>
-            <div class="curve-item__name">{{mana.name}}</div>
-          </div>
+        {{#each model.mana as |item|}}
+            <div class="curve-item">
+              <div class="curve-item__count">{{item.value}}</div>
+              <div class="curve-item__column" style={{item.styleSize}}></div>
+              <div class="curve-item__name">{{item.title}}</div>
+            </div>
         {{/each}}
       </div>
       {{deck-cards deck=model editable=false}}

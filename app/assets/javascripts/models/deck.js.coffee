@@ -4,7 +4,7 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
   name: DS.attr 'string'
   description: DS.attr 'string'
   createdAt: DS.attr 'date'
-  curve: DS.attr 'string'
+  curve: DS.attr()
   commentsCount: DS.attr 'number'
 
   deckType: DS.belongsTo 'deck_type'
@@ -18,10 +18,12 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
   isWhole: Ember.computed 'totalCards', ()->
     Ember.isEqual @.get('totalCards'), 30
 
-  curveArray: Ember.computed 'curve', ()->
-    valueArr = @get('curve').split ','
-    valueArr.map (value)->
-      "height:#{value}%".htmlSafe()
+  mana: Ember.computed 'curve', ()->
+    items = @get('curve').items
+    items.forEach (manaItem)->
+      manaItem.styleSize  = "height:#{manaItem.size}%".htmlSafe()
+    items
+
   totalCards: Ember.computed 'cards.@each.count', ()->
     sum = 0
     @.get('cards').forEach (card)->
@@ -43,39 +45,3 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
     if Ember.isEqual builderCard.get('count'), 0
       builderCard.deleteRecord()
     builderCard.save()
-
-  mana: Ember.computed 'totalCards', 'cards', ()->
-    mana = [
-      Ember.Object.create({cost: 0, name: 0, count: 0 }),
-      Ember.Object.create({cost: 1, name: 1, count: 0 }),
-      Ember.Object.create({cost: 2, name: 2, count: 0 }),
-      Ember.Object.create({cost: 3, name: 3, count: 0 }),
-      Ember.Object.create({cost: 4, name: 4, count: 0 }),
-      Ember.Object.create({cost: 5, name: 5, count: 0 }),
-      Ember.Object.create({cost: 6, name: 6, count: 0 }),
-      Ember.Object.create({cost: 7, name: '7+', count: 0 })
-    ]
-    cards = @get 'cards'
-    maxCount = 0
-    mana.forEach (manaItem)->
-      cost = manaItem.get 'cost'
-      count = 0
-      cards.forEach (item)->
-        if Ember.isEqual cost, 7
-          if item.get('card.cost') >= 7
-            count += item.get 'count'
-        else
-          if Ember.isEqual item.get('card.cost'), cost
-            count += item.get 'count'
-      manaItem.set 'count' , count
-      maxCount = count if count > maxCount
-    mana.forEach (manaItem)->
-      if maxCount <= 8
-        unitSize = 12.5
-      else
-        unitSize = 100/maxCount
-
-      count = manaItem.get 'count'
-      manaItem.set 'size', "height:#{count * unitSize}%".htmlSafe()
-    mana
-
