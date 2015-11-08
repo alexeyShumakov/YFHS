@@ -6,3 +6,4 @@ YFHS.Comment = DS.Model.extend YFHS.Votable,
   commentable_type: DS.attr 'string'
   body: DS.attr 'string'
   createdAt: DS.attr 'date'
+  targetName: DS.attr 'string'

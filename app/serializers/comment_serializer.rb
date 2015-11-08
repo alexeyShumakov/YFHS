@@ -1,5 +1,5 @@
 class CommentSerializer < ApplicationSerializer
-  attributes :id, :votes, :evaluation_value, :body, :commentable_id, :commentable_type, :created_at
+  attributes :id, :votes, :target_name, :evaluation_value, :body, :commentable_id, :commentable_type, :created_at
   has_one :user
   def evaluation_value
     if scope && object.has_evaluation?(:vote, scope)

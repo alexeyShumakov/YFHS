@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    {{news.title}}
+    {{news.name}}
     <i class=""> {{news.user.email}}</i>
     <button {{action 'delete'}}type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -9,7 +9,7 @@
   <div class="panel-body">{{markdown-onebox text=news.body}}</div>
   <div class="pull-right">{{vote-comp model=news}}</div>
   <div class="panel-footer">
-    {{#link-to 'single_news' news}}go to news {{/link-to}}
+    {{#link-to 'news' news}}go to news {{/link-to}}
   </div>
 </div>
 

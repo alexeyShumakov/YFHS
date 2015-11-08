@@ -1,5 +1,5 @@
 class NewsSerializer < ApplicationSerializer
-  attributes :id, :title, :body, :user_id, :evaluation_value, :votes
+  attributes :id, :name, :body, :user_id, :evaluation_value, :votes
 
   def evaluation_value
     if scope && object.has_evaluation?(:vote, scope)

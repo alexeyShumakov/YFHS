@@ -28,7 +28,12 @@ Rails.application.routes.draw do
 
   resources :news
   devise_for :users, controllers: { confirmations: 'confirmations', passwords: 'passwords', sessions: 'sessions', registrations: 'registrations' }
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    member do
+      get 'decks'
+      get 'comments'
+    end
+  end
   root 'news#index'
 
   # Example of regular route:

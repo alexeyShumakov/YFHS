@@ -15,9 +15,11 @@
 
       <ul class="nav navbar-nav navbar-right">
         {{#if currentUser.isLogIn}}
-          <p class="navbar-text">
-            {{currentUser.user.email}}
-          </p>
+          <li>
+            {{#link-to 'user' currentUser.user.id}}
+              <b>{{currentUser.user.nickname}}</b>, {{currentUser.user.email}}
+            {{/link-to}}
+          </li>
           {{my-decks}}
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Меню<span class="caret"></span></a>

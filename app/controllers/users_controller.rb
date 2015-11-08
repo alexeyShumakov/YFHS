@@ -14,6 +14,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: User.find(params['id'])
+    respond_to do |format|
+      format.json { render json: User.find(params['id']) }
+      format.html {}
+    end
+  end
+  def decks
+  end
+  def comments
   end
 end

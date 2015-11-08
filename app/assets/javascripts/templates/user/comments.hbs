@@ -1,0 +1,9 @@
+<ul class="list-unstyled">
+  {{#each model as |comment|}}
+    <li class="bordered margin-bottom">
+      {{history-comment comment=comment action='transitionToEntity'}}
+    </li>
+  {{/each}}
+</ul>
+{{infinity-loader queryParams=params model=model modelName='comment'}}
+

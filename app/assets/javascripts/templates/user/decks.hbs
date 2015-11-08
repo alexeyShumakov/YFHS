@@ -1,0 +1,9 @@
+{{#each model as |deck|}}
+  <div class="deck-list-item list-group-item">
+    {{deck-item deck=deck}}
+  </div>
+{{else}}
+  <h3>Не создавал колод</h3>
+{{/each}}
+{{infinity-loader queryParams=params model=model modelName='deck'}}
+

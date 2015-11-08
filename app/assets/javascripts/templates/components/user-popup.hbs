@@ -1,8 +1,8 @@
-<a href="#" class="usr-link">{{user.nickname}}</a>
+{{#link-to 'user' user.id class='usr-link'}}{{user.nickname}}{{/link-to}}
 {{#if isShowPopup}}
   <div class="user-popup__popup">
     <div class="text-center">
-      <a href="#">{{user.email}}</a>
+      {{#link-to 'user' user.id}}{{user.nickname}}{{/link-to}}
     </div>
     <div class="user-popup__decks">
       {{#each decks as |deck|}}
@@ -22,7 +22,7 @@
         Не собрал ни одной колоды, пока.
       {{/each}}
       {{#if decks}}
-        <div class="text-center"><a href="#" >все колоды</a></div>
+        <div class="text-center">{{#link-to 'user.decks' user.id}}все колоды{{/link-to}}</div>
       {{/if}}
     </div>
   </div>

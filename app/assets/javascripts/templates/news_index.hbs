@@ -1,0 +1,13 @@
+<div class="col-md-9">
+  <div id="news">
+    {{#each model as |news|}}
+      {{#unless news.isNew}}
+        {{single-news news=news}}
+      {{/unless}}
+    {{/each}}
+  </div>
+  {{outlet}}
+</div>
+<div class="col-md-3">
+  {{render 'sidebar'}}
+</div>

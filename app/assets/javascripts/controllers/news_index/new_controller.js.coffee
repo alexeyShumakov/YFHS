@@ -1,6 +1,6 @@
 # for more details see: http://emberjs.com/guides/controllers/
 
-YFHS.NewsNewController = Ember.Controller.extend
+YFHS.NewsIndexNewController = Ember.Controller.extend
   actions:
     save: ()->
       _this = @

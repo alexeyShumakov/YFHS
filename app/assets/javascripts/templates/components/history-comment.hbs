@@ -1,0 +1,11 @@
+<div class="history-comment__name">
+
+  <div class="pull-right">{{vote-comp model=comment}}</div>
+  <b>{{comment.user.nickname}}</b> <i>{{formated-date comment.createdAt}}</i>
+    прокомментировал:
+  <a href="{{link}}" {{action 'goToEntity'}}>{{comment.targetName}}</a>
+  <div class="claerfix"></div>
+  <hr>
+  {{markdown-onebox text=comment.body}}
+
+</div>
