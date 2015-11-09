@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   def get_current_user
-    usr_params = { user: {
-        id: current_user.id,
-        email: current_user.email,
-        nickname: current_user.nickname
-      }
-    }
     if user_signed_in?
+      usr_params = { user: {
+          id: current_user.id,
+          email: current_user.email,
+          nickname: current_user.nickname
+      }
+      }
       render json: usr_params
     else
       render nothing: true, status: 404

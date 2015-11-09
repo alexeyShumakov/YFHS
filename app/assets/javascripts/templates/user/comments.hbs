@@ -3,6 +3,8 @@
     <li class="bordered margin-bottom">
       {{history-comment comment=comment action='transitionToEntity'}}
     </li>
+  {{else}}
+    <h3>Нет комментариев.</h3>
   {{/each}}
 </ul>
 {{infinity-loader queryParams=params model=model modelName='comment'}}

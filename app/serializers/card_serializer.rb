@@ -1,5 +1,10 @@
 class CardSerializer < ApplicationSerializer
-  attributes :id, :votes, :comments_count, :evaluation_value, :player_class_str, :name, :card_set, :card_type, :rarity, :cost, :attack, :health, :img_url, :img_gold_url
+  attributes :votes, :comments_count, :evaluation_value,
+             :id, :card_game_id, :name, :card_set, :durability,
+             :card_type, :race, :player_class_str, :faction,
+             :rarity, :cost, :attack, :health, :text, :flavor,
+             :artist, :collectible, :elite, :locale, :mechanics,
+             :img_url, :img_gold_url
 
   def evaluation_value
     if scope && object.has_evaluation?(:vote, scope)
