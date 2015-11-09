@@ -13,6 +13,51 @@
     {{comments-block commentable=model}}
   </div>
   <div class="col-md-4">
+    <div class="bordered margin-bottom">
+
+      <dl class="dl-horizontal">
+        <dt>Название</dt>
+        <dd>{{model.name}}</dd>
+
+        <dt>Сет</dt>
+        <dd>{{model.card_set}}</dd>
+
+        {{#if model.durability}}
+          <dt>Прод-ть</dt>
+          <dd>{{model.durability}}</dd>
+        {{/if}}
+
+        <dt>Тип</dt>
+        <dd>{{model.card_type}}</dd>
+        {{#if model.race}}
+          <dt>Раса</dt>
+          <dd>{{model.race}}</dd>
+        {{/if}}
+
+        {{#if model.faction}}
+          <dt>Фракция</dt>
+          <dd>{{model.faction}}</dd>
+        {{/if}}
+
+        <dt>Редкость</dt>
+        <dd>{{model.rarity}}</dd>
+
+        {{#if model.artist}}
+          <dt>Художник</dt>
+          <dd>{{model.artist}}</dd>
+        {{/if}}
+
+        {{#if model.elite}}
+          <dt>элитная</dt>
+          <dd><span class="glyphicon glyphicon-ok"></span></dd>
+        {{/if}}
+
+        {{#if model.flavor}}
+          <dt>Шуточка</dt>
+          <dd>{{model.flavor}}</dd>
+        {{/if}}
+      </dl>
+    </div>
 
     {{render 'sidebar'}}
   </div>

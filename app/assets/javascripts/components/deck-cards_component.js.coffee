@@ -5,6 +5,8 @@ YFHS.DeckCardsComponent = Ember.Component.extend({
     removeCard: (card)->
       if @get('editable')
         @sendAction 'action', card
+      else
+        @get('router').transitionTo 'card', card.get('card.id')
 
 })
 
