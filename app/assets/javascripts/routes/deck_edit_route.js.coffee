@@ -17,10 +17,5 @@ YFHS.DeckEditRoute = Ember.Route.extend({
   setupController: (controller, model)->
     pc = @get 'pc'
     @_super controller, model
-    playerClasses = Ember.A([
-      Ember.Object.create {title: 'Нейтральные', name: 'Neutral', isActive: false}
-      Ember.Object.create {title: pc.get('name'), name: pc.get('en_name'), isActive: false}
-    ])
-    controller.set 'playerClasses', playerClasses
     controller.set 'currentPlayerClass', pc.get('en_name')
 })

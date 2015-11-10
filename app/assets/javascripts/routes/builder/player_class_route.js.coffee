@@ -18,9 +18,4 @@ YFHS.BuilderPlayerClassRoute = Ember.Route.extend
 
   setupController: (controller, model)->
     @_super controller, model
-    playerClasses = Ember.A([
-      Ember.Object.create {title: 'Нейтральные', name: 'Neutral', isActive: false}
-      Ember.Object.create {title: model.playerClass.get('name'), name: model.playerClass.get('en_name'), isActive: false}
-    ])
-    controller.set 'playerClasses', playerClasses
     controller.set 'currentPlayerClass', model.playerClass.get('en_name')
