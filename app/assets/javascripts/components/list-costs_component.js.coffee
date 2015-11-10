@@ -2,17 +2,19 @@
 
 YFHS.ListCostsComponent = Ember.Component.extend
   classNames: ['cost-badge']
-  willInsertElement: ()->
-    @.set 'costs', Ember.A([
-      Ember.Object.create {value: 0, title: '0', isActive: false}
-      Ember.Object.create {value: 1, title: '1', isActive: false}
-      Ember.Object.create {value: 2, title: '2', isActive: false}
-      Ember.Object.create {value: 3, title: '3', isActive: false}
-      Ember.Object.create {value: 4, title: '4', isActive: false}
-      Ember.Object.create {value: 5, title: '5', isActive: false}
-      Ember.Object.create {value: 6, title: '6', isActive: false}
-      Ember.Object.create {value: 7, title: '7+', isActive: false}
-    ])
+  costs: Ember.A([
+    Ember.Object.create {value: 0, title: '0', isActive: false}
+    Ember.Object.create {value: 1, title: '1', isActive: false}
+    Ember.Object.create {value: 2, title: '2', isActive: false}
+    Ember.Object.create {value: 3, title: '3', isActive: false}
+    Ember.Object.create {value: 4, title: '4', isActive: false}
+    Ember.Object.create {value: 5, title: '5', isActive: false}
+    Ember.Object.create {value: 6, title: '6', isActive: false}
+    Ember.Object.create {value: 7, title: '7+', isActive: false}
+  ])
+  willDestroyElement: ()->
+    @get('costs').forEach (item)->
+      item.set 'isActive', false
   actions:
     costToggle: (model, models)->
       if model.get('isActive')
