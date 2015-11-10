@@ -27,6 +27,10 @@ YFHS.ListClassesComponent = Ember.Component.extend
     Ember.Object.create {title: 'Паладин', name: 'Paladin', isActive: false}
   ])
 
+  willDestroyElement: ()->
+    @get('tempPlayerClasses').forEach (item)->
+      item.set 'isActive', false
+
   actions:
     classToggle: (pClass, playerClasses)->
       if pClass.get('isActive')
