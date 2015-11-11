@@ -1,6 +1,16 @@
 require 'faraday'
 require 'json'
-Card.delete_all
+require 'net/http'
+
+def get_img(url_obj)
+  Net::HTTP.start(url_obj.host, url_obj.port) do |http|
+    if http.head(url_obj.request_uri).code == '200'
+      url_obj
+    end
+  end
+rescue
+  nil
+end
 
 conn =  Faraday.new(url: 'https://omgvamp-hearthstone-v1.p.mashape.com')
 response = conn.get do |req|
@@ -37,8 +47,8 @@ response_json.each do |_, value|
           card_model.elite = card['elite']
           card_model.locale = card['locale']
           card_model.mechanics = card['mechanics']
-          card_model.img = URI.parse(card['img'])
-          card_model.img_gold = URI.parse(card['imgGold'])
+          card_model.img = get_img(URI.parse(card['img']))
+          card_model.img_gold = get_img(URI.parse(card['imgGold']))
           puts card['name']
           card_model.save
         end

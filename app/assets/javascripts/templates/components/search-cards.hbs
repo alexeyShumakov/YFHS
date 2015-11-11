@@ -9,6 +9,21 @@
         {{/if}}
       </div>
       {{input placeholder='Поиск' value=keyword class='form-control'}}
+      <div class="input-group-addon search-cards" >
+        <span class="glyphicon glyphicon-question-sign"></span>
+        <div class="search-cards__popup">
+          <dl class="dl-horizontal">
+            <dt>Поиск доступен по</dt>
+            <dd>названию, механике, типу, рассе, сету и редкости.</dd>
+            <dt>Примеры</dt>
+            <dd></dd>
+            <dt>legend drag tau </dt>
+            <dd>легендарный дракон провокация</dd>
+            <dt>spel nax</dt>
+            <dd>заклинания из Наксрамаса</dd>
+          </dl>
+        </div>
+      </div>
     </div>
   </div>
   {{list-costs action='updateCost'}}

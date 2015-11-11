@@ -19,28 +19,40 @@
         <dt>Название</dt>
         <dd>{{model.name}}</dd>
 
+        <dt>Тип</dt>
+        <dd>{{model.card_type}}</dd>
+
         <dt>Сет</dt>
         <dd>{{model.card_set}}</dd>
+
+        <dt>Редкость</dt>
+        <dd>{{model.rarity}}</dd>
+
+        {{#if model.race}}
+          <dt>Раса</dt>
+          <dd>{{model.race}}</dd>
+        {{/if}}
+
+        {{#if model.mechanics}}
+          <dt>Механика</dt>
+          <dd>
+            {{#each model.mechanics as |mech|}}
+              {{mech.name}}
+            {{/each}}
+          </dd>
+        {{/if}}
 
         {{#if model.durability}}
           <dt>Прод-ть</dt>
           <dd>{{model.durability}}</dd>
         {{/if}}
 
-        <dt>Тип</dt>
-        <dd>{{model.card_type}}</dd>
-        {{#if model.race}}
-          <dt>Раса</dt>
-          <dd>{{model.race}}</dd>
-        {{/if}}
 
         {{#if model.faction}}
           <dt>Фракция</dt>
           <dd>{{model.faction}}</dd>
         {{/if}}
 
-        <dt>Редкость</dt>
-        <dd>{{model.rarity}}</dd>
 
         {{#if model.artist}}
           <dt>Художник</dt>

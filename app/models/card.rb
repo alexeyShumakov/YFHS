@@ -5,7 +5,7 @@ class Card < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
   has_reputation :vote, source: :user
   paginates_per 6
-  pg_search_scope :search_by_name, against: :name,
+  pg_search_scope :search_by_name, against: [:rarity, :card_type, :name, :race, :card_set, :mechanics],
                   using: {tsearch: {prefix: true}}
   def comments_count
     comments.size
