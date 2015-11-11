@@ -45,7 +45,7 @@ response_json.each do |_, value|
       end
     end
   end
-m end
+end
 player_classes = {
   Priest: 'Жрец',
   Rogue: 'Разбойница',
