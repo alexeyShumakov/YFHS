@@ -4,30 +4,7 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all.where.not(card_type: 'Hero')
-    @cards = @cards.search_by_name(params[:keyword]) unless params[:keyword].blank?
-    unless params[:current_player_class].blank?
-      @cards = @cards.where(player_class_str: [params[:current_player_class], nil])
-    end
-    unless params[:player_class].blank?
-      if params[:player_class] == 'Neutral'
-        @cards = @cards.where player_class_str: nil
-      else
-        @cards = @cards.where player_class_str: params[:player_class]
-      end
-    end
-    unless params[:cost].blank?
-      if params[:cost].to_i >= 7
-        @cards = @cards.where 'cost >= 7'
-      else
-        @cards = @cards.where cost: params[:cost]
-      end
-    end
-    if params[:page].blank?
-      @cards = @cards.page 1
-    else
-      @cards = @cards.page params[:page]
-    end
+    @cards = Card.search_cards(params)
     respond_to do |format|
       format.json {render json: @cards, meta: {total: @cards.total_pages} }
       format.html {}

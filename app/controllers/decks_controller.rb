@@ -1,9 +1,8 @@
 class DecksController < ApplicationController
-  include SearchHelper
   before_action :set_deck, only: [:show, :edit, :update, :destroy]
 
   def index
-    search_decks :deck
+    @decks = Deck.search_decks(params)
 
     respond_to do |format|
       format.json { render json: @decks, meta: {total: @decks.total_pages} }

@@ -14,6 +14,20 @@ class Deck < ActiveRecord::Base
 
   has_reputation :vote, source: :user
   paginates_per 20
+  def self.search_decks(params)
+    @decks = VoteService.most_voted :deck
+    @decks = @decks.search_by_name(params[:name]) if params[:name].present?
+    @decks = @decks.where player_class: (PlayerClass.find_by en_name: params[:player_class]) if params[:player_class].present?
+    @decks = @decks.where deck_type: (DeckType.find_by name: params[:deck_type]) if params[:deck_type].present?
+    @decks = @decks.where user_id: params[:user_id] if params[:user_id].present?
+    if params[:page].to_i == -1
+      @decks = @decks.page(1).per(Deck.count)
+    else
+      @decks = params[:page].blank? ? @decks.page(1) : @decks.page(params[:page])
+    end
+    @decks = params[:limit].blank? ? @decks : @decks.limit(params[:limit].to_i)
+  end
+
   def comments_count
     comments.size
   end
