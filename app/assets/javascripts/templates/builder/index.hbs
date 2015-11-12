@@ -1,6 +1,16 @@
 <div class="col-md-9">
-  {{#link-to 'builder.deck'}}Собрать колоду{{/link-to}}
-  {{#link-to 'builder.synergy'}}Собрать синергию {{/link-to}}
+  <h3>Собрать колоду</h3>
+  <ul>
+    {{#each model as |pClass|}}
+      <li>{{#link-to 'builder.deck' pClass.id}}{{pClass.name}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
+  <h3>Собрать синерджи</h3>
+  <ul>
+    {{#each model as |pClass|}}
+      <li>{{#link-to 'builder.synergy' pClass.id}}{{pClass.name}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
   {{outlet}}
 </div>
 <div class="col-md-3">

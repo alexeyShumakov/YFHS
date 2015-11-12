@@ -13,9 +13,8 @@ YFHS.Router.map ()->
   @route 'decks', ()->
     @route 'search'
   @route 'builder', ()->
-    @route 'deck'
-    @route 'player_class', path: 'd/:id'
-    @route 'synergy'
+    @route 'deck', path: 'deck/:id'
+    @route 'synergy', path: 'synergy/:id'
 
   @route('news', path: 'news/:news_id')
   @route('news_index', path: 'news', ()->
