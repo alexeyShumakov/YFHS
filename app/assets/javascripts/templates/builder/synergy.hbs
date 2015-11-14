@@ -1,8 +1,5 @@
-<div class="col-md-9">
-  <h1>synergy!!!</h1>
-  {{outlet}}
-</div>
-<div class="col-md-3">
-  {{render 'sidebar'}}
+<div class="row">
+  <h2 class="text-center">Конструктор синерджи.</h2>
 </div>
 
+{{synergy-form synergy=model.synergy cards=model.cards action='addCardToSynergy' currentPlayerClass=currentPlayerClass}}

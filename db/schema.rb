@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108170313) do
+ActiveRecord::Schema.define(version: 20151114111120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,26 @@ ActiveRecord::Schema.define(version: 20151108170313) do
   add_index "rs_reputations", ["reputation_name"], name: "index_rs_reputations_on_reputation_name", using: :btree
   add_index "rs_reputations", ["target_id", "target_type"], name: "index_rs_reputations_on_target_id_and_target_type", using: :btree
 
+  create_table "synergies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+  end
+
+  add_index "synergies", ["user_id"], name: "index_synergies_on_user_id", using: :btree
+
+  create_table "synergies_cards", force: :cascade do |t|
+    t.integer  "synergy_id"
+    t.integer  "card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "synergies_cards", ["card_id"], name: "index_synergies_cards_on_card_id", using: :btree
+  add_index "synergies_cards", ["synergy_id"], name: "index_synergies_cards_on_synergy_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -190,4 +210,7 @@ ActiveRecord::Schema.define(version: 20151108170313) do
   add_foreign_key "decks", "player_classes"
   add_foreign_key "decks", "users"
   add_foreign_key "news", "users"
+  add_foreign_key "synergies", "users"
+  add_foreign_key "synergies_cards", "cards"
+  add_foreign_key "synergies_cards", "synergies"
 end

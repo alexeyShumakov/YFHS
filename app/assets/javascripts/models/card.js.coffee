@@ -25,6 +25,7 @@ YFHS.Card = DS.Model.extend YFHS.Votable,
   img_gold_url: DS.attr 'string'
 
   builderCards: DS.hasMany 'builder_card'
+  synergiesCards: DS.hasMany 'synergies_card'
 
   isLegendary: Ember.computed 'rarity', ()->
     Ember.isEqual @.get('rarity'), 'Legendary'

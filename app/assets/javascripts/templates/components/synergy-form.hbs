@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-8">
+
+    {{search-cards cards=cards action='addCardToSynergy' currentPlayerClass=currentPlayerClass}}
+    <hr>
+    <form>
+      <div class="form-group">
+        <label>Описание</label>
+        {{textarea value=synergy.description  cols='30' rows='10' class='form-control'}}
+      </div>
+    </form>
+    <h3>Описание:предпросмотр</h3>
+    <div class="bordered margin-bottom deck-builder__description">
+      {{markdown-onebox text=synergy.description placeholder=true}}
+    </div>
+    {{outlet}}
+  </div>
+  <div class="col-md-4">
+    <div class="builder-sidebar">
+      <form>
+        <div class="form-group">
+          <label for="synergy-name">Название</label>
+          {{input type='text' value=synergy.name class='form-control' id='synergy-name'}}
+        </div>
+        <div {{action 'saveSynergy'}} class="btn btn-block btn-primary btn-lg">Coхранить синергию</div>
+      </form>
+    </div>
+    <div class="well card-list">
+      <h3 class="card-list__count pull-right">
+        {{synergy.totalCards}}/2(3)
+      </h3>
+      {{deck-cards deck=synergy editable=true action='removeFromDeck'}}
+    </div>
+    <ul>
+    </ul>
+  </div>
+
+</div>
+

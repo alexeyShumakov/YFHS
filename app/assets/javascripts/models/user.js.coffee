@@ -9,5 +9,6 @@ YFHS.User = DS.Model.extend
   # ===
 
   decks: DS.hasMany 'deck'
+  synergies: DS.hasMany 'synergy'
   news: DS.hasMany 'news'
   comments: DS.hasMany 'comment'

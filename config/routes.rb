@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :deck_types
   resources :builder_cards
+  resources :synergies
+  resources :synergies_cards
 
   get 'decks/search'
 
@@ -15,9 +17,8 @@ Rails.application.routes.draw do
   end
 
   get 'builder' => 'builder#index'
-  get 'builder/deck'
-  get 'builder/synergy'
-  get 'builder/d/:id' => 'builder#deck'
+  get 'builder/deck/:id' => 'builder#deck'
+  get 'builder/synergy/:id' => 'builder#synergy'
 
   resources :player_classes
   resources :cards
