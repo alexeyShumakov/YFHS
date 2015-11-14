@@ -31,17 +31,22 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
     sum
 
   pushCard: (card)->
+    _this = @
     if card.get 'isLegendary'
       card.set 'isActive', false
     builderCard = @.store.createRecord 'builder_card',
       card: card
       count: 1
-    builderCard.save()
-    @.get('cards').pushObject builderCard
+      deck: @
+    builderCard.save().then(
+      (bCard)->
+        _this.get('cards').pushObject bCard
+    )
 
   removeCard: (builderCard)->
     builderCard.set 'card.isActive', true
     builderCard.decrementProperty 'count'
     if Ember.isEqual builderCard.get('count'), 0
-      builderCard.deleteRecord()
-    builderCard.save()
+      builderCard.destroyRecord()
+    else
+      builderCard.save()
