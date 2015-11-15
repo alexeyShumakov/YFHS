@@ -1,0 +1,22 @@
+<div class="col-md-8">
+  {{outlet}}
+</div>
+
+<div class="col-md-4">
+
+  <div class="form-group margin-bottom">
+    {{input value=nameText class='form-control' placeholder='Поиск по названию...' type='Text' key-up='nameSearch'}}
+  </div>
+  <div class="list-group">
+    <div class="list-group-item">
+      {{#link-to 'synergies.search' (query-params player_class=null)}}Все классы{{/link-to}}
+    </div>
+    {{#each model.playerClasses as |playerClass|}}
+      <div class="list-group-item">
+        {{#link-to 'synergies.search' (query-params player_class=playerClass.en_name)}}{{playerClass.name}}{{/link-to}}
+      </div>
+    {{/each}}
+  </div>
+  {{render 'sidebar'}}
+</div>
+

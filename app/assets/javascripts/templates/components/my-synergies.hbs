@@ -1,0 +1,45 @@
+<a href="#" {{action 'toggleOpen'}}>Мои синергии<span class="caret"></span></a>
+<ul class="dropdown-menu my-decks__dropdown">
+  {{#if open}}
+    {{#each synergies as |synergy|}}
+      <li class="my-decks__name">
+        <a href="#">
+          {{#link-to 'synergy' synergy.id}}
+            <b class="text-capitalize">{{synergy.playerClass.name}}: </b>{{synergy.name}}
+          {{/link-to}}
+
+          <div>
+            {{#link-to 'synergy' synergy.id}}
+              <span class="glyphicon glyphicon-thumbs-up"></span>{{synergy.votes}}
+            {{/link-to}}
+
+            {{#link-to 'synergy' synergy.id}}
+              <span class="glyphicon glyphicon-comment"></span> {{synergy.commentsCount}}
+            {{/link-to}}
+
+            <div class="my-decks__control pull-right">
+              <span {{action 'removeSynergy' synergy}}class=" my-decks__control-item glyphicon glyphicon-remove"></span>
+              {{#link-to 'synergy_edit' synergy.id}}
+                <span class="my-decks__control-item glyphicon glyphicon-pencil"></span>
+              {{/link-to}}
+            </div>
+          </div>
+        </a>
+      </li>
+    {{else}}
+      Нет синергий =(
+    {{/each}}
+    {{#unless isAllSynergies}}
+      {{#if moreSynergies}}
+        <li>
+          {{#if loading}}
+            <a><i>загрузка...</i></a>
+          {{else}}
+            <a href="#"{{action 'showAll'}}>Показать все</a>
+          {{/if}}
+        </li>
+      {{/if}}
+    {{/unless}}
+  {{/if}}
+</ul>
+

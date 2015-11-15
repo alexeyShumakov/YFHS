@@ -10,6 +10,7 @@ YFHS.BuilderSynergyRoute = Ember.Route.extend({
     if @get('currentUser.isLogIn')
       model.synergy.set 'user', @get('currentUser.user')
     model.synergy.set 'name', "#{model.playerClass.get('name')}-синергия"
+    model.synergy.set 'playerClass', model.playerClass
     model.synergy.save()
   setupController: (controller, model)->
     @_super controller, model

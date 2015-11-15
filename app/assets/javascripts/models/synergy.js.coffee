@@ -1,10 +1,13 @@
 # for more details see: http://emberjs.com/guides/models/defining-models/
 
-YFHS.Synergy = DS.Model.extend
+YFHS.Synergy = DS.Model.extend YFHS.Votable,
   name: DS.attr 'string'
   description: DS.attr 'string'
   user: DS.belongsTo 'user'
   cards: DS.hasMany 'synergies_card'
+  commentsCount: DS.attr 'number'
+  playerClass: DS.belongsTo 'player_class'
+  createdAt: DS.attr 'date'
 
   sortedCards: Ember.computed 'totalCards', ()->
     @.get('cards').sortBy 'card.cost'

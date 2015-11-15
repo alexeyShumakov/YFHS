@@ -2,19 +2,15 @@ Rails.application.routes.draw do
   post 'votes/increase'
   post 'votes/decrease'
 
+  get 'synergies/search'
+  get 'decks/search'
+
   resources :deck_types
   resources :builder_cards
   resources :synergies
   resources :synergies_cards
 
-  get 'decks/search'
-
-  resources :decks do
-    member do
-      get 'increase_vote'
-      get 'decrease_vote'
-    end
-  end
+  resources :decks
 
   get 'builder' => 'builder#index'
   get 'builder/deck/:id' => 'builder#deck'
@@ -33,6 +29,7 @@ Rails.application.routes.draw do
     member do
       get 'decks'
       get 'comments'
+      get 'synergies'
     end
   end
   root 'news#index'

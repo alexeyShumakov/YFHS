@@ -4,12 +4,24 @@ class SynergiesController < ApplicationController
   # GET /synergies
   # GET /synergies.json
   def index
-    @synergies = Synergy.all
+    @synergies = Synergy.search_synergies(params)
+    respond_to do |format|
+      format.json { render json: @synergies, meta: {total: @synergies.total_pages} }
+      format.html {}
+    end
+  end
+
+  def search
+
   end
 
   # GET /synergies/1
   # GET /synergies/1.json
   def show
+    respond_to do |format|
+      format.json {render json: @synergy}
+      format.html {}
+    end
   end
 
   # GET /synergies/new
@@ -65,6 +77,6 @@ class SynergiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def synergy_params
-      params.require(:synergy).permit(:name, :description, :user_id)
+      params.require(:synergy).permit(:name, :description, :user_id, :player_class_id)
     end
 end

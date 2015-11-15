@@ -23,4 +23,6 @@ class UsersController < ApplicationController
   end
   def comments
   end
+  def synergies
+  end
 end

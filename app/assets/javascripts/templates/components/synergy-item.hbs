@@ -1,0 +1,43 @@
+<div class="deck-list-item__name pull-left">
+  <div class="name"><b>{{#link-to 'synergy' synergy.id}}{{synergy.name}}{{/link-to}}</b></div>
+  от {{user-popup user=synergy.user}}, {{formated-date synergy.createdAt}}
+</div>
+<div class="deck-list-item__col deck-list-item__className text-center pull-left">
+  {{synergy.playerClass.name}}
+</div>
+  {{#each synergy.cards as |sCard|}}
+    {{#link-to 'card' sCard.card.id}}
+      <div class="deck-list-item__crop"><img src="{{sCard.card.img_url}}" alt=""></div>
+    {{/link-to}}
+  {{/each}}
+
+<span {{action 'showDetails'}} class="pull-right deck-list-item__chevron glyphicon glyphicon-chevron-{{if isDetailed 'down' 'left'}}"></span>
+<div class="deck-list-item__col pull-right">
+  {{vote-comp model=synergy}}
+</div>
+<div class="deck-list-item__comment-icon pull-right">
+  {{synergy.commentsCount}}
+  <span class=" glyphicon glyphicon-comment"></span>
+</div>
+<div class="clearfix"></div>
+{{#if isDetailed}}
+  <hr>
+  <div class="deck-list-item__details">
+    <div class="margin-bottom">
+      {{#each synergy.cards as |sCard|}}
+        {{#link-to 'card' sCard.card.id}}
+          <div class="pull-left "><img src="{{sCard.card.img_url}}"  class= "deck-list-item__full-img" alt="{{sCard.card.name}}"></div>
+        {{/link-to}}
+      {{/each}}
+    </div>
+    <div class="clearfix"></div>
+    {{#if synergy.description}}
+      <hr>
+      <h3 class="text-center">Описание</h3>
+      {{markdown-onebox text=synergy.description}}
+    {{/if}}
+    <hr>
+    {{comments-block commentable=synergy}}
+  </div>
+{{/if}}
+
