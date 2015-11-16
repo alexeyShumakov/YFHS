@@ -3,10 +3,13 @@
 YFHS.ApplicationRoute = Ember.Route.extend
 
   model: ()->
+    store = @store
     @get('currentUser').getUser()
     Ember.RSVP.hash
-      user: @store.createRecord 'user'
-
+      user: store.createRecord 'user'
+      topDecks: store.query('deck', {limit: 5})
+      topSynergies: store.query('synergy', {limit: 5})
+      topCards: store.query('card', {limit: 5})
   actions:
     openModal: (name)->
       @render name,

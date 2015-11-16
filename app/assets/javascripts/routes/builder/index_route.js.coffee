@@ -2,5 +2,9 @@
 
 YFHS.BuilderIndexRoute = Ember.Route.extend({
   model: ()->
-    @.store.findAll 'player_class'
+    Ember.RSVP.hash
+      pClass: @store.findAll 'player_class'
+      topDecks: @store.query('deck', {limit: 5})
+      topSynergies: @store.query('synergy', {limit: 5})
+      topCards: @store.query('card', {limit: 5})
 })

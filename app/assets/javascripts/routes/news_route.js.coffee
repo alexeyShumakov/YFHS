@@ -2,7 +2,11 @@
 
 YFHS.NewsRoute = Ember.Route.extend
   model: (params)->
-    @.store.findRecord 'news', params['news_id']
+    Ember.RSVP.hash
+      news: @store.findRecord('news', params['id'])
+      topDecks: @store.query('deck', {limit: 5})
+      topSynergies: @store.query('synergy', {limit: 5})
+      topCards: @store.query('card', {limit: 5})
 
   actions:
     delete: ->

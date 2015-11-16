@@ -1,0 +1,55 @@
+  <h4 class="text-center">Рубрика Топ-5</h4>
+  <h5 class="text-center">Колоды</h5>
+  <ul class="list-group">
+    {{#each decks as |deck|}}
+      <li class="list-group-item">
+        <div class="pull-right">
+          <span class=" glyphicon glyphicon-thumbs-up"></span>
+          {{deck.votes}}
+          <span class=" glyphicon glyphicon-comment"></span>
+          {{deck.commentsCount}}
+        </div>
+        <div class="top-five__model-name">
+          {{#link-to 'deck' deck.id}}
+            {{deck.name}}
+          {{/link-to}}
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+  <h5 class="text-center">Синергии</h5>
+  <ul class="list-group">
+    {{#each synergies as |synergy|}}
+      <li class="list-group-item">
+        <div class="pull-right">
+          <span class=" glyphicon glyphicon-thumbs-up"></span>
+          {{synergy.votes}}
+          <span class=" glyphicon glyphicon-comment"></span>
+          {{synergy.commentsCount}}
+        </div>
+        <div class="top-five__model-name">
+          {{#link-to 'synergy' synergy.id}}
+            {{synergy.name}}
+          {{/link-to}}
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+  <h5 class="text-center">Карты</h5>
+  <ul class="list-group">
+    {{#each cards as |card|}}
+      <li class="list-group-item">
+        <div class="pull-right">
+          <span class=" glyphicon glyphicon-thumbs-up"></span>
+          {{card.votes}}
+          <span class=" glyphicon glyphicon-comment"></span>
+          {{card.commentsCount}}
+        </div>
+        <div class="top-five__model-name">
+          {{#link-to 'card' card.id}}
+            {{card.name}}
+          {{/link-to}}
+        </div>
+      </li>
+    {{/each}}
+  </ul>

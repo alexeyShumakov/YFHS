@@ -1,6 +1,7 @@
-<div class="col-md-9">
+<div class="col-md-8">
+  <h2 class="text-center">Новости</h2>
   <div id="news">
-    {{#each model as |news|}}
+    {{#each model.news as |news|}}
       {{#unless news.isNew}}
         {{single-news news=news}}
       {{/unless}}
@@ -8,6 +9,6 @@
   </div>
   {{outlet}}
 </div>
-<div class="col-md-3">
-  {{render 'sidebar'}}
+<div class="col-md-4">
+  {{top-five decks=model.topDecks cards=model.topCards synergies=model.topSynergies}}
 </div>

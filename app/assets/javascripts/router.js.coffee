@@ -25,6 +25,6 @@ YFHS.Router.map ()->
     @route 'deck', path: 'deck/:id'
     @route 'synergy', path: 'synergy/:id'
 
-  @route 'news', path: 'news/:news_id'
+  @route 'news', path: 'news/:id'
   @route 'news_index', path: 'news', ()->
     @route('new')

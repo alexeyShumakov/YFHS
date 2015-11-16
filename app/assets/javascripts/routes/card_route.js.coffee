@@ -2,6 +2,11 @@
 
 YFHS.CardRoute = Ember.Route.extend({
   model: (params)->
-    @get('store').find 'card', params['id']
+    store = @store
+    Ember.RSVP.hash
+      card: store.find 'card', params['id']
+      topDecks: store.query('deck', {limit: 5})
+      topSynergies: store.query('synergy', {limit: 5})
+      topCards: store.query('card', {limit: 5})
 
 })
