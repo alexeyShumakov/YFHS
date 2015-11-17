@@ -7,7 +7,7 @@ YFHS.NewsRoute = Ember.Route.extend
       topDecks: @store.query('deck', {limit: 5})
       topSynergies: @store.query('synergy', {limit: 5})
       topCards: @store.query('card', {limit: 5})
-      streams: @store.findAll 'twitchStream', {reload: true}
+      streams: @store.query 'twitchStream', {}
 
   actions:
     delete: ->

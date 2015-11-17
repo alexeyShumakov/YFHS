@@ -1,36 +1,34 @@
 {{#if model.isDeleted}}
   <h2 class="text-center">Синергия удалена</h2>
 {{else}}
-  <div class="row">
-    <div class="col-md-8">
-      <div class="pull-right vote_large">
-        {{vote-comp model=model}}
-      </div>
-      <h2>{{model.name}}</h2>
-      <ul class="list-unstyled">
-        <li><b>класс:</b> {{model.playerClass.name}}</li>
-        <li><b>создана:</b> {{formated-date model.createdAt}}</li>
-        <li><b>автор:</b> {{user-popup user=model.user}}</li>
-      </ul>
+  <div class="col-md-8">
+    <div class="pull-right vote_large">
+      {{vote-comp model=model}}
+    </div>
+    <h2>{{model.name}}</h2>
+    <ul class="list-unstyled">
+      <li><b>класс:</b> {{model.playerClass.name}}</li>
+      <li><b>создана:</b> {{formated-date model.createdAt}}</li>
+      <li><b>автор:</b> {{user-popup user=model.user}}</li>
+    </ul>
 
 
-      <div class="margin-bottom">
-        {{#each model.cards as |sCard|}}
-          {{#link-to 'card' sCard.card.id}}
-            <div class="pull-left "><img src="{{sCard.card.img_url}}"  class= "deck-list-item__full-img" alt="{{sCard.card.name}}"></div>
-          {{/link-to}}
-        {{/each}}
-      </div>
-      <div class="clearfix"></div>
-      <h4 class="text-center">Описание</h4>
-      <div class="deck-description margin-bottom">
-        {{markdown-onebox text=model.description}}
-      </div>
-      {{comments-block commentable=model}}
+    <div class="margin-bottom">
+      {{#each model.cards as |sCard|}}
+        {{#link-to 'card' sCard.card.id}}
+          <div class="pull-left "><img src="{{sCard.card.img_url}}"  class= "deck-list-item__full-img" alt="{{sCard.card.name}}"></div>
+        {{/link-to}}
+      {{/each}}
     </div>
-    <div  class="col-md-4">
-      {{deck-cards deck=model editable=false}}
+    <div class="clearfix"></div>
+    <h4 class="text-center">Описание</h4>
+    <div class="deck-description margin-bottom">
+      {{markdown-onebox text=model.description}}
     </div>
+    {{comments-block commentable=model}}
+  </div>
+  <div  class="col-md-4">
+    {{deck-cards deck=model editable=false}}
   </div>
   {{outlet}}
 {{/if}}

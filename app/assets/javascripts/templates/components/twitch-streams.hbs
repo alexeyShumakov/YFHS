@@ -12,7 +12,9 @@
           нет стримов
         </li>
       {{/each}}
-      <li class="text-center twitch-streams__toggle no-select" {{action 'showAll'}}>{{if sliced 'Показать' 'Скрыть'}} стримы</li>
+      {{#if showMore}}
+        <li class="text-center twitch-streams__toggle no-select" {{action 'showAll'}}>{{if sliced 'Показать' 'Скрыть'}} стримы</li>
+      {{/if}}
     </ul>
   </div>
 </div>
