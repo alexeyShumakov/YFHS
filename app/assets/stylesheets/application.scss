@@ -20,6 +20,7 @@
 @import "history-comment";
 @import "search-cards";
 @import "top-five";
+@import "twitch-streams";
 body {
   background: url('backgroundlight.jpg');
   .main-container {
@@ -121,8 +122,4 @@ video {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px;
-}
-.streamer-img{
-  width: 75px;
-  height: 75px;
 }
