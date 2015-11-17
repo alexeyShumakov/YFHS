@@ -2,5 +2,6 @@
     {{search-cards action='transitionToCard'}}
 </div>
 <div class="col-md-3">
+  {{twitch-streams streams=model.streams}}
   {{top-five decks=model.topDecks cards=model.topCards synergies=model.topSynergies}}
 </div>

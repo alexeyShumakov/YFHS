@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :twitch_streams
   post 'votes/increase'
   post 'votes/decrease'
 
