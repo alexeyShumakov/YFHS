@@ -69,6 +69,11 @@ class CardsController < ApplicationController
     end
   end
 
+  def random
+    @card = Card.find rand(Card.count)
+    render json: @card
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_card

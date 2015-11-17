@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   get 'builder/synergy/:id' => 'builder#synergy'
 
   resources :player_classes
+
+  get 'cards/random' => 'cards#random'
   resources :cards
+
   resources :comments
   get 'one_box/show'
 
