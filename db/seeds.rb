@@ -94,7 +94,7 @@ player_classes.each do |key, value|
     end
     deck.save
   end
-  %w(trumpsc hero_firebat kolento strifecro lifecoach1981 gaarabestshaman
+  %w(trumpsc hero_firebat kolento strifecro lifecoach1981 gaarabestshaman MaSsanSC Eligorko
   amazhs neirea thijsHS hsdogdog reynad27 savjz noxious_hs nl_kripp
   kucha044 silvername abver gnumme).each {|streamer_name| strm = TwitchStream.new streamer_name: streamer_name; strm.save  }
   TwitchStream.refresh
