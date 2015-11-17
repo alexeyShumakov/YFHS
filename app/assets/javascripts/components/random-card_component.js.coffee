@@ -1,7 +1,6 @@
 # for more details see: http://emberjs.com/guides/components/
 
 YFHS.RandomCardComponent = Ember.Component.extend({
-  classNames: ['bordered']
   store: Ember.inject.service()
   isGold: false
   didInsertElement: ()->

@@ -1,14 +1,18 @@
-<h4 class="text-center">Стримы</h4>
-<ul class="list-group">
-  {{#each filterStreams as |stream|}}
-    <li class="list-group-item">
-      <a href="http://www.twitch.tv/{{stream.streamerName}}">{{stream.streamerName}}</a>
-      <span class="pull-right">{{stream.viewers}} <span class="glyphicon glyphicon-eye-open"></span> </span>
-    </li>
-  {{else}}
-    <li class="list-group-item">
-      нет стримов
-    </li>
-  {{/each}}
-  <li class="text-center list-group-item twitch-streams__toggle no-select" {{action 'showAll'}}>{{if sliced 'Показать' 'Скрыть'}} стримы</li>
-</ul>
+<div class="panel panel-default">
+  <div class="panel-heading">Стримы</div>
+  <div class="panel-body">
+    <ul class="list-unstyled">
+      {{#each filterStreams as |stream|}}
+        <li>
+          <a href="http://www.twitch.tv/{{stream.streamerName}}">{{stream.streamerName}}</a>
+          <span class="pull-right">{{stream.viewers}} <span class="glyphicon glyphicon-eye-open"></span> </span>
+        </li>
+      {{else}}
+        <li >
+          нет стримов
+        </li>
+      {{/each}}
+      <li class="text-center twitch-streams__toggle no-select" {{action 'showAll'}}>{{if sliced 'Показать' 'Скрыть'}} стримы</li>
+    </ul>
+  </div>
+</div>
