@@ -1,4 +1,5 @@
 class SynergiesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
   before_action :set_synergy, only: [:show, :edit, :update, :destroy]
 
   # GET /synergies
@@ -50,6 +51,7 @@ class SynergiesController < ApplicationController
   # PATCH/PUT /synergies/1
   # PATCH/PUT /synergies/1.json
   def update
+    authorize @synergy
     respond_to do |format|
       if @synergy.update(synergy_params)
         format.json { render json: @synergy, status: :ok}
@@ -62,6 +64,7 @@ class SynergiesController < ApplicationController
   # DELETE /synergies/1
   # DELETE /synergies/1.json
   def destroy
+    authorize @synergy
     @synergy.destroy
     respond_to do |format|
       format.html { redirect_to synergies_url, notice: 'Synergy was successfully destroyed.' }

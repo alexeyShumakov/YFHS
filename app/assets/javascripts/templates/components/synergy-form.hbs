@@ -21,7 +21,14 @@
           <label for="synergy-name">Название</label>
           {{input type='text' value=synergy.name class='form-control' id='synergy-name'}}
         </div>
-        <div {{action 'saveSynergy'}} class="btn btn-block btn-primary btn-lg">Coхранить синергию</div>
+        {{#if currentUser.isLogIn}}
+          <button {{action 'saveSynergy'}} class="btn btn-block btn-primary btn-lg">Coхранить синергию</button>
+        {{else}}
+          <button disabled="disabled" class="btn btn-block btn-primary btn-lg">Войдите в систему</button>
+          <div class="bordered margin-bottom">
+            Внимание, эту синергию Вы <b> не сможете сохранить</b>, пожалуйста, войдите или зарегистрируйтесь.
+          </div>
+        {{/if}}
       </form>
     </div>
     <div class="well card-list">

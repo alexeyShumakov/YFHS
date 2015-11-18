@@ -10,7 +10,8 @@ YFHS.SynergyFormComponent = Ember.Component.extend({
 
   actions:
     saveSynergy: ()->
-      @get('synergy').save()
+      if @get('currentUser.isLogIn')
+        @get('synergy').save()
     removeFromDeck: (sCard)->
       @get('synergy').removeCard sCard
 
@@ -19,7 +20,10 @@ YFHS.SynergyFormComponent = Ember.Component.extend({
       unless synergy.get('isWhole')
         currentBuilderCard = synergy.get('cards').findBy 'card.id', card.get 'id'
         if Ember.isBlank currentBuilderCard
-          synergy.pushCard card
+          sCard = synergy.pushCard card
+          if @get('currentUser.isLogIn')
+            sCard.save()
+
 
 })
 

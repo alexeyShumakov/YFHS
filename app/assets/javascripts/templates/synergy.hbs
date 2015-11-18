@@ -28,6 +28,12 @@
     {{comments-block commentable=model}}
   </div>
   <div  class="col-md-4">
+    {{#if canEdit}}
+      <div class="margin-bottom">
+        {{#link-to 'synergy_edit' model.id class='btn btn-primary btn-block'}}<span class="glyphicon glyphicon-pencil"></span> Изменить{{/link-to}}
+        <button {{action 'removeSynergy'}}class="btn btn-danger btn-block"><span class="glyphicon-remove glyphicon"></span> Удалить</button>
+      </div>
+    {{/if}}
     {{deck-cards deck=model editable=false}}
   </div>
   {{outlet}}

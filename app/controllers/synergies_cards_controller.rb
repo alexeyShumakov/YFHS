@@ -1,4 +1,5 @@
 class SynergiesCardsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
   before_action :set_synergies_card, only: [:show, :edit, :update, :destroy]
 
   # GET /synergies_cards
@@ -27,6 +28,7 @@ class SynergiesCardsController < ApplicationController
   # POST /synergies_cards.json
   def create
     @synergies_card = SynergiesCard.new(synergies_card_params)
+    authorize @synergies_card
 
     respond_to do |format|
       if @synergies_card.save
@@ -40,6 +42,7 @@ class SynergiesCardsController < ApplicationController
   # PATCH/PUT /synergies_cards/1
   # PATCH/PUT /synergies_cards/1.json
   def update
+    authorize @synergies_card
     respond_to do |format|
       if @synergies_card.update(synergies_card_params)
         format.json { render json: @synergies_card, status: :ok}
@@ -52,6 +55,7 @@ class SynergiesCardsController < ApplicationController
   # DELETE /synergies_cards/1
   # DELETE /synergies_cards/1.json
   def destroy
+    authorize @synergies_card
     @synergies_card.destroy
     respond_to do |format|
       format.json { head :no_content }
