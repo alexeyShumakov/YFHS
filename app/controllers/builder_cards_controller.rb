@@ -1,4 +1,5 @@
 class BuilderCardsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
   before_action :set_builder_card, only: [:show, :edit, :update, :destroy]
 
   # GET /builder_cards
@@ -27,6 +28,7 @@ class BuilderCardsController < ApplicationController
   # POST /builder_cards.json
   def create
     @builder_card = BuilderCard.new(builder_card_params)
+    authorize @builder_card
 
     respond_to do |format|
       if @builder_card.save
@@ -40,6 +42,7 @@ class BuilderCardsController < ApplicationController
   # PATCH/PUT /builder_cards/1
   # PATCH/PUT /builder_cards/1.json
   def update
+    authorize @builder_card
     respond_to do |format|
       if @builder_card.update(builder_card_params)
         format.json { render json: @builder_card, status: :ok }
@@ -52,6 +55,7 @@ class BuilderCardsController < ApplicationController
   # DELETE /builder_cards/1
   # DELETE /builder_cards/1.json
   def destroy
+    authorize @builder_card
     @builder_card.destroy
     respond_to do |format|
       format.json { render json: @builder_card, status: :ok}
