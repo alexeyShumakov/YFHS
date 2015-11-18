@@ -14,6 +14,9 @@ YFHS.ManaCurveComponent = Ember.Component.extend
   ]
   countMap: Ember.computed.mapBy 'mana', 'count'
   maxCount: Ember.computed.max 'countMap'
-  unitSize: Ember.computed 'mana.count', ()->
-    12.5 if @.get('maxCount') <= 8 or 100/@.get('maxCount')
+  unitSize: Ember.computed 'maxCount', ()->
+    if @.get('maxCount') <= 8
+      12.5
+    else
+      100/@.get('maxCount')
 

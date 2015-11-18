@@ -8,6 +8,8 @@ YFHS.ManaCurveItemComponent = Ember.Component.extend
 
   totalCount: Ember.computed.sum 'totalCountMap'
   totalCountMap: Ember.computed.mapBy 'costCards', 'count'
+  obs: Ember.observer 'deck.totalCards', ()->
+    @set 'manaItem.count', @get('totalCount')
   costCards: Ember.computed 'deck.totalCards', ()->
     cost = @get 'manaItem.cost'
     @get('deck.cards').filter (item)->
