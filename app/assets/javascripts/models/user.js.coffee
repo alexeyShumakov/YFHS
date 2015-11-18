@@ -3,6 +3,7 @@
 YFHS.User = DS.Model.extend
   email: DS.attr 'string'
   nickname: DS.attr 'string'
+  updatedAt: DS.attr 'date'
   # TODO change it
   password: DS.attr 'string'
   password_confirmation: DS.attr 'string'

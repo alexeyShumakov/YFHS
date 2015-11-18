@@ -4,7 +4,10 @@
 
 </div>
 <div class="col-md-8">
-  <h1>{{model.nickname}}</h1>
+  <div>
+    <span class="pull-right"><i>{{online model.updatedAt}}</i></span>
+    <h3>{{model.nickname}}</h3>
+  </div>
   <ul class="nav nav-tabs  margin-bottom">
     <li>{{#link-to 'user.decks' model.id}}Колоды{{/link-to}}</li>
     <li>{{#link-to 'user.synergies' model.id}}Синерджи{{/link-to}}</li>

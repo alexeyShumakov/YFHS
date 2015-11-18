@@ -1,8 +1,9 @@
 {{#link-to 'user' user.id class='usr-link'}}{{user.nickname}}{{/link-to}}
 {{#if isShowPopup}}
   <div class="user-popup__popup">
-    <div class="text-center">
-      {{#link-to 'user' user.id}}{{user.nickname}}{{/link-to}}
+    <div class="user-popup__header">
+      <b>{{#link-to 'user' user.id}}{{user.nickname}}{{/link-to}}</b>
+      <span class="pull-right"><i>{{online user.updatedAt}}</i></span>
     </div>
     <div class="user-popup__decks">
       {{#each decks as |deck|}}
