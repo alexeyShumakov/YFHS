@@ -9,6 +9,12 @@
           {{/link-to}}
 
           <div>
+            <div class="my-decks__control pull-right">
+              <span {{action 'removeDeck' deck}}class=" my-decks__control-item glyphicon glyphicon-remove"></span>
+              {{#link-to 'deck_edit' deck.id}}
+                <span class="my-decks__control-item glyphicon glyphicon-pencil"></span>
+              {{/link-to}}
+            </div>
             {{#link-to 'deck' deck.id}}
               <span class="glyphicon glyphicon-thumbs-up"></span>{{deck.votes}}
             {{/link-to}}
@@ -17,12 +23,6 @@
               <span class="glyphicon glyphicon-comment"></span> {{deck.commentsCount}}
             {{/link-to}}
 
-            <div class="my-decks__control pull-right">
-              <span {{action 'removeDeck' deck}}class=" my-decks__control-item glyphicon glyphicon-remove"></span>
-              {{#link-to 'deck_edit' deck.id}}
-                <span class="my-decks__control-item glyphicon glyphicon-pencil"></span>
-              {{/link-to}}
-            </div>
           </div>
         </a>
       </li>

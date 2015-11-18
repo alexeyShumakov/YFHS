@@ -4,7 +4,8 @@ class UsersController < ApplicationController
       usr_params = { user: {
           id: current_user.id,
           email: current_user.email,
-          nickname: current_user.nickname
+          nickname: current_user.nickname,
+          role: current_user.role
       }
       }
       render json: usr_params

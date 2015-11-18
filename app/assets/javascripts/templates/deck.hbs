@@ -1,12 +1,14 @@
 {{#if model.isDeleted}}
   <h2 class="text-center">Колода удалена</h2>
 {{else}}
-  {{#link-to 'deck_edit' model.id}}edit{{/link-to}}
+
   <div class="col-md-8">
     <div class="pull-right vote_large">
       {{vote-comp model=model}}
     </div>
-    <h2>{{model.name}}</h2>
+    <h2>
+      {{model.name}}
+    </h2>
     <ul class="list-unstyled">
       <li><b>класс:</b> {{model.playerClass.name}}</li>
       <li><b>тип:</b> {{model.deckType.name}}</li>
@@ -20,6 +22,12 @@
     {{comments-block commentable=model}}
   </div>
   <div  class="col-md-4">
+    {{#if canEdit}}
+      <div class="margin-bottom">
+        {{#link-to 'deck_edit' model.id class='btn btn-primary btn-block'}}<span class="glyphicon glyphicon-pencil"></span> Изменить{{/link-to}}
+        <button {{action 'removeDeck'}}class="btn btn-danger btn-block"><span class="glyphicon-remove glyphicon"></span> Удалить</button>
+      </div>
+    {{/if}}
     <div class="well mana-curve">
       {{#each model.mana as |item|}}
           <div class="curve-item">

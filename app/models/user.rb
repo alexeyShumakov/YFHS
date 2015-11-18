@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :nickname, length: { in: 5..40 }, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+  enum role: %w(user moderator admin)
 end

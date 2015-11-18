@@ -8,6 +8,7 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
   commentsCount: DS.attr 'number'
 
   deckType: DS.belongsTo 'deck_type'
+  userId: DS.attr 'number'
   user: DS.belongsTo 'user'
   playerClass: DS.belongsTo 'player_class'
   cards: DS.hasMany 'builder_card'

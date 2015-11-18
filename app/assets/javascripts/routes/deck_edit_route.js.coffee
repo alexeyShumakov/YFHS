@@ -8,6 +8,12 @@ YFHS.DeckEditRoute = Ember.Route.extend({
       bCards: @get('store').query('builder_card', {deck_id: params['id']})
 
   afterModel: (model)->
+    if @get('currentUser.isLogIn')
+      unless @get('currentUser.user.isAdmin') or @get('currentUser.user').isAuthor(model.deck)
+        @transitionTo('application')
+    else
+      @transitionTo('application')
+
     _this = @
     model.deck.get('playerClass').then(
       (pc)->

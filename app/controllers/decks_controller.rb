@@ -20,10 +20,6 @@ class DecksController < ApplicationController
   def search
   end
 
-  def new
-    @deck = Deck.new
-  end
-
   def edit
   end
 
@@ -40,6 +36,7 @@ class DecksController < ApplicationController
   end
 
   def update
+    authorize @deck
     respond_to do |format|
       if @deck.update(deck_params)
         format.json { render json: @deck, status: :ok }
@@ -50,6 +47,7 @@ class DecksController < ApplicationController
   end
 
   def destroy
+    authorize @deck
     @deck.destroy
     respond_to do |format|
       format.json { head :no_content }
