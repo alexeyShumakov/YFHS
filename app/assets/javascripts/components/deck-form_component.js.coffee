@@ -8,15 +8,19 @@ YFHS.DeckFormComponent = Ember.Component.extend({
   willDestroyElement: ()->
     @get('deck.cards').forEach (bCard)->
       bCard.enableCard()
+
   deckTypeItem: Ember.observer 'deckTypeId', ()->
     dTypes = @get('deckTypes')
     deckType = dTypes.findBy('id', @get('deckTypeId'))
     @set('deck.deckType', deckType)
-    @get('deck').save()
+    if @get('currentUser.isLogIn')
+      @get('deck').save()
 
   actions:
     saveDeck: ()->
-      @get('deck').save()
+      if @get('currentUser.isLogIn')
+        @get('deck').save()
+
     removeFromDeck: (builderCard)->
       @get('deck').removeCard builderCard
 
@@ -29,9 +33,12 @@ YFHS.DeckFormComponent = Ember.Component.extend({
             card.set 'isActive', false
             if currentBuilderCard.get('count') < 2
               currentBuilderCard.incrementProperty 'count'
-              currentBuilderCard.save()
+              if @get('currentUser.isLogIn')
+                currentBuilderCard.save()
         else
-          deck.pushCard card
+          bCard = deck.pushCard card
+          if @get('currentUser.isLogIn')
+            bCard.save()
 
 })
 

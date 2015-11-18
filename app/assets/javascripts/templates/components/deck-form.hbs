@@ -29,7 +29,14 @@
             {{/each}}
           </select>
         </div>
-        <div {{action 'saveDeck'}} class="btn btn-block btn-primary btn-lg">Coхранить колоду</div>
+        {{#if currentUser.isLogIn}}
+          <button {{action 'saveDeck'}} class="btn btn-block btn-primary btn-lg">Coхранить колоду</button>
+        {{else}}
+          <button disabled="disabled" class="btn btn-block btn-primary btn-lg">Войдите в систему</button>
+          <div class="bordered margin-bottom">
+            Внимание, эту колоду Вы <b> не сможете сохранить</b>, пожалуйста, войдите или зарегистрируйтесь.
+          </div>
+        {{/if}}
       </form>
       {{mana-curve deck=deck}}
 

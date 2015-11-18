@@ -13,8 +13,8 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
   playerClass: DS.belongsTo 'player_class'
   cards: DS.hasMany 'builder_card'
 
-  sortedCards: Ember.computed 'totalCards', ()->
-    @.get('cards').sortBy 'card.cost'
+  sortProp: ['card.cost', 'card.name']
+  sortedCards: Ember.computed.sort 'cards', 'sortProp'
 
   isWhole: Ember.computed 'totalCards', ()->
     Ember.isEqual @.get('totalCards'), 30
@@ -32,22 +32,17 @@ YFHS.Deck = DS.Model.extend YFHS.Votable,
     sum
 
   pushCard: (card)->
-    _this = @
     if card.get 'isLegendary'
       card.set 'isActive', false
-    builderCard = @.store.createRecord 'builder_card',
+    builderCard = @store.createRecord 'builder_card',
       card: card
       count: 1
       deck: @
-    builderCard.save().then(
-      (bCard)->
-        _this.get('cards').pushObject bCard
-    )
+    @get('cards').pushObject builderCard
+    builderCard
 
   removeCard: (builderCard)->
     builderCard.set 'card.isActive', true
     builderCard.decrementProperty 'count'
     if Ember.isEqual builderCard.get('count'), 0
       builderCard.destroyRecord()
-    else
-      builderCard.save()
