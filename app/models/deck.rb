@@ -2,6 +2,7 @@ class Deck < ActiveRecord::Base
   include PgSearch
   has_many :builder_cards, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
+  attr_readonly :comments_count
   belongs_to :user
   belongs_to :deck_type
   belongs_to :player_class
@@ -49,7 +50,7 @@ class Deck < ActiveRecord::Base
       items
     end
     def cards_count_by_cost (cost)
-      cards = builder_cards.select {|c| cost >= 7 ? c.card.cost >= cost : c.card.cost == cost}
+      cards = builder_cards.includes(:card).select {|c| cost >= 7 ? c.card.cost >= cost : c.card.cost == cost}
       cards.sum &:count
     end
     def get_unit_size(max_count)

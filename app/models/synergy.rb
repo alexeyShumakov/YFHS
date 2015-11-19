@@ -2,6 +2,7 @@ class Synergy < ActiveRecord::Base
   include PgSearch
   has_many :synergies_cards, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
+  attr_readonly :comments_count
   belongs_to :user
   belongs_to :player_class
   paginates_per 15
@@ -19,6 +20,7 @@ class Synergy < ActiveRecord::Base
       @synergies = params[:page].blank? ? @synergies.page(1) : @synergies.page(params[:page])
     end
     @synergies = params[:limit].blank? ? @synergies : @synergies.limit(params[:limit].to_i)
+    @synergies.includes(synergies_cards: :card  )
   end
   def comments_count
     comments.size

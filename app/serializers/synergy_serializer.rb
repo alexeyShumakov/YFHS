@@ -3,6 +3,10 @@ class SynergySerializer < ApplicationSerializer
              :created_at, :evaluation_value, :votes, :comments_count, :user_id
   has_many :synergies_cards
 
+  def synergies_cards
+    object.synergies_cards.includes(:card)
+  end
+
   def evaluation_value
     if scope && object.has_evaluation?(:vote, scope)
       object.evaluation_by :vote, scope

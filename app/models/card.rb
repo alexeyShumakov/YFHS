@@ -2,6 +2,7 @@ class Card < ActiveRecord::Base
   include PgSearch
   has_many :builder_cards
   belongs_to :player_class
+  attr_readonly :comments_count
   has_many :comments, as: :commentable, dependent: :destroy
   has_reputation :vote, source: :user
   paginates_per 6

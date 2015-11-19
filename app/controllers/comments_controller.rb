@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     if params[:user_id].present?
-      @comments = Comment.where user_id: params[:user_id]
+      @comments = Comment.includes(:commentable, :user).where user_id: params[:user_id]
     else
-      @comments = Comment.where commentable_type: params[:commentable_type], commentable_id: params[:commentable_id]
+      @comments = Comment.includes(:commentable, :user).where commentable_type: params[:commentable_type], commentable_id: params[:commentable_id]
     end
     @comments = params[:page].blank? ? @comments.page(1) : @comments.page(params[:page])
     render json: @comments, meta: {total: @comments.total_pages}

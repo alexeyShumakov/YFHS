@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118112415) do
+ActiveRecord::Schema.define(version: 20151119184727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20151118112415) do
     t.boolean  "elite"
     t.string   "locale"
     t.json     "mechanics"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "img_file_name"
     t.string   "img_content_type"
     t.integer  "img_file_size"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20151118112415) do
     t.integer  "img_gold_file_size"
     t.datetime "img_gold_updated_at"
     t.integer  "player_class_id"
+    t.integer  "comments_count",        default: 0
   end
 
   add_index "cards", ["player_class_id"], name: "index_cards_on_player_class_id", using: :btree
@@ -82,13 +83,14 @@ ActiveRecord::Schema.define(version: 20151118112415) do
 
   create_table "decks", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "deck_type_id"
     t.integer  "player_class_id"
     t.string   "description"
     t.integer  "user_id"
     t.json     "curve"
+    t.integer  "comments_count",  default: 0
   end
 
   add_index "decks", ["deck_type_id"], name: "index_decks_on_deck_type_id", using: :btree
@@ -98,9 +100,10 @@ ActiveRecord::Schema.define(version: 20151118112415) do
   create_table "news", force: :cascade do |t|
     t.string   "name"
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "user_id"
+    t.integer  "comments_count", default: 0
   end
 
   add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
@@ -161,10 +164,11 @@ ActiveRecord::Schema.define(version: 20151118112415) do
   create_table "synergies", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "user_id"
     t.integer  "player_class_id"
+    t.integer  "comments_count",  default: 0
   end
 
   add_index "synergies", ["player_class_id"], name: "index_synergies_on_player_class_id", using: :btree
