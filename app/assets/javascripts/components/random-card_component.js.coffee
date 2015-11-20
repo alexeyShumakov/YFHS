@@ -6,7 +6,7 @@ YFHS.RandomCardComponent = Ember.Component.extend({
   didInsertElement: ()->
     _this = @
     store = @get 'store'
-    $.getJSON('/cards/random').then(
+    $.getJSON('/api/cards/random').then(
       (data)->
         store.pushPayload(data)
         _this.set 'card', store.peekRecord('card', data.card.id)

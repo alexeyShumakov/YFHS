@@ -1,4 +1,4 @@
-class PlayerClassesController < ApplicationController
+class Api::PlayerClassesController < ApplicationController
   before_action :set_player_class, only: [:show, :edit, :update, :destroy]
 
   # GET /player_classes
@@ -28,28 +28,20 @@ class PlayerClassesController < ApplicationController
   def create
     @player_class = PlayerClass.new(player_class_params)
 
-    respond_to do |format|
       if @player_class.save
-        format.html { redirect_to @player_class, notice: 'Player class was successfully created.' }
-        format.json { render :show, status: :created, location: @player_class }
+        render @player_class, status: :created
       else
-        format.html { render :new }
-        format.json { render json: @player_class.errors, status: :unprocessable_entity }
+        render json: @player_class.errors, status: :unprocessable_entity
       end
-    end
   end
 
   # PATCH/PUT /player_classes/1
   # PATCH/PUT /player_classes/1.json
   def update
-    respond_to do |format|
-      if @player_class.update(player_class_params)
-        format.html { redirect_to @player_class, notice: 'Player class was successfully updated.' }
-        format.json { render :show, status: :ok, location: @player_class }
-      else
-        format.html { render :edit }
-        format.json { render json: @player_class.errors, status: :unprocessable_entity }
-      end
+    if @player_class.update(player_class_params)
+      render @player_class, status: :ok
+    else
+      render json: @player_class.errors, status: :unprocessable_entity
     end
   end
 
@@ -57,10 +49,7 @@ class PlayerClassesController < ApplicationController
   # DELETE /player_classes/1.json
   def destroy
     @player_class.destroy
-    respond_to do |format|
-      format.html { redirect_to player_classes_url, notice: 'Player class was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: nil
   end
 
   private

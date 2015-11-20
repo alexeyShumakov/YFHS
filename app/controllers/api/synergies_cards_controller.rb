@@ -1,4 +1,4 @@
-class SynergiesCardsController < ApplicationController
+class Api::SynergiesCardsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update, :destroy]
   before_action :set_synergies_card, only: [:show, :edit, :update, :destroy]
 
@@ -29,13 +29,10 @@ class SynergiesCardsController < ApplicationController
   def create
     @synergies_card = SynergiesCard.new(synergies_card_params)
     authorize @synergies_card
-
-    respond_to do |format|
-      if @synergies_card.save
-        format.json { render json: @synergies_card, status: :created}
-      else
-        format.json { render json: @synergies_card.errors, status: :unprocessable_entity }
-      end
+    if @synergies_card.save
+      render json: @synergies_card, status: :created
+    else
+      render json: @synergies_card.errors, status: :unprocessable_entity
     end
   end
 
@@ -43,12 +40,10 @@ class SynergiesCardsController < ApplicationController
   # PATCH/PUT /synergies_cards/1.json
   def update
     authorize @synergies_card
-    respond_to do |format|
-      if @synergies_card.update(synergies_card_params)
-        format.json { render json: @synergies_card, status: :ok}
-      else
-        format.json { render json: @synergies_card.errors, status: :unprocessable_entity }
-      end
+    if @synergies_card.update(synergies_card_params)
+      render json: @synergies_card, status: :ok
+    else
+      render json: @synergies_card.errors, status: :unprocessable_entity
     end
   end
 
@@ -57,9 +52,7 @@ class SynergiesCardsController < ApplicationController
   def destroy
     authorize @synergies_card
     @synergies_card.destroy
-    respond_to do |format|
-      format.json { head :no_content }
-    end
+    render json: nil
   end
 
   private
