@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '4.2.3'
+gem 'cocaine', '~>0.5.8'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -25,9 +26,9 @@ gem 'pg_search'
 gem 'kaminari'
 gem 'passenger'
 gem 'devise'
-gem 'ember-rails'
-gem 'ember-source', '~> 2.0.2'
 gem 'pundit'
+
+gem 'ember-cli-rails'
 
 
 group :development, :test do
