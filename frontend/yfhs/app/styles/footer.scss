@@ -1,0 +1,17 @@
+.list-bordered {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px;
+}
+.wrap-footer {
+  $color: #9D9D9D;
+  .links {
+    background-color: #222;
+    padding: 20px 0;
+    color: $color;
+    a {
+      color: $color;
+
+    }
+  }
+}

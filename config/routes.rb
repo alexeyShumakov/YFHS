@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth'
   mount_ember_app :yfhs, to: '/'
   root 'news#index'
 
-  devise_for :users, controllers: {
-                       confirmations: 'confirmations',
-                       passwords: 'passwords',
-                       sessions: 'sessions',
-                       registrations: 'registrations'
-                   }
   # resources :users do
   #   get 'get_current_user', on: :collection
   #   member do

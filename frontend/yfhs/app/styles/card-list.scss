@@ -1,0 +1,24 @@
+.card-list {
+  min-width: 360px;
+}
+.card-list__item {
+  .deck-card {
+    padding: 4px;
+  }
+  cursor: pointer;
+  .Free {
+    color: #000;
+  }
+  .Common {
+    color: #000;
+  }
+  .Rare {
+    color: #198EFF;
+  }
+  .Epic {
+    color: #AB48EE;
+  }
+  .Legendary {
+    color: #F07000;
+  }
+}

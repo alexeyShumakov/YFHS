@@ -1,0 +1,123 @@
+@import "loader";
+@import "likes";
+@import "footer";
+@import "deck-builder";
+@import "curve-item";
+@import "mana-curve";
+@import "card-list";
+@import "deck-list-item";
+@import "deck-graph";
+@import "deck-card";
+@import "md-ob";
+@import "user-popup";
+@import "comment-block";
+@import "vote";
+@import "my-decks";
+@import "card";
+@import "user";
+@import "history-comment";
+@import "search-cards";
+@import "top-five";
+@import "twitch-streams";
+body {
+  background: url('images/backgroundlight.jpg');
+  .main-container {
+    background-color: #ffffff;
+    min-height: 800px;
+  }
+  .main {
+    min-height: 800px;
+  }
+}
+.margin-bottom {
+  margin-bottom: 20px;
+}
+.list-group a.active {
+  color: #D6AF30;
+  font-weight: bold;
+}
+.overlay {
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.custom-alert{
+  z-index: 999;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 450px;
+  max-height: 300px;
+}
+.modal-dialog{
+  position: absolute;
+  left: 25%;
+  z-index: 11;
+}
+iframe{
+  max-width: 100%;
+}
+.panel-body {
+  img {
+    max-width: 90%;
+  }
+}
+.custom-tab {
+  font-size: smaller;
+}
+.cost-badge {
+  margin-left: 20px;
+  display: inline-block;
+  .active {
+    background-color: #4ea5ff;
+  }
+  .badge {
+    cursor: pointer;
+  }
+}
+.class-list {
+  margin-top: 15px;
+}
+.card-container{
+  min-height: 540px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  position: relative;
+  .arrow {
+    top: 50%;
+    position: absolute;
+    z-index: 3;
+  }
+  .arrow-right {
+    right: 20px;
+  }
+  .arrow-left {
+    left: 10px;
+  }
+  .card-img {
+    cursor: pointer;
+    max-width: 180px;
+  }
+}
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+video {
+  max-width: 100%;
+}
+.bordered {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+}

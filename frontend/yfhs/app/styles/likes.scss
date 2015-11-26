@@ -1,0 +1,15 @@
+.likes {
+
+  span.isLiked {
+    color: rgb(255, 65, 35);
+  }
+  position: relative;
+  width: 70px;
+  .popover {
+    display: block;
+  }
+  .whoLiked {
+    position: absolute;
+    left: 55px;
+  }
+}

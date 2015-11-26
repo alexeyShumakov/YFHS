@@ -1,0 +1,45 @@
+<div class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{#link-to 'application' class='navbar-brand'}}YFHS{{/link-to}}
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+
+
+      <ul class="nav navbar-nav navbar-right">
+        {{#if currentUser.isLogIn}}
+          <li>
+            {{#link-to 'user' currentUser.user.id}}
+              <b>{{currentUser.user.nickname}}</b>, {{currentUser.user.email}}
+            {{/link-to}}
+          </li>
+          {{my-decks}}
+          {{my-synergies}}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Меню<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li> <a href="#"{{action 'out'}}>Выйти</a> </li>
+            </ul>
+          </li>
+        {{else}}
+          <li><a href="#" {{action 'openModal' 'sign-up' }} >Регистрация</a></li>
+          <li><a href="#" {{action 'openModal' 'log-in' }}  >Войти</a></li>
+        {{/if}}
+      </ul>
+
+    </div>
+
+
+  </div>
+</div>

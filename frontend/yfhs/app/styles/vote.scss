@@ -1,0 +1,51 @@
+.vote__plus {
+  &:hover {
+    color: rgb(49, 150, 48)
+  }
+  cursor: pointer;
+  color: rgba(49, 150, 48, 0.3)
+}
+.vote_plus-active {
+  cursor: pointer;
+  color: #319630;
+}
+.vote__minus {
+  &:hover {
+    color: rgb(158, 49, 48);
+  }
+  cursor: pointer;
+  color: rgba(158, 49, 48, 0.3);
+}
+.vote_minus-active {
+  cursor: pointer;
+  color: rgb(158, 49, 48);
+}
+.vote_mono{
+  .vote__plus {
+    &:hover {
+      color: rgb(229, 233, 225);
+    }
+    cursor: pointer;
+    color: rgb(173, 176, 170);
+  }
+  .vote_plus-active {
+    cursor: pointer;
+    color: rgb(229, 233, 225);
+  }
+  .vote__minus {
+    &:hover {
+      color: rgb(251, 255, 246)
+    }
+    cursor: pointer;
+    color: rgb(173, 176, 170);
+  }
+  .vote_minus-active {
+    cursor: pointer;
+    color: rgb(251, 255, 246)
+  }
+
+}
+.vote_large {
+  font-size: 20px;
+  margin-top: 20px;
+}
