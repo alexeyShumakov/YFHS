@@ -1,4 +1,4 @@
-class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
+class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
       ## Required
@@ -53,3 +53,4 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
     # add_index :users, :unlock_token,         :unique => true
   end
 end
+
