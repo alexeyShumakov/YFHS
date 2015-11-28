@@ -3,6 +3,7 @@ import { validator, buildValidations } from 'ember-cp-validations';
 
 var Validations = buildValidations({
   nickname: [
+    validator('unique-nickname'),
     validator('presence', true),
     validator('length', {
       min: 4,
@@ -13,6 +14,7 @@ var Validations = buildValidations({
     })
   ],
   email: [
+    validator('unique-email'),
     validator('presence', true),
     validator('format', {
       type: 'email',
@@ -36,6 +38,29 @@ export default Ember.Component.extend(Validations, {
 
   actions:{
     signUp(){
+      let _this = this;
+      if (this.get('validations.isValid')) {
+        Ember.$.ajax({
+          url:      'auth',
+          type:     'POST',
+          dataType: 'json',
+          data: {
+            email:                  this.get('email'),
+            public_nickname:        this.get('nickname'),
+            password:               this.get('password'),
+            password_confirmation:  this.get('verifiedPassword'),
+            confirm_success_url:    window.location.href
+          }
+        }).then(
+          function(){
+            _this.sendAction('close');
+            _this.sendAction('open', 'hint-sign-up');
+          }, function(data){
+            var d = Ember.$.parseJSON(data.responseText);
+            _this.set('serverErrors', d.errors);
+          }
+        );
+      }
     }
   }
 });

@@ -36,6 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## User Info
       t.string :name
       t.string :nickname
+      t.string :public_nickname
       t.string :image
       t.string :email
       t.integer :role, default: 0
@@ -47,6 +48,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
     end
 
     add_index :users, :email
+    add_index :users, :nickname,             :unique => true
+    add_index :users, :public_nickname,      :unique => true
     add_index :users, [:uid, :provider],     :unique => true
     add_index :users, :reset_password_token, :unique => true
     # add_index :users, :confirmation_token,   :unique => true

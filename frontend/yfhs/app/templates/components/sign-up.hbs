@@ -1,4 +1,13 @@
 <div class="modal-body">
+  {{#if serverErrors.full_messages}}
+    <ul>
+      {{#each serverErrors.full_messages as |err|}}
+          <li>
+            <b>{{err}}</b>
+          </li>
+      {{/each}}
+    </ul>
+  {{/if}}
   <form class="form-horizontal">
 
     <div class="form-group  has-feedback
@@ -10,9 +19,9 @@
         <span>Только латинские буквы и цифры, без пробелов.</span>
         {{#if validations.attrs.nickname.isDirty}}
           <span class="glyphicon
-          {{if validations.attrs.nickname.isInvalid 'glyphicon-remove' }}
+            {{if validations.attrs.nickname.isInvalid 'glyphicon-remove' }}
             {{if validations.attrs.nickname.isValid 'glyphicon-ok' }}
-         form-control-feedback" aria-hidden="true"></span>
+           form-control-feedback" aria-hidden="true"></span>
         {{/if}}
         {{#if validations.attrs.nickname.isDirty}}
           {{#if validations.attrs.nickname.isInvalid}}
@@ -96,5 +105,5 @@
 </div>
 
 <div class="modal-footer">
-  <button {{action 'signUp'}} class="btn btn-primary">Подтвердить</button>
+  <button {{action 'signUp'}} class="btn btn-primary" disabled={{unless validations.isValid 'disabled'}}>Подтвердить</button>
 </div>

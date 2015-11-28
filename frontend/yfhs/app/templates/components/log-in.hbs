@@ -7,19 +7,51 @@
         {{currentUser.logInError}}
       </div>
     {{/if}}
-    <div class="form-group">
+
+    <div class="form-group  has-feedback
+        {{if validations.attrs.email.isDirty (if validations.attrs.email.isValid 'has-success' 'has-error')}}
+       ">
       <label for="email" class="col-sm-3 control-label">Почта</label>
       <div class="col-sm-9">
-        {{input value=currentUser.email class='form-control' type='email' id='email' placeholder='Почта' }}
+        {{input value=email class='form-control' type='email' id='email' placeholder='Почта' }}
+        {{#if validations.attrs.email.isDirty}}
+          <span class="glyphicon
+          {{if validations.attrs.email.isInvalid 'glyphicon-remove' }}
+            {{if validations.attrs.email.isValid 'glyphicon-ok' }}
+         form-control-feedback" aria-hidden="true"></span>
+        {{/if}}
+        {{#if validations.attrs.email.isDirty}}
+          {{#if validations.attrs.email.isInvalid}}
+            <div class="help-block">
+              {{validations.attrs.email.message}}
+            </div>
+          {{/if}}
+        {{/if}}
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  has-feedback
+        {{if validations.attrs.password.isDirty (if validations.attrs.password.isValid 'has-success' 'has-error')}}
+       ">
       <label for="password" class="col-sm-3 control-label">Пароль</label>
       <div class="col-sm-9">
-        {{input value=currentUser.password class='form-control' type='password' id='password' placeholder='Пароль' }}
+        {{input value=password class='form-control' type='password' id='password' placeholder='Пароль' }}
+        {{#if validations.attrs.password.isDirty}}
+          <span class="glyphicon
+          {{if validations.attrs.password.isInvalid 'glyphicon-remove' }}
+            {{if validations.attrs.password.isValid 'glyphicon-ok' }}
+         form-control-feedback" aria-hidden="true"></span>
+        {{/if}}
+        {{#if validations.attrs.password.isDirty}}
+          {{#if validations.attrs.password.isInvalid}}
+            <div class="help-block">
+              {{validations.attrs.password.message}}
+            </div>
+          {{/if}}
+        {{/if}}
       </div>
     </div>
+
    <div class="form-group">
      <div class="col-sm-offset-3 col-sm-9">
        <div class="checkbox">
@@ -33,6 +65,6 @@
 
 <div class="modal-footer">
   <a {{action 'signUp'}} href="#">Зарегистрироваться</a> или
-  <button {{action 'logIn'}} class="btn btn-primary">Войти</button>
+  <button {{action 'logIn'}} class="btn btn-primary" disabled={{unless validations.isValid 'disabled'}}>Войти</button>
 </div>
 

@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20151119184727) do
     t.string   "unconfirmed_email"
     t.string   "name"
     t.string   "nickname"
+    t.string   "public_nickname"
     t.string   "image"
     t.string   "email"
     t.integer  "role",                   default: 0
@@ -220,6 +221,8 @@ ActiveRecord::Schema.define(version: 20151119184727) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true, using: :btree
+  add_index "users", ["public_nickname"], name: "index_users_on_public_nickname", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 

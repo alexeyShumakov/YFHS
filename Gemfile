@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '4.2.3'
-gem 'cocaine', '~>0.5.8'
+gem 'rails', '4.2.5'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -24,10 +23,11 @@ gem 'paperclip'
 gem 'pg_search'
 gem 'kaminari'
 gem 'passenger'
-gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'pundit'
+gem 'jsonapi-resources'
+gem 'active_model_serializers'
 
 gem 'ember-cli-rails'
 

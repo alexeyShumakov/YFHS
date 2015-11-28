@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
   mount_ember_app :yfhs, to: '/'
-  root 'news#index'
 
+  namespace :api do
+    jsonapi_resources :users
+  end
   # resources :users do
   #   get 'get_current_user', on: :collection
   #   member do
@@ -33,12 +35,4 @@ Rails.application.routes.draw do
   #
   # get 'one_box/show'
 
-  # namespace :api do
-  #   resources :twitch_streams, :deck_types,
-  #             :player_classes, :builder_cards, :comments,
-  #             :synergies, :decks, :synergies_cards, :news
-  #   resources :cards do
-  #     get 'random', on: :collection
-  #   end
-  # end
 end
