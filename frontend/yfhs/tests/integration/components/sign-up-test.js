@@ -6,20 +6,28 @@ moduleForComponent('sign-up', 'Integration | Component | sign up', {
 });
 
 test('it renders', function(assert) {
-  
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
   this.render(hbs`{{sign-up}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  let nicknameInput = this.$('#nickname');
+  nicknameInput.focus();
+  nicknameInput.val('test_nickname');
+  nicknameInput.blur();
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#sign-up}}
-      template block text
-    {{/sign-up}}
-  `);
+  let emailInput = this.$('#email');
+  emailInput.focus();
+  emailInput.val('test@test.com');
+  emailInput.blur();
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  let passwordInput = this.$('#password');
+  passwordInput.focus();
+  passwordInput.val('password');
+  passwordInput.blur();
+
+  let passwordConfirmationInput = this.$('#confirm-password');
+  passwordConfirmationInput.focus();
+  passwordConfirmationInput.val('password');
+  passwordConfirmationInput.blur();
+
+  assert.equal(this.$('button').attr('disabled'), null);
 });

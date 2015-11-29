@@ -33,7 +33,7 @@ export default Ember.Component.extend(Validations, {
           _this.set('newPasswordError', data.responseJSON.errors);
           _this.set('isNewPasswordError', true);
         }
-      )
+      );
     }
 
   }

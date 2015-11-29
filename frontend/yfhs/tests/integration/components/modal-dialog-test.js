@@ -7,14 +7,6 @@ moduleForComponent('modal-dialog', 'Integration | Component | modal dialog', {
 
 test('it renders', function(assert) {
   
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
-
-  this.render(hbs`{{modal-dialog}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:" + EOL +
   this.render(hbs`
     {{#modal-dialog}}
       template block text
@@ -22,4 +14,14 @@ test('it renders', function(assert) {
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');
+});
+
+test('it close', function(assert) {
+
+  this.set('closeAction', ()=> {
+    assert.ok('close Action triggered');
+  });
+  this.render(hbs`{{modal-dialog action=(action closeAction)}}`);
+
+  this.$('.overlay').click();
 });

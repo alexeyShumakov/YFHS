@@ -5,21 +5,22 @@ moduleForComponent('password-new-confirm', 'Integration | Component | password n
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it enable button', function(assert) {
   
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
   this.render(hbs`{{password-new-confirm}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  let passwordInput = this.$('#password');
+  passwordInput.focus();
+  passwordInput.val('password');
+  passwordInput.blur();
 
-  // Template block usage:" + EOL +
-  this.render(hbs`
-    {{#password-new-confirm}}
-      template block text
-    {{/password-new-confirm}}
-  `);
+  let passwordConfirmationInput = this.$('#confirm-password');
+  passwordConfirmationInput.focus();
+  passwordConfirmationInput.val('password');
+  passwordConfirmationInput.blur();
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('button').attr('disabled'), null);
 });

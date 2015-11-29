@@ -25,7 +25,7 @@ export default Ember.Component.extend(Validations, {
         url: '/auth/password',
         dataType: 'json',
         method: 'put',
-        beforeSend(xhr, settings) {
+        beforeSend(xhr) {
           xhr.setRequestHeader('access-token', queryParams['token']);
           xhr.setRequestHeader('client', queryParams['client_id']);
           xhr.setRequestHeader('uid', queryParams['uid']);
@@ -44,7 +44,7 @@ export default Ember.Component.extend(Validations, {
           _this.set('newPasswordError', data.responseJSON.errors);
           _this.set('isNewPasswordError', true);
         }
-      )
+      );
     }
   }
 });

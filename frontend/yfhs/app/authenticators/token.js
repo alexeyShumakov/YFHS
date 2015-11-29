@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Base from 'ember-simple-auth/authenticators/base';
 
-const { RSVP, isEmpty, run, get } = Ember;
+const { RSVP, run, } = Ember;
 
 export default Base.extend({
 
@@ -48,7 +48,7 @@ export default Base.extend({
         url:      'auth/sign_out',
         type:     'DELETE',
         dataType: 'json',
-        beforeSend(xhr, settings) {
+        beforeSend(xhr) {
           xhr.setRequestHeader('access-token', data['headers']['access-token']);
           xhr.setRequestHeader('token-type', data['headers']['token-type']);
           xhr.setRequestHeader('client', data['headers']['client']);
@@ -61,7 +61,7 @@ export default Base.extend({
         }, function(){
           reject();
         }
-      )
+      );
     });
   },
 
