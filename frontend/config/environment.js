@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'yfhs',
+    modulePrefix: 'frontend',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',

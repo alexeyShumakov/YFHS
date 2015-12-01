@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
-  mount_ember_app :yfhs, to: '/'
+  mount_ember_app :frontend, to: '/'
 
   namespace :api do
     jsonapi_resources :users
