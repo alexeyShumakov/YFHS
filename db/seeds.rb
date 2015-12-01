@@ -80,24 +80,23 @@ player_classes.each do |key, value|
     card.player_class = new_pc
     card.save
   end
-
-  User.create(public_nickname: 'iAmUser', email: 'test@mail.com', password: 'password', password_confirmation: 'password', confirmed_at: Date.today)
-  User.create(public_nickname: 'iAmUser1', email: 'test1@mail.com', password: 'password', password_confirmation: 'password', confirmed_at: Date.today)
-  User.create(public_nickname: 'admin', email: 'admin@mail.com', role: 2, password: 'password', password_confirmation: 'password', confirmed_at: Date.today)
-  user = User.first
-  deck_type = DeckType.first
-  player_class = PlayerClass.first
-  cards = Card.where.not(cost: nil).where(player_class: player_class).last 30
-  100.times do
-    deck = Deck.create player_class: player_class, name: 'Моя колода', description: 'Описание', user: user, deck_type: deck_type
-    cards.each do |card|
-      builder_card = BuilderCard.create deck: deck, card: card, count: 1
-      deck.builder_cards << builder_card
-    end
-    deck.save
+end
+User.create(public_nickname: 'iAmUser', email: 'test@mail.com', password: 'password', password_confirmation: 'password', confirmed_at: Date.today)
+User.create(public_nickname: 'iAmUser1', email: 'test1@mail.com', password: 'password', password_confirmation: 'password', confirmed_at: Date.today)
+User.create(public_nickname: 'admin', email: 'admin@mail.com', role: 2, password: 'password', password_confirmation: 'password', confirmed_at: Date.today)
+user = User.first
+deck_type = DeckType.first
+player_class = PlayerClass.first
+cards = Card.where.not(cost: nil).where(player_class: player_class).last 30
+100.times do
+  deck = Deck.create player_class: player_class, name: 'Моя колода', description: 'Описание', user: user, deck_type: deck_type
+  cards.each do |card|
+    builder_card = BuilderCard.create deck: deck, card: card, count: 1
+    deck.builder_cards << builder_card
   end
-  %w(trumpsc hero_firebat kolento strifecro lifecoach1981 gaarabestshaman MaSsanSC Eligorko
+  deck.save
+end
+%w(trumpsc hero_firebat kolento strifecro lifecoach1981 gaarabestshaman MaSsanSC Eligorko
   amazhs neirea thijsHS hsdogdog reynad27 savjz noxious_hs nl_kripp superjj102 Zetalot
   kucha044 silvername abver gnumme).each {|streamer_name| strm = TwitchStream.new streamer_name: streamer_name; strm.save  }
-  TwitchStream.refresh
-end
+TwitchStream.refresh

@@ -10,7 +10,7 @@ export default Ember.Route.extend({
     }
   },
   model() {
-    return this.store.findAll('user');
+    return this.store.findRecord('card', 23);
   },
   renderTemplate(controller, model){
     this._super(controller, model);

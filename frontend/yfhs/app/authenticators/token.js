@@ -59,7 +59,7 @@ export default Base.extend({
         function(){
           resolve();
         }, function(){
-          reject();
+          resolve();
         }
       );
     });

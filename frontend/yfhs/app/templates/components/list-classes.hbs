@@ -1,0 +1,8 @@
+{{#each playerClasses as |pClass|}}
+  <li class="custom-tab {{if pClass.isActive 'active'}}" role="presentation" {{action 'classToggle' pClass playerClasses}}>
+    <a href="#">
+      {{pClass.title}}
+    </a>
+  </li>
+{{/each}}
+

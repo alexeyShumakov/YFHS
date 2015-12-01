@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     jsonapi_resources :users
+    jsonapi_resources :decks
+    jsonapi_resources :cards
+    jsonapi_resources :twitch_streams
+    jsonapi_resources :synergies
   end
   # resources :users do
   #   get 'get_current_user', on: :collection
