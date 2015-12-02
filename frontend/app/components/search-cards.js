@@ -18,12 +18,12 @@ export default Ember.Component.extend({
           _this.set('cards', cards);
           _this.set('isLoading', false);
         }
-      )
+      );
     }
   },
 
   didInsertElement(){
-    Ember.run.debounce(this, this.search, 100)
+    Ember.run.debounce(this, this.search, 100);
   },
 
   qParams: Ember.computed('currentPage', 'cost', 'keyword', 'playerClass', function(){
@@ -48,8 +48,7 @@ export default Ember.Component.extend({
 
   actions:{
     nextSlide(){
-      console.log('hello!!');
-      if(!(Ember.isEqual(this.get('cards.meta.total'), this.get('currentPage'))) ){
+      if(!(Ember.isEqual(this.get('cards.meta.total-pages'), this.get('currentPage'))) ){
         this.incrementProperty('currentPage');
       }
     },

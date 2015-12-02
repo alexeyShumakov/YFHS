@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/alexeyShumakov/jsonapi-resources.git
+  revision: d4fb2ea38ac7fee3fc3c2547ef72d950dfffe97e
+  specs:
+    jsonapi-resources (0.6.2)
+      rails (>= 4.0)
+
+GIT
   remote: https://github.com/twitter/activerecord-reputation-system.git
   revision: df77666a5d61ce74781b11a84c1a8944cff10779
   specs:
@@ -114,8 +121,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
-    jsonapi-resources (0.6.2)
-      rails (>= 4.0)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -260,7 +265,7 @@ DEPENDENCIES
   fast_blank
   jbuilder (~> 2.0)
   jquery-rails
-  jsonapi-resources
+  jsonapi-resources!
   kaminari
   oj
   omniauth

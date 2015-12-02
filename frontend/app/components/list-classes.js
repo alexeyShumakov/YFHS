@@ -12,7 +12,7 @@ export default Ember.Component.extend({
       return classes;
     } else {
       classes.filter((item)=>{
-        return (item.get('name') == currentPC) || (item.get('name') == 'Neutral');
+        return (item.get('name') === currentPC) || (item.get('name') === 'Neutral');
       });
     }
   }),

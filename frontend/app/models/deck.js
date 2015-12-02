@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import Votable from '../mixins/votable';
 
-export default DS.Model.extend({
+export default DS.Model.extend(Votable, {
   name:           DS.attr('string'),
   description:    DS.attr('string'),
   createdAt:      DS.attr('date'),
@@ -25,7 +26,7 @@ export default DS.Model.extend({
   mana: Ember.computed('curve', function(){
     let items = this.get('curve').items;
     items.forEach((manaItem)=>{
-      manaItem.styleSize  = `height:${manaItem.size}%`.htmlSafe()
+      manaItem.styleSize  = `height:${manaItem.size}%`.htmlSafe();
     });
     return items;
   }),
@@ -53,7 +54,7 @@ export default DS.Model.extend({
     builderCard.set('card.isActive', true);
     builderCard.decrementProperty('count');
     if (Ember.isEqual(builderCard.get('count'), 0)) {
-      builderCard.destroyRecord()
+      builderCard.destroyRecord();
     }
   }
 

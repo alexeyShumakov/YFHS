@@ -9,9 +9,6 @@ export default Ember.Route.extend({
         this.set('modal', 'password-new-confirm');
     }
   },
-  model() {
-    return this.store.findRecord('card', 23);
-  },
   renderTemplate(controller, model){
     this._super(controller, model);
     let modal = this.get('modal');

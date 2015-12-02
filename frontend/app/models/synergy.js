@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import Votable from '../mixins/votable';
 
-export default DS.Model.extend({
+export default DS.Model.extend(Votable, {
   name:           DS.attr('string'),
   description:    DS.attr('string'),
   userId:         DS.attr('number'),
@@ -36,6 +37,6 @@ export default DS.Model.extend({
 
   removeCard(sCard){
     sCard.set('card.isActive', true);
-    sCard.destroyRecord()
+    sCard.destroyRecord();
   }
 });

@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import Votable from '../mixins/votable';
 
-export default DS.Model.extend({
+export default DS.Model.extend(Votable, {
   commentsCount:    DS.attr('number'),
   cardGameId:       DS.attr('string'),
   name:             DS.attr('string'),
