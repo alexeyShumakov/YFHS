@@ -17,6 +17,5 @@ export default DS.Model.extend({
   }),
   isAuthor(record) {
     return this.get('id').toString() === record.get('userId').toString();
-
   }
 });
