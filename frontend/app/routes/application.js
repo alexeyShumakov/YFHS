@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   beforeModel(transition){
+    this.get('currentUser').setCurrentUser();
     this.set('currentUser.qParams', transition.queryParams);
     if( transition.queryParams['account_confirmation_success'] === 'true' ) {
       this.set('modal', 'hint-confirm');

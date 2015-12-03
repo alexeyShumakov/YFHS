@@ -14,13 +14,13 @@ export default Ember.Mixin.create({
   }),
 
   increaseVote(){
-    this.$.post("/votes/increase", {
+    $.post("/votes/increase", {
       id:     this.get('id'),
       object: this.get('constructor.modelName')
     });
   },
   decreaseVote(){
-    this.$.post("/votes/decrease", {
+    $.post("/votes/decrease", {
       id:     this.get('id'),
       object: this.get('constructor.modelName')
     });

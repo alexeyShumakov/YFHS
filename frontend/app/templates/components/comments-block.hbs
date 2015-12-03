@@ -1,0 +1,49 @@
+<div>
+
+  {{#if currentUser.isLogIn}}
+    <form>
+      <b>Комментрировать</b>
+      <div class="form-group">
+        {{textarea value=comment rows='4' class='form-control comment-block__textarea'}}
+      </div>
+      <div class="btn-group margin-bottom">
+        <button {{action 'saveComment'}} class="btn btn-primary">опубликовать</button>
+        <button {{action 'togglePre'}} class="btn btn-default">{{if isHidePre 'показать' 'скрыть'}} превью</button>
+
+      </div>
+    </form>
+    <div class="{{if isHidePre 'hidden'}}">
+      <div class="comment-review margin-bottom">
+        {{markdown-onebox text=comment placeholder=true}}
+      </div>
+    </div>
+
+  {{else}}
+    <div class="alert alert-success">
+      Что бы писать комментарии нужно войти, или зарегистрироваться.
+    </div>
+  {{/if}}
+
+  {{#if commentsLoading}}
+    <div class="loader"></div>
+  {{else}}
+    {{#if uniqComments}}
+      <hr>
+      <h4 class="text-center">Комментарии</h4>
+    {{/if}}
+    {{#each uniqComments as |comment|}}
+      <div class="bordered margin-bottom">
+        {{user-popup user=comment.user}}, <i>{{formated-date comment.createdAt}}</i>
+        <div class="pull-right">
+          {{vote-comp model=comment}}
+        </div>
+        <hr>
+        {{markdown-onebox text=comment.body}}
+      </div>
+    {{else}}
+    {{/each}}
+    {{infinity-loader queryParams=params model=comments modelName='comment'}}
+  {{/if}}
+
+</div>
+

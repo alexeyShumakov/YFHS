@@ -18,7 +18,7 @@
         {{#if currentUser.isLogIn}}
           <li>
             {{#link-to 'user' currentUser.user.id}}
-              <b>{{currentUser.user.nickname}}</b>, {{currentUser.user.email}}
+              {{currentUser.user.email}}
             {{/link-to}}
           </li>
           {{my-decks}}
