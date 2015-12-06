@@ -1,10 +1,10 @@
-import { markdown } from '../../../helpers/markdown';
+import { markdwn } from '../../../helpers/markdwn';
 import { module, test } from 'qunit';
 
-module('Unit | Helper | markdown');
+module('Unit | Helper | markdwn');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let result = markdown(42);
+  let result = markdwn(42);
   assert.ok(result);
 });
