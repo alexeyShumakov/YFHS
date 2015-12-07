@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include PgSearch
   has_many :news
   has_many :comments
   has_many :decks
@@ -7,6 +8,9 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
+
+  pg_search_scope :search_by_nickname, against: [:nickname],
+                  using: {tsearch: {prefix: true}}
 
   before_validation :downcase_fields
   validates :nickname, length: { in: 4..40 }, presence: true, uniqueness: true, format: { with: /\A\w+\Z/ }

@@ -4,7 +4,9 @@
     <form>
       <b>Комментрировать</b>
       <div class="form-group">
-        {{textarea value=comment rows='4' class='form-control comment-block__textarea'}}
+        {{#yfhs-textarea text=comment}}
+          {{textarea value=comment rows='4' class='form-control comment-block__textarea'}}
+        {{/yfhs-textarea}}
       </div>
       <div class="btn-group margin-bottom">
         <button {{action 'saveComment'}} class="btn btn-primary">опубликовать</button>

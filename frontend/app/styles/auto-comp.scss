@@ -1,0 +1,18 @@
+.auto-comp__textarea {
+  position: relative;
+  letter-spacing: normal;
+}
+.auto-comp__list {
+  position: absolute;
+  background-color: lightgray;
+  z-index: 5;
+}
+.auto-comp__shadow-textarea {
+  left: -7000px;
+  visibility: hidden;
+  display: inline-block;
+  position: absolute;
+  white-space: pre-wrap;
+  background-color: gray;
+  letter-spacing: normal;
+}
