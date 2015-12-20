@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
-  mount_ember_app :frontend, to: '/'
-
   get 'one_box/show'
   namespace :votes do
     post 'increase'
     post 'decrease'
   end
+  mount_ember_app :frontend, to: '/'
+
   namespace :api do
     jsonapi_resources :users
     jsonapi_resources :decks
@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     jsonapi_resources :synergies
     jsonapi_resources :comments
   end
+
+
   # resources :users do
   #   get 'get_current_user', on: :collection
   #   member do

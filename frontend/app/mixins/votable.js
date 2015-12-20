@@ -14,15 +14,21 @@ export default Ember.Mixin.create({
   }),
 
   increaseVote(){
+    var _this = this;
     $.post("/votes/increase", {
       id:     this.get('id'),
       object: this.get('constructor.modelName')
+    }).then(function(){
+      _this.reload();
     });
   },
   decreaseVote(){
+    var _this = this;
     $.post("/votes/decrease", {
       id:     this.get('id'),
       object: this.get('constructor.modelName')
+    }).then(function(){
+      _this.reload();
     });
   }
 });

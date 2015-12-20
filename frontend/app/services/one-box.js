@@ -14,7 +14,7 @@ export default Ember.Service.extend({
           preview: false,
           cache: true
         }
-      ).then(function(){
+      ).then(function(html){
           elem.replaceWith(html);
         }
       )
@@ -37,9 +37,9 @@ export default Ember.Service.extend({
           $.ajax('/one_box/show',{
             dataType: 'html',
             data:{
-              url: elem.attr('href')
+              url: elem.attr('href'),
+              preview: true
             },
-            preview: true,
             cache: true
           }).then(
             function(html){

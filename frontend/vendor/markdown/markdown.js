@@ -1815,7 +1815,7 @@
   Yfhs.inline[ "ht" ] = function autoLink(text){
     var m = text.match(/^((?:https?:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.])(?:[^\s()<>]+|\([^\s()<>]+\))+(?:\([^\s()<>]+\)|[^`!()\[\]{};:'".,<>?«»“”‘’\s]))/);
     if ( m ) {
-      return [m[0].length, ['a', {"class": "one-box", "href": m[ 1 ]}, m[ 1 ]]];
+      return [m[0].length, ['a', {"class": "onebox-target", "href": m[ 1 ]}, m[ 1 ]]];
     } else {
       return [2, "ht"];
     }
@@ -1824,7 +1824,7 @@
     var m = text.match(/%[a-zA-Zа-яА-Я\.\-_']{1,100}/);
 
     if ( m ) {
-      var name =  m[0].replace(/_/, ' ').replace(/%/, '');
+      var name =  m[0].replace(/_/g, ' ').replace(/%/, '');
       return [m[0].length, ["span", {"class": "game-card"},  name]];
     } else {
       return [1, "%"];

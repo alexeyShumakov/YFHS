@@ -7,12 +7,10 @@ export default Ember.Component.extend({
   actions:{
     increaseVote(){
       this.get('model').increaseVote();
-      this.get('model').reload();
     },
 
     decreaseVote(){
       this.get('model').decreaseVote();
-      this.get('model').reload();
     }
 
   }
