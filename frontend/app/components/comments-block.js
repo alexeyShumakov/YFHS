@@ -30,6 +30,7 @@ export default Ember.Component.extend({
     let _this = this;
     let model = this.get('commentable');
     let qParams = {
+      include: 'user',
       commentable_type: model.get('constructor.modelName').capitalize(),
       commentable_id: model.get('id')
     };
