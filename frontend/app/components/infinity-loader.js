@@ -24,7 +24,6 @@ export default Ember.Component.extend({
       if (selfOffset < scrollBottom){
         if (this.get('nextPage') <= total){
           _this.set('loading', true);
-          console.log(this.get('params'));
           this.get('store').query(_this.get('modelName'), _this.get('params')).then(
             function(newDecks){
               model.pushObjects(newDecks.get('content'));

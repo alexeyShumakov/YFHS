@@ -1,8 +1,8 @@
 import DS from 'ember-data';
 import Ember from 'ember';
-import Votable from '../mixins/votable';
+import Votable from './votable';
 
-export default DS.Model.extend(Votable, {
+export default Votable.extend({
   name:           DS.attr('string'),
   description:    DS.attr('string'),
   userId:         DS.attr('number'),

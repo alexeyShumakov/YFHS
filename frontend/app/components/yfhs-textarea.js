@@ -14,7 +14,8 @@ export default Ember.Component.extend({
 
     Ember.run.scheduleOnce('afterRender', this, function () {
       let pos = this.$('.caret').position();
-      this.set('position', `top:${pos.top + 20}px; left:${pos.left}px`);
+      let cssPosition =  new Ember.Handlebars.SafeString(`top:${pos.top + 20}px; left:${pos.left}px`);
+      this.set('position', cssPosition );
     });
   },
   keyUp(key){

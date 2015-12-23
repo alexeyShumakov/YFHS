@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import DS from 'ember-data';
 
-export default Ember.Mixin.create({
+export default DS.Model.extend({
   votes: DS.attr('number'),
   evaluationValue: DS.attr('number'),
 
