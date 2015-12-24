@@ -1,6 +1,6 @@
-<a href="#" {{action 'toggleOpen'}}>Мои колоды<span class="caret"></span></a>
+<a href="#" {{action 'toggleOpen'}}>Ваши колоды<span class="caret"></span></a>
 <ul class="dropdown-menu my-decks__dropdown">
-{{#if open}}
+  {{#if open}}
     {{#each decks as |deck|}}
       <li class="my-decks__name">
         <a href="#">
@@ -29,16 +29,17 @@
     {{else}}
       Нет дек =(
     {{/each}}
-  {{#unless isAllDecks}}
-    {{#if moreDecks}}
-      <li>
-        {{#if loading}}
-          <a><i>загрузка...</i></a>
-        {{else}}
-          <a href="#"{{action 'showAll'}}>Показать все</a>
-        {{/if}}
-      </li>
-    {{/if}}
-  {{/unless}}
-{{/if}}
+    {{#unless isAllDecks}}
+      {{#if moreDecks}}
+        <li>
+          {{#if loading}}
+            <a><i>загрузка...</i></a>
+          {{else}}
+            <a href="#"{{action 'showAll'}}>Показать все</a>
+          {{/if}}
+        </li>
+      {{/if}}
+    {{/unless}}
+  {{/if}}
 </ul>
+
