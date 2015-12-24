@@ -1,6 +1,7 @@
 class Api::UserResource < JSONAPI::Resource
   attributes :email, :nickname, :public_nickname, :updated_at, :role
   filters :email, :nickname
+  has_many :decks
 
   def self.records(options = {})
     params = options[:context][:params]

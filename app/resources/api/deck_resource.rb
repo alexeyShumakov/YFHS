@@ -1,6 +1,10 @@
 class Api::DeckResource < JSONAPI::Resource
   attributes :votes, :comments_count, :curve, :evaluation_value, :name,
              :description, :created_at, :user_id, :deck_type_id, :player_class_id
+  has_many :builder_cards
+  has_one :user
+  has_one :deck_type
+  has_one :player_class
 
   def self.records(options = {})
     @models = _model_class.search_decks options[:context][:params]

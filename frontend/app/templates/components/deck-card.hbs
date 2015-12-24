@@ -1,0 +1,10 @@
+<td class="deck-card col-md-10">
+  <b class="{{card.card.rarity}}">{{card.card.name}}</b>
+  <i>{{card.showCount}}</i>
+  {{#if imgVisability}}
+    <img class="deck-card__img" src="{{card.card.img_url}}" alt="{{card.card.name}}" style={{imgPosition}}>
+  {{/if}}
+</td>
+
+<td class="deck-card col-md-2">{{card.card.cost}}</td>
+

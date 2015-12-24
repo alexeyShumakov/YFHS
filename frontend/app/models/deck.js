@@ -14,7 +14,8 @@ export default Votable.extend({
   user:           DS.belongsTo('user'),
   playerClass:    DS.belongsTo('player_class'),
 
-  cards:          DS.hasMany('builder_card'),
+  cards: Ember.computed.alias('builderCards'),
+  builderCards:   DS.hasMany('builder_card'),
 
   sortProp: ['card.cost', 'card.name'],
   sortedCards: Ember.computed.sort('cards', 'sortProp'),

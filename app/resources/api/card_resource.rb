@@ -6,10 +6,20 @@ class Api::CardResource < JSONAPI::Resource
              :artist, :collectible, :elite, :locale, :mechanics,
              :img_url, :img_gold_url
 
+  has_many :builder_cards
   def self.records(options = {})
-    @models = _model_class.search_cards options[:context][:params]
-    options[:context][:total_pages] = @models.total_pages
-    @models
+    params = options[:context][:params]
+    if params[:action] == 'index'
+      @models = _model_class.search_cards params
+      if params[:random].present?
+        _model_class.where id: rand(_model_class.count)
+      else
+        options[:context][:total_pages] = @models.total_pages
+        @models
+      end
+    else
+      super options
+    end
   end
 
   def evaluation_value
