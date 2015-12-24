@@ -7,9 +7,14 @@ class Api::DeckResource < JSONAPI::Resource
   has_one :player_class
 
   def self.records(options = {})
-    @models = _model_class.search_decks options[:context][:params]
-    options[:context][:total_pages] = @models.total_pages
-    @models
+    params = options[:context][:params]
+    if params[:id].present?
+      _model_class.where id: params[:id]
+    else
+      @models = _model_class.search_decks options[:context][:params]
+      options[:context][:total_pages] = @models.total_pages
+      @models
+    end
   end
 
   def evaluation_value
