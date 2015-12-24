@@ -1,8 +1,0 @@
-<div class="list-group">
-  {{#each model.decks as |deck|}}
-    <div class="deck-list-item list-group-item">
-      {{deck-item deck=deck}}
-    </div>
-  {{/each}}
-  {{infinity-loader model=model.decks queryParams=params modelName='deck'}}
-</div>
