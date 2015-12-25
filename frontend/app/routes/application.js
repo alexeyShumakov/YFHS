@@ -2,14 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   beforeModel(transition){
-    this.get('currentUser').setCurrentUser();
     this.set('currentUser.qParams', transition.queryParams);
     if( transition.queryParams['account_confirmation_success'] === 'true' ) {
       this.set('modal', 'hint-confirm');
     } else if (transition.queryParams['reset_password'] === 'true') {
         this.set('modal', 'password-new-confirm');
     }
+    return this.get('currentUser').setCurrentUser();
   },
+
   renderTemplate(controller, model){
     this._super(controller, model);
     let modal = this.get('modal');

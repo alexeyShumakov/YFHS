@@ -1821,7 +1821,7 @@
     }
   };
   Yfhs.inline[ "%" ] = function card(text){
-    var m = text.match(/%[a-zA-Zа-яА-Я\.\-_',]{1,100}/);
+    var m = text.match(/%[^\s]{1,100}/);
 
     if ( m ) {
       var name =  m[0].replace(/_/g, ' ').replace(/%/, '');

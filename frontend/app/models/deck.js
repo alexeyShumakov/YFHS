@@ -34,10 +34,10 @@ export default Votable.extend({
 
   totalCards: Ember.computed('cards.@each.count', function(){
     let sum = 0;
-    this.get('cards').forEach((card)=>{
+    this.get('cards').forEach(function(card){
       sum += card.get('count');
-      return sum;
     });
+    return sum;
   }),
 
   pushCard(card){

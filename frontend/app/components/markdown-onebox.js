@@ -4,9 +4,9 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   oneBox: Ember.inject.service(),
   didInsertElement(){
+    this.replaceCard();
     this.mentionTransition();
     this.cardTransition();
-    this.replaceCard();
     if (!this.get('placeholder')){
       this.get('oneBox').preview(this.getId());
     }
@@ -46,7 +46,9 @@ export default Ember.Component.extend({
       var storeCard = storeCards.find(function(card){
         return $card.html().toLowerCase() === card.get('name').toLowerCase();
       });
-      _this.get('router').transitionTo('card', storeCard.get('id'));
+      if (Ember.isPresent(storeCard)){
+        _this.get('router').transitionTo('card', storeCard.get('id'));
+      }
     });
   },
 

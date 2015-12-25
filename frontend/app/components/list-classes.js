@@ -11,7 +11,7 @@ export default Ember.Component.extend({
     if (Ember.isBlank(currentPC)){
       return classes;
     } else {
-      classes.filter((item)=>{
+      return classes.filter(function(item){
         return (item.get('name') === currentPC) || (item.get('name') === 'Neutral');
       });
     }

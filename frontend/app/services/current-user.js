@@ -15,7 +15,7 @@ export default Ember.Service.extend({
     let userId = this.get('session.session.content.authenticated.data.id');
     var _this = this;
     if (this.get('isLogIn')){
-      this.get('store').findRecord('user', userId).then(
+      return this.get('store').findRecord('user', userId).then(
         function (user) {
           _this.set('user', user);
         });
