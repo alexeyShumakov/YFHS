@@ -13,13 +13,26 @@ export default Ember.Component.extend({
     Ember.Object.create({cost: 7, name: '7+', count: 0 })
   ],
 
-  countMap: Ember.computed.mapBy('mana', 'count'),
-  maxCount: Ember.computed.max('countMap'),
-  unitSize: Ember.computed('maxCount', function(){
-    if (this.get('maxCount') <= 8){
+  unitSize: Ember.computed('deck.totalCards', function(){
+    var [_this, max] = [this, 0];
+    this.get('mana').forEach(function(manaItem){
+      let sum = 0;
+      let costCards = _this.get('deck.cards').filter(function (bCard) {
+        let cost = bCard.get('card.cost');
+        let itemCost = manaItem.get('cost');
+        if (cost == 7){
+          return itemCost >= cost;
+        } else {
+          return itemCost == cost;
+        }
+      });
+      costCards.forEach(function(item){ sum += item.get('count') });
+      if (sum > max){ max = sum }
+    });
+    if (max <= 8){
       return 12.5;
     } else {
-      return 100/this.get('maxCount');
+      return 100/max;
     }
   })
 });
