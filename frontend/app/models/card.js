@@ -26,7 +26,7 @@ export default Votable.extend({
   img_gold_url:     DS.attr('string'),
 
   builderCards:     DS.hasMany('builder_card'),
-  synergiesCards:   DS.hasMany('synergies_card'),
+  synergiesCards:   DS.hasMany('synergy_card'),
 
   isLegendary: Ember.computed('rarity', function(){
     return Ember.isEqual(this.get('rarity'), 'Legendary');

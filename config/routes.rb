@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     jsonapi_resources :cards
     jsonapi_resources :twitch_streams
     jsonapi_resources :synergies
+    jsonapi_resources :synergy_cards
     jsonapi_resources :comments
   end
 

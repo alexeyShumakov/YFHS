@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119184727) do
+ActiveRecord::Schema.define(version: 20151228134745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,15 +174,15 @@ ActiveRecord::Schema.define(version: 20151119184727) do
   add_index "synergies", ["player_class_id"], name: "index_synergies_on_player_class_id", using: :btree
   add_index "synergies", ["user_id"], name: "index_synergies_on_user_id", using: :btree
 
-  create_table "synergies_cards", force: :cascade do |t|
+  create_table "synergy_cards", force: :cascade do |t|
     t.integer  "synergy_id"
     t.integer  "card_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "synergies_cards", ["card_id"], name: "index_synergies_cards_on_card_id", using: :btree
-  add_index "synergies_cards", ["synergy_id"], name: "index_synergies_cards_on_synergy_id", using: :btree
+  add_index "synergy_cards", ["card_id"], name: "index_synergy_cards_on_card_id", using: :btree
+  add_index "synergy_cards", ["synergy_id"], name: "index_synergy_cards_on_synergy_id", using: :btree
 
   create_table "twitch_streams", force: :cascade do |t|
     t.string   "streamer_name"
@@ -236,6 +236,6 @@ ActiveRecord::Schema.define(version: 20151119184727) do
   add_foreign_key "news", "users"
   add_foreign_key "synergies", "player_classes"
   add_foreign_key "synergies", "users"
-  add_foreign_key "synergies_cards", "cards"
-  add_foreign_key "synergies_cards", "synergies"
+  add_foreign_key "synergy_cards", "cards"
+  add_foreign_key "synergy_cards", "synergies"
 end

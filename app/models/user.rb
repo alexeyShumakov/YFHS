@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :news
   has_many :comments
   has_many :decks
+  has_many :synergies
 
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,

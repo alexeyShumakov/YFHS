@@ -28,6 +28,7 @@ response_json.each do |_, value|
       if card['collectible']
         if card.key? 'img'
           card_model = Card.new
+          card_model.img_gold = get_img(URI.parse(card['imgGold']))
           card_model.card_game_id = card['cardId']
           card_model.name = card['name']
           card_model.card_set = card['cardSet']
@@ -48,7 +49,6 @@ response_json.each do |_, value|
           card_model.locale = card['locale']
           card_model.mechanics = card['mechanics']
           card_model.img = get_img(URI.parse(card['img']))
-          card_model.img_gold = get_img(URI.parse(card['imgGold']))
           puts card['name']
           card_model.save
         end

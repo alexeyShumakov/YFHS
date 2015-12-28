@@ -1,6 +1,6 @@
-class CreateSynergiesCards < ActiveRecord::Migration
+class CreateSynergyCard < ActiveRecord::Migration
   def change
-    create_table :synergies_cards do |t|
+    create_table :synergy_cards do |t|
       t.references :synergy, index: true, foreign_key: true
       t.references :card, index: true, foreign_key: true
 

@@ -18,6 +18,9 @@ export default Ember.Service.extend({
       return this.get('store').findRecord('user', userId).then(
         function (user) {
           _this.set('user', user);
+        }, function() {
+          _this.invalidate();
+
         });
     } else {
       if (Ember.isPresent(this.get('user'))){

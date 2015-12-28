@@ -12,7 +12,8 @@ export default Votable.extend({
   user:           DS.belongsTo('user'),
   playerClass:    DS.belongsTo('player_class'),
 
-  cards:          DS.hasMany('synergies_card'),
+  cards: Ember.computed.alias('synergyCards'),
+  synergyCards:          DS.hasMany('synergy_card'),
 
   sortProp: ['card.cost', 'card.name'],
   sortedCards: Ember.computed.sort('cards', 'sortProp'),
@@ -27,7 +28,7 @@ export default Votable.extend({
 
   pushCard(card){
     card.set('isActive', false);
-    let sCard= this.store.createRecord('synergies_card',{
+    let sCard= this.store.createRecord('synergy_card',{
       card: card,
       synergy: this
     });
