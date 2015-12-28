@@ -34,9 +34,7 @@ export default Votable.extend({
 
   totalCards: Ember.computed('cards.@each.count', function(){
     let sum = 0;
-    this.get('cards').forEach(function(card){
-      sum += card.get('count');
-    });
+    this.get('cards').forEach(function(card){ sum += card.get('count') });
     return sum;
   }),
 
@@ -54,9 +52,7 @@ export default Votable.extend({
   removeCard(builderCard){
     builderCard.set('card.isActive', true);
     builderCard.decrementProperty('count');
-    if (Ember.isEqual(builderCard.get('count'), 0)) {
-      builderCard.destroyRecord();
-    }
+    return builderCard;
   }
 
 });

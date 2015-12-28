@@ -15,6 +15,7 @@ export default Ember.Route.extend({
   },
 
   afterModel(model){
+    model.deck.get('cards');
     if (this.get('currentUser.isLogIn')){
       if (!(this.get('currentUser.user.isAdmin') || this.get('currentUser.user').isAuthor(model.deck))){
         this.transitionTo('application');

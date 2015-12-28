@@ -31,7 +31,15 @@ export default Ember.Component.extend({
     },
 
     removeFromDeck(builderCard){
-      this.get('deck').removeCard(builderCard);
+      let bCard = this.get('deck').removeCard(builderCard);
+      if (this.get('currentUser.isLogIn')){
+        if (Ember.isEqual(bCard.get('count'), 0)) {
+          bCard.destroyRecord();
+        } else {
+          bCard.save();
+        }
+      }
+
     },
 
     addCardToDeck(card){
