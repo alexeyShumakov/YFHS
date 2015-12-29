@@ -8,6 +8,8 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('user', { path: 'users/:id' }, function() {
     this.route('decks');
+    this.route('synergies');
+    this.route('comments');
   });
   this.route('comments');
   this.route('synergies');

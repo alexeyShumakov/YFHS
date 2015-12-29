@@ -5,10 +5,15 @@ class Api::CommentResource < JSONAPI::Resource
   def self.records(options = {})
     params = options[:context][:params]
     if params[:action] == 'index'
-      @comments = Comment.includes(:commentable, :user).where commentable_type: params[:commentable_type], commentable_id: params[:commentable_id]
-      @comments = params[:page].blank? ? @comments.page(1) : @comments.page(params[:page])
-      options[:context][:total_pages] = @comments.total_pages
+      if params[:user_id].present?
+        @comments = _model_class.includes(:commentable, :user).where user_id: params[:user_id]
+      else
+        @comments = _model_class.includes(:commentable, :user).where commentable_type: params[:commentable_type], commentable_id: params[:commentable_id]
+        @comments = params[:page].blank? ? @comments.page(1) : @comments.page(params[:page])
+        options[:context][:total_pages] = @comments.total_pages
+      end
       @comments
+
     else
       super options
     end

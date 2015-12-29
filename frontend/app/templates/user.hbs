@@ -6,7 +6,7 @@
 <div class="col-md-8">
   <div>
     <span class="pull-right"><i>{{online model.updatedAt}}</i></span>
-    <h3>{{model.nickname}}</h3>
+    <h3>{{model.publicNickname}}</h3>
   </div>
   <ul class="nav nav-tabs  margin-bottom">
     <li>{{#link-to 'user.decks' model.id}}Колоды{{/link-to}}</li>
@@ -15,3 +15,4 @@
   </ul>
   {{outlet}}
 </div>
+
