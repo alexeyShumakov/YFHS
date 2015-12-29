@@ -7,7 +7,9 @@
 
     <div class="form-group">
       <label for="news-body">Новость</label>
+    {{#yfhs-textarea text=model.body}}
       {{textarea value=model.body class='form-control' id='news-body'}}
+    {{/yfhs-textarea}}
     </div>
     <button {{action 'save'}} class="btn btn-primary">опубликовать</button>
   </form>
@@ -20,3 +22,4 @@
     Что бы писать новости нужно войти, или зарегистрироваться.
   </div>
 {{/if}}
+

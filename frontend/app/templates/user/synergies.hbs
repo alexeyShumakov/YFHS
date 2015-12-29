@@ -1,9 +1,7 @@
-<div class="list-group">
-  {{#each model as |synergy|}}
-    <div class="deck-list-item list-group-item">
-      {{synergy-item synergy=synergy}}
-    </div>
-  {{/each}}
-  {{infinity-loader model=model  queryParams=params modelName='synergy'}}
-</div>
+{{#each model as |synergy|}}
+  <div class="deck-list-item list-group-item">
+    {{synergy-item synergy=synergy}}
+  </div>
+{{/each}}
+{{infinity-loader model=model  queryParams=params modelName='synergy'}}
 

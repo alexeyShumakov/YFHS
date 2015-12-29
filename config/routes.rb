@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     jsonapi_resources :synergies
     jsonapi_resources :synergy_cards
     jsonapi_resources :comments
+    jsonapi_resources :news
   end
 
 
