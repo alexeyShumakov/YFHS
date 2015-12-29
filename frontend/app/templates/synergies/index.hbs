@@ -1,9 +1,9 @@
 <div class="list-group">
-  {{#each model.synergies as |synergy|}}
+  {{#each model as |synergy|}}
     <div class="deck-list-item list-group-item">
       {{synergy-item synergy=synergy}}
     </div>
   {{/each}}
-  {{infinity-loader model=model.synergies modelName='synergy'}}
+  {{infinity-loader model=model modelName='synergy'}}
 </div>
 

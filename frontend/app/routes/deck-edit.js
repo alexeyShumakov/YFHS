@@ -23,11 +23,5 @@ export default Ember.Route.extend({
     } else {
       this.transitionTo('application');
     }
-  },
-
-  setupController(controller, model){
-    this._super(controller, model);
-    let pc = model.deck.get('playerClass.en_name');
-    controller.set('currentPlayerClass', pc);
   }
 });

@@ -3,6 +3,6 @@
 {{else}}
 
   <h2 class="text-center">Изменить колоду.</h2>
-  {{deck-form  deckTypes=model.deckTypes deck=model.deck currentPlayerClass=currentPlayerClass}}
+  {{deck-form  deckTypes=model.deckTypes deck=model.deck currentPlayerClass=model.deck.playerClass.en_name}}
 {{/if}}
 

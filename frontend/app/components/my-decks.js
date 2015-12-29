@@ -18,7 +18,7 @@ export default Ember.Component.extend({
 
   moreDecks: Ember.computed(function() {
     let length = this.get('decks').get('length');
-    return Ember.isPresent(this.get('decks')) || length > 10;
+    return Ember.isPresent(this.get('decks')) && length >= 10;
   }),
 
   hideDecks(){
@@ -37,7 +37,8 @@ export default Ember.Component.extend({
       let _this = this;
       let params = {
         user_id: this.get('currentUser.user.id'),
-        page: -1
+        page: -1,
+        include: 'player-class,deck-type'
       };
       store.query('deck', params).then(
         function(decks){
@@ -52,7 +53,8 @@ export default Ember.Component.extend({
       let _this = this;
       let params = {
           user_id: this.get('currentUser.user.id'),
-          limit: 10
+          limit: 10,
+          include: 'player-class,deck-type'
       };
       store.query('deck', params).then(
         function(decks){

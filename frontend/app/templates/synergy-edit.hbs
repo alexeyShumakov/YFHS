@@ -1,9 +1,8 @@
-{{#if model.synergy.isDeleted}}
+{{#if model.isDeleted}}
   <h2 class="text-center">Синергия удалена</h2>
 {{else}}
 
   <h2 class="text-center">Изменить синергию</h2>
-  {{log currentPlayerClass}}
-  {{synergy-form synergy=model.synergy currentPlayerClass=currentPlayerClass}}
+  {{synergy-form synergy=model currentPlayerClass=model.playerClass.en_name}}
 {{/if}}
 

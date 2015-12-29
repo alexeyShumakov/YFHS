@@ -11,7 +11,7 @@
     <div class="list-group-item">
       {{#link-to 'synergies.search' (query-params player_class=null)}}Все классы{{/link-to}}
     </div>
-    {{#each model.playerClasses as |playerClass|}}
+    {{#each model as |playerClass|}}
       <div class="list-group-item">
         {{#link-to 'synergies.search' (query-params player_class=playerClass.en_name)}}{{playerClass.name}}{{/link-to}}
       </div>
