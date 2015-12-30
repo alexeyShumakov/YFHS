@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
-    passwords: 'users/passwords'
+    passwords: 'users/passwords',
+    sessions: 'users/sessions'
   }
   get 'one_box/show'
   namespace :votes do

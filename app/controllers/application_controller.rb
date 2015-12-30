@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   acts_as_token_authentication_handler_for User, fallback: :none
   respond_to :json, :html
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
