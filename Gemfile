@@ -27,7 +27,6 @@ gem 'devise_token_auth'
 gem 'omniauth'
 gem 'pundit'
 gem 'jsonapi-resources', git: 'https://github.com/alexeyShumakov/jsonapi-resources.git'
-gem 'active_model_serializers'
 
 gem 'ember-cli-rails'
 
