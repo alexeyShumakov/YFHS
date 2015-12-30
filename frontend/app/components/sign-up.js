@@ -41,15 +41,15 @@ export default Ember.Component.extend(Validations, {
       let _this = this;
       if (this.get('validations.isValid')) {
         Ember.$.ajax({
-          url:      'auth',
+          url:      'users',
           type:     'POST',
-          dataType: 'json',
           data: {
-            email:                  this.get('email'),
-            public_nickname:        this.get('nickname'),
-            password:               this.get('password'),
-            password_confirmation:  this.get('verifiedPassword'),
-            confirm_success_url:    window.location.href
+            user:{
+              email:                  this.get('email'),
+              public_nickname:        this.get('nickname'),
+              password:               this.get('password'),
+              password_confirmation:  this.get('verifiedPassword')
+            }
           }
         }).then(
           function(){

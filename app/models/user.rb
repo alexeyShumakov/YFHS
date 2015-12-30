@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  acts_as_token_authenticatable
   include PgSearch
   has_many :news
   has_many :comments
@@ -7,8 +8,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,
-          :confirmable, :omniauthable
-  include DeviseTokenAuth::Concerns::User
+          :confirmable
 
   pg_search_scope :search_by_nickname, against: [:nickname],
                   using: {tsearch: {prefix: true}}

@@ -23,12 +23,14 @@ gem 'paperclip'
 gem 'pg_search'
 gem 'kaminari'
 gem 'passenger'
-gem 'devise_token_auth'
 gem 'omniauth'
 gem 'pundit'
 gem 'jsonapi-resources', git: 'https://github.com/alexeyShumakov/jsonapi-resources.git'
 
 gem 'ember-cli-rails'
+
+gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 
 
 group :development, :test do

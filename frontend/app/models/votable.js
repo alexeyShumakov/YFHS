@@ -1,6 +1,8 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 export default DS.Model.extend({
+  currentUser: Ember.inject.service(),
   votes: DS.attr('number'),
   evaluationValue: DS.attr('number'),
 
@@ -13,22 +15,31 @@ export default DS.Model.extend({
     return this.get('evaluationValue') < 0;
   }),
 
-  increaseVote(){
+  ajaxRequest(param){
     var _this = this;
-    $.post("/votes/increase", {
-      id:     this.get('id'),
-      object: this.get('constructor.modelName')
+    $.ajax({
+      url: `/votes/${param}`,
+      type: 'post',
+      headers: this.get('currentUser.headers'),
+      data:{
+        id:     this.get('id'),
+        object: this.get('constructor.modelName')
+      }
     }).then(function(){
       _this.reload();
     });
+
   },
+
+  increaseVote(){
+    if (this.get('currentUser.isLogIn')){
+      this.ajaxRequest('increase');
+    }
+  },
+
   decreaseVote(){
-    var _this = this;
-    $.post("/votes/decrease", {
-      id:     this.get('id'),
-      object: this.get('constructor.modelName')
-    }).then(function(){
-      _this.reload();
-    });
+    if (this.get('currentUser.isLogIn')){
+      this.ajaxRequest('decrease');
+    }
   }
 });

@@ -11,8 +11,17 @@ export default Ember.Service.extend({
   isLogIn: Ember.computed.alias('session.isAuthenticated'),
   loading: true,
 
+  headers: Ember.computed('session.isAuthenticated', function(){
+    let email = this.get('session.session.content.authenticated.email');
+    let token = this.get('session.session.content.authenticated.authentication_token');
+   return {
+    'X-User-Email': email,
+    'X-User-Token': token
+    }
+  }),
+
   setCurrentUser(){
-    let userId = this.get('session.session.content.authenticated.data.id');
+    let userId = this.get('session.session.content.authenticated.id');
     var _this = this;
     if (this.get('isLogIn')){
       return this.get('store').findRecord('user', userId).then(
@@ -37,6 +46,6 @@ export default Ember.Service.extend({
   authenticate() {
     let password = this.get('password');
     let identification = this.get('email');
-    return this.get('session').authenticate('authenticator:token', identification, password);
+    return this.get('session').authenticate('authenticator:devise', identification, password);
   }
 });

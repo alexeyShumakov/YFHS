@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  respond_to :json, :html
+  acts_as_token_authentication_handler_for User, fallback: :none
   protect_from_forgery with: :null_session
-  include DeviseTokenAuth::Concerns::SetUserByToken
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

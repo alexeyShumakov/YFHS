@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth'
+  devise_for :users
   get 'one_box/show'
   namespace :votes do
     post 'increase'
@@ -20,31 +20,4 @@ Rails.application.routes.draw do
     jsonapi_resources :comments
     jsonapi_resources :news
   end
-
-
-  # resources :users do
-  #   get 'get_current_user', on: :collection
-  #   member do
-  #     get 'decks'
-  #     get 'comments'
-  #     get 'synergies'
-  #   end
-  # end
-  #
-  # resources :cards, only: [:show, :index]
-  #
-  # resources :synergies, only: [:index, :show, :edit] do
-  #   get 'search', on: :collection
-  # end
-  #
-  # resources :decks, only: [:show, :index, :edit] do
-  #   get 'search', on: :collection
-  # end
-  #
-  # resources :news, only: [:show, :index]
-  #
-  # get 'builder', to: 'builder#index'
-  # get 'builder/deck/:id', to: 'builder#deck'
-  # get 'builder/synergy/:id', to: 'builder#synergy'
-
 end
