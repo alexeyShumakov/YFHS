@@ -5,8 +5,9 @@ export default Ember.Route.extend({
     this.set('currentUser.qParams', transition.queryParams);
     if( transition.queryParams['account_confirmation_success'] === 'true' ) {
       this.set('modal', 'hint-confirm');
-    } else if (transition.queryParams['reset_password'] === 'true') {
-        this.set('modal', 'password-new-confirm');
+    } else if (Ember.isPresent(transition.queryParams['reset_password_token'])) {
+      this.set('token', transition.queryParams['reset_password_token']);
+      this.set('modal', 'password-new-confirm');
     }
     return this.get('currentUser').setCurrentUser();
   },
@@ -17,14 +18,19 @@ export default Ember.Route.extend({
     if (Ember.isPresent(modal)){
       this.render(modal, {
         into: 'application',
-        outlet: 'modal'
+        outlet: 'modal',
+        model: this.get('token')
       });
     }
 
   },
   actions: {
     out(){
-      this.get('currentUser').invalidate();
+      this.get('currentUser').invalidate().then(
+        function(){
+          window.location.replace('/');
+        });
+
     },
 
     openModal(name){

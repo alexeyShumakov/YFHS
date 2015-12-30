@@ -19,20 +19,19 @@ export default Ember.Component.extend(Validations, {
 
   actions:{
     createNewPassword(){
+      console.log(this.get('model'));
       let _this = this;
       let queryParams = this.get('currentUser.qParams');
       Ember.$.ajax({
-        url: '/auth/password',
+        url: '/users/password',
         dataType: 'json',
         method: 'put',
-        beforeSend(xhr) {
-          xhr.setRequestHeader('access-token', queryParams['token']);
-          xhr.setRequestHeader('client', queryParams['client_id']);
-          xhr.setRequestHeader('uid', queryParams['uid']);
-        },
         data:{
-          password:              this.get('password'),
-          password_confirmation: this.get('verifiedPassword')
+          user:{
+            password:              this.get('password'),
+            password_confirmation: this.get('verifiedPassword'),
+            reset_password_token:  this.get('model')
+          }
         }
       }).then(
         function() {

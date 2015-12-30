@@ -41,7 +41,7 @@ export default Ember.Service.extend({
     this.setCurrentUser();
   }),
   invalidate() {
-    this.get('session').invalidate();
+    return this.get('session').invalidate();
   },
   authenticate() {
     let password = this.get('password');

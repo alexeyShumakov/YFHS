@@ -33,8 +33,9 @@ export default Ember.Component.extend(Validations, {
         function () {
           _this.set('currentUser.isLogInError', false);
           _this.sendAction('close');
+          window.location.replace('/');
         }, function (data) {
-          _this.set('currentUser.logInError', data.errors);
+          _this.set('currentUser.logInError', data.error);
           _this.set('currentUser.isLogInError', true);
         });
     },

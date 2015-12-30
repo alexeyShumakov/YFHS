@@ -16,12 +16,13 @@ export default Ember.Component.extend(Validations, {
     createNewPassword() {
       let _this = this;
         Ember.$.ajax({
-          url: '/auth/password',
+          url: '/users/password',
           dataType: 'json',
           method: 'post',
           data:{
-            email:        this.get('email'),
-            redirect_url: window.location.href
+            user:{
+              email: this.get('email')
+            }
           }
       }).then(
         function() {
@@ -30,7 +31,7 @@ export default Ember.Component.extend(Validations, {
           _this.set('isNewPasswordError', false);
         },
         function(data) {
-          _this.set('newPasswordError', data.responseJSON.errors);
+          _this.set('newPasswordError', data.responseJSON.errors.email);
           _this.set('isNewPasswordError', true);
         }
       );

@@ -43,6 +43,7 @@ export default BaseAuthenticator.extend({
     invalidate() {
       return Ember.$.ajax({
         url: 'users/sign_out',
+        dataType: 'json',
         type: 'delete'
       })
   },
