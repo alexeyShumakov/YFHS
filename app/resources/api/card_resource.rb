@@ -1,4 +1,4 @@
-class Api::CardResource < JSONAPI::Resource
+class Api::CardResource < BaseResource
   attributes :votes, :comments_count, :evaluation_value,
              :card_game_id, :name, :card_set, :durability,
              :card_type, :race, :player_class_str, :faction,

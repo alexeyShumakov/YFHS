@@ -1,4 +1,4 @@
-class Api::TwitchStreamResource < JSONAPI::Resource
+class Api::TwitchStreamResource < BaseResource
   attributes :streamer_name, :avatar, :viewers, :online
 
   def self.records(options = {})

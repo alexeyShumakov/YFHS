@@ -4,7 +4,7 @@ class SynergiesCardPolicy < ApplicationPolicy
       scope
     end
   end
-  def create?
+  def save?
     @user.admin? or @record.synergy.user == @user
   end
 

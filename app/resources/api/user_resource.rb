@@ -1,4 +1,4 @@
-class Api::UserResource < JSONAPI::Resource
+class Api::UserResource < BaseResource
   attributes :email, :nickname, :public_nickname, :updated_at, :role
   filters :email, :nickname
   has_many :decks

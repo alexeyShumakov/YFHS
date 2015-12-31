@@ -1,4 +1,4 @@
-class Api::BuilderCardResource < JSONAPI::Resource
+class Api::BuilderCardResource < BaseResource
   attributes :count
   has_one :card
   has_one :deck

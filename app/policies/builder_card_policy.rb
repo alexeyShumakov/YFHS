@@ -5,7 +5,7 @@ class BuilderCardPolicy < ApplicationPolicy
     end
   end
 
-  def create?
+  def save?
     @user.admin? or @record.deck.user == @user
   end
 

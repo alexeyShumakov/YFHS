@@ -1,4 +1,4 @@
-class Api::SynergyResource < JSONAPI::Resource
+class Api::SynergyResource < BaseResource
   attributes :name, :description, :created_at, :user_id,
              :comments_count, :evaluation_value, :votes
   has_many :synergy_cards

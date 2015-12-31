@@ -1,4 +1,4 @@
-class Api::NewsResource < JSONAPI::Resource
+class Api::NewsResource < BaseResource
   attributes :name, :body, :votes, :evaluation_value
   has_one :user
 

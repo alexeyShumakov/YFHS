@@ -1,4 +1,4 @@
-class Api::CommentResource < JSONAPI::Resource
+class Api::CommentResource < BaseResource
   attributes :votes, :target_name, :evaluation_value, :body, :commentable_id, :commentable_type, :created_at
   has_one :user
 
