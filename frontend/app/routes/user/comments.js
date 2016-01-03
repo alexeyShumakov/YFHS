@@ -1,13 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  beforeModel(transition){
-    return this.set('user_id', transition.params.user.id);
-  },
-
   model(){
     let params = {
-      user_id: this.get('user_id'),
+      user_id: this.modelFor('user').get('id'),
       include: 'user'
     };
     return this.store.query('comment', params);
@@ -16,7 +12,7 @@ export default Ember.Route.extend({
   setupController(controller, model){
     this._super(controller, model);
     let params = {
-      user_id: this.get('user_id'),
+      user_id: this.modelFor('user').get('id'),
       include: 'user'
     };
     controller.set('params', params);

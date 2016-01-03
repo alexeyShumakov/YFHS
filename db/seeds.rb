@@ -1,15 +1,23 @@
 require 'faraday'
 require 'json'
 require 'net/http'
+require 'rest-client'
 
-def get_img(url_obj)
-  Net::HTTP.start(url_obj.host, url_obj.port) do |http|
-    if http.head(url_obj.request_uri).code == '200'
-      url_obj
-    end
+def get_img(url, card, gold)
+  begin
+  img = RestClient.get(url)
+  img_path = Rails.root.join('tmp/temp_img.png')
+  File.open(img_path, 'wb') { |f| f.write(img)}
+  tmp_file = File.open img_path
+  if gold
+    card.img_gold = tmp_file
+  else
+    card.img = tmp_file
   end
-rescue
-  nil
+  tmp_file.close
+  rescue Exception => e
+    puts 'not found, 404'
+  end
 end
 
 conn =  Faraday.new(url: 'https://omgvamp-hearthstone-v1.p.mashape.com')
@@ -28,7 +36,6 @@ response_json.each do |_, value|
       if card['collectible']
         if card.key? 'img'
           card_model = Card.new
-          card_model.img_gold = get_img(URI.parse(card['imgGold']))
           card_model.card_game_id = card['cardId']
           card_model.name = card['name']
           card_model.card_set = card['cardSet']
@@ -48,7 +55,8 @@ response_json.each do |_, value|
           card_model.elite = card['elite']
           card_model.locale = card['locale']
           card_model.mechanics = card['mechanics']
-          card_model.img = get_img(URI.parse(card['img']))
+          get_img(card['imgGold'], card_model, true)
+          get_img(card['img'], card_model, false)
           puts card['name']
           card_model.save
         end

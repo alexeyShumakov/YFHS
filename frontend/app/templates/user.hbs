@@ -9,9 +9,9 @@
     <h3>{{model.publicNickname}}</h3>
   </div>
   <ul class="nav nav-tabs  margin-bottom">
-    <li>{{#link-to 'user.decks' model.id}}Колоды{{/link-to}}</li>
-    <li>{{#link-to 'user.synergies' model.id}}Синерджи{{/link-to}}</li>
-    <li>{{#link-to 'user.comments' model.id}}Комментарии{{/link-to}}</li>
+    <li>{{#link-to 'user.decks' model.nickname}}Колоды{{/link-to}}</li>
+    <li>{{#link-to 'user.synergies' model.nickname}}Синерджи{{/link-to}}</li>
+    <li>{{#link-to 'user.comments' model.nickname}}Комментарии{{/link-to}}</li>
   </ul>
   {{outlet}}
 </div>

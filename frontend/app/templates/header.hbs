@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav navbar-right">
         {{#if currentUser.isLogIn}}
           <li>
-            {{#link-to 'user' currentUser.user.id}}
+            {{#link-to 'user' currentUser.user.nickname}}
               {{currentUser.user.email}}
             {{/link-to}}
           </li>

@@ -1,8 +1,8 @@
-{{#link-to 'user' user.id class='usr-link'}}{{user.publicNickname}}{{/link-to}}
+{{#link-to 'user' user.nickname class='usr-link'}}{{user.publicNickname}}{{/link-to}}
 {{#if isShowPopup}}
   <div class="user-popup__popup">
     <div class="user-popup__header">
-      <b>{{#link-to 'user' user.id}}{{user.publicNickname}}{{/link-to}}</b>
+      <b>{{#link-to 'user' user.nickname}}{{user.publicNickname}}{{/link-to}}</b>
       <span class="pull-right"><i>{{online user.updatedAt}}</i></span>
     </div>
     <div class="user-popup__decks">
@@ -23,7 +23,7 @@
         Не собрал ни одной колоды, пока.
       {{/each}}
       {{#if decks}}
-        <div class="text-center">{{#link-to 'user.decks' user.id}}все колоды{{/link-to}}</div>
+        <div class="text-center">{{#link-to 'user.decks' user.nickname}}все колоды{{/link-to}}</div>
       {{/if}}
     </div>
   </div>
