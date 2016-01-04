@@ -3,5 +3,5 @@ class News < ActiveRecord::Base
   attr_readonly :comments_count
   has_many :comments, as: :commentable, dependent: :destroy
   has_reputation :vote, source: :user
-  default_scope {order('created_at DESC')}
+  paginates_per 15
 end

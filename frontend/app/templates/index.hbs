@@ -1,5 +1,15 @@
 <div class="col-md-8">
-  {{outlet}}
+  <h3 class="text-center">Свежие колоды</h3>
+  {{#each model.newDecks as |deck|}}
+    <div class="deck-list-item list-group-item">
+      {{deck-item deck=deck}}
+    </div>
+  {{/each}}
+  <h3 class="text-center">Новости</h3>
+  {{#each model.news as |news|}}
+    {{single-news news=news}}
+  {{/each}}
+  {{infinity-loader model=model.news modelName='news' queryParams=newsQueryParams}}
 </div>
 <div class="col-md-4">
   {{twitch-streams streams=model.streams}}

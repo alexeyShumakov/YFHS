@@ -26,6 +26,9 @@ class Deck < ActiveRecord::Base
     else
       @decks = params[:page].blank? ? @decks.page(1) : @decks.page(params[:page])
     end
+    if params[:sort_rule] == 'newest'
+      @decks = Deck.order(created_at: :desc).page(1)
+    end
     @decks = params[:limit].blank? ? @decks : @decks.limit(params[:limit].to_i)
   end
 
