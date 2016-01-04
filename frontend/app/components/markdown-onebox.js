@@ -7,7 +7,9 @@ export default Ember.Component.extend({
     this.replaceCard();
     this.mentionTransition();
     this.cardTransition();
-    if (!this.get('placeholder')){
+    if (this.get('placeholder')){
+      this.get('oneBox').placeholder(this.getId());
+    } else {
       this.get('oneBox').preview(this.getId());
     }
   },
@@ -53,13 +55,14 @@ export default Ember.Component.extend({
   },
 
   mentionTransition(){
-    var _this = this;
-    this.$('a.mention').on('click', function(a){
-      a.preventDefault();
-      let user = $(this).html().replace(/@/, '');
-      _this.get('router').transitionTo('user', user);
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      var _this = this;
+      this.$('a.mention').on('click', function(a){
+        a.preventDefault();
+        let user = $(this).html().replace(/@/, '');
+        _this.get('router').transitionTo('user', user);
+      });
     });
-
   },
 
   getId(){
@@ -69,6 +72,7 @@ export default Ember.Component.extend({
   obs: Ember.observer('text', function(){
     Ember.run.scheduleOnce('afterRender', this, function() {
       this.replaceCard();
+      this.mentionTransition();
     });
     if (this.get('placeholder')){
       this.get('oneBox').placeholder(this.getId());

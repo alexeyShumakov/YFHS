@@ -47,5 +47,13 @@ export default Ember.Service.extend({
     let password = this.get('password');
     let identification = this.get('email');
     return this.get('session').authenticate('authenticator:devise', identification, password);
+  },
+  canEdit(model) {
+    if (this.get('isLogIn')){
+      return this.get('user.isAdmin') || this.get('user').isAuthor(model);
+    } else {
+      return false;
+    }
   }
+
 });

@@ -1,0 +1,24 @@
+<div class="bordered margin-bottom comment-block__user-comment">
+  {{user-popup user=comment.user}}, <i>{{formated-date comment.createdAt}}</i>
+  <div class="pull-right">
+    {{#if canEdit}}
+      <span {{action 'toggleEdit'}} class="glyphicon glyphicon-pencil comment-block__edit"></span>
+    {{/if}}
+    {{vote-comp model=comment}}
+  </div>
+  <hr>
+  {{#if isEdit}}
+    {{#yfhs-textarea text=comment.body}}
+      {{textarea value=comment.body rows='4' class='form-control comment-block__textarea'}}
+    {{/yfhs-textarea}}
+    <div class="btn-group margin-bottom">
+      <button {{action 'saveComment'}} class="btn btn-primary">изменить</button>
+    </div>
+    <div class="comment-review margin-bottom">
+      {{markdown-onebox text=comment.body placeholder=true}}
+    </div>
+  {{else}}
+    {{markdown-onebox text=comment.body}}
+  {{/if}}
+</div>
+

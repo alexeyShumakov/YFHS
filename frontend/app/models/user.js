@@ -17,6 +17,6 @@ export default DS.Model.extend({
     return this.get('role') === 'admin';
   }),
   isAuthor(record) {
-    return this.get('id').toString() === record.get('userId').toString();
+    return this.get('id').toString() === record.get('user.id').toString();
   }
 });

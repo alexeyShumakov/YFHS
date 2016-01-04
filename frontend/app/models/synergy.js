@@ -5,7 +5,6 @@ import Votable from './votable';
 export default Votable.extend({
   name:           DS.attr('string'),
   description:    DS.attr('string'),
-  userId:         DS.attr('number'),
   commentsCount:  DS.attr('number'),
   createdAt:      DS.attr('date'),
 

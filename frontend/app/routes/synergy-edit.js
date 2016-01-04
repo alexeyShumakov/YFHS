@@ -10,11 +10,7 @@ export default Ember.Route.extend({
   },
 
   afterModel(model){
-    if (this.get('currentUser.isLogIn')){
-      if (!(this.get('currentUser.user.isAdmin') || this.get('currentUser.user').isAuthor(model))){
-        this.transitionTo('application');
-      }
-    } else {
+    if (!this.get('currentUser').canEdit(model)){
       this.transitionTo('application');
     }
   }

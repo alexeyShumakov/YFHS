@@ -1,5 +1,5 @@
 class Api::SynergyResource < BaseResource
-  attributes :name, :description, :created_at, :user_id,
+  attributes :name, :description, :created_at,
              :comments_count, :evaluation_value, :votes
   has_many :synergy_cards
   has_one :user

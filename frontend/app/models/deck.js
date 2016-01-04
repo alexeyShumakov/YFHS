@@ -8,7 +8,6 @@ export default Votable.extend({
   createdAt:      DS.attr('date'),
   curve:          DS.attr(),
   commentsCount:  DS.attr('number'),
-  userId:         DS.attr('number'),
 
   deckType:       DS.belongsTo('deck_type'),
   user:           DS.belongsTo('user'),

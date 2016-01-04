@@ -34,14 +34,7 @@
       <h4 class="text-center">Комментарии</h4>
     {{/if}}
     {{#each uniqComments as |comment|}}
-      <div class="bordered margin-bottom">
-        {{user-popup user=comment.user}}, <i>{{formated-date comment.createdAt}}</i>
-        <div class="pull-right">
-          {{vote-comp model=comment}}
-        </div>
-        <hr>
-        {{markdown-onebox text=comment.body}}
-      </div>
+      {{user-comment comment=comment}}
     {{else}}
     {{/each}}
     {{infinity-loader queryParams=params model=comments modelName='comment'}}

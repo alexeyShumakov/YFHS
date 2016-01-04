@@ -1,6 +1,6 @@
 class Api::DeckResource < BaseResource
   attributes :votes, :comments_count, :curve, :evaluation_value, :name,
-             :description, :created_at, :user_id, :deck_type_id, :player_class_id
+             :description, :created_at, :deck_type_id, :player_class_id
   has_many :builder_cards
   has_one :user
   has_one :deck_type
