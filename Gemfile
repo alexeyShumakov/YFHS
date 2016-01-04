@@ -18,7 +18,6 @@ gem 'twitch', '~> 0.1.0'
 gem 'whenever', :require => false
 gem 'oj'
 gem 'fast_blank'
-gem 'faraday'
 gem 'activerecord-reputation-system', git: 'https://github.com/twitter/activerecord-reputation-system.git'
 gem 'paperclip'
 gem 'pg_search'
@@ -29,6 +28,8 @@ gem 'pundit'
 gem 'jsonapi-resources', git: 'https://github.com/alexeyShumakov/jsonapi-resources.git'
 
 gem 'ember-cli-rails'
+
+gem 'seedbank'
 
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'

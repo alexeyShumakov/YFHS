@@ -99,8 +99,6 @@ GEM
       sprockets (>= 2.0)
     erubis (2.7.0)
     execjs (2.6.0)
-    faraday (0.9.2)
-      multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -135,7 +133,6 @@ GEM
     moneta (0.8.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
-    multipart-post (2.0.0)
     mustache (1.0.2)
     netrc (0.11.0)
     nokogiri (1.6.7)
@@ -221,6 +218,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    seedbank (0.3.0)
     simple_token_authentication (1.11.0)
       actionmailer (>= 3.2.6, < 5)
       actionpack (>= 3.2.6, < 5)
@@ -271,7 +269,6 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   ember-cli-rails
-  faraday
   fast_blank
   jbuilder (~> 2.0)
   jquery-rails
@@ -291,6 +288,7 @@ DEPENDENCIES
   rest-client
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  seedbank
   simple_token_authentication (~> 1.0)
   spring
   twitch (~> 0.1.0)
