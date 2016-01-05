@@ -9,20 +9,20 @@ RSpec.describe User, type: :model do
     end
 
     it 'uniq email' do
-      valid_user = create(:user)
+      create(:user)
       invalid_user = build(:user)
       invalid_user.valid?
       expect(invalid_user.errors[:email].size).to eq(1)
     end
 
     it 'uniq nickname' do
-      valid_user = create(:user)
+      create(:user)
       invalid_user = build(:user)
       invalid_user.valid?
       expect(invalid_user.errors[:nickname].size).to eq(1)
     end
 
-    it 'update nickname' do
+    it 'public_nickname has no err, nickname has err(uniq)' do
       create(:user)
       user = build(:user, public_nickname: 'uSeR')
       user.valid?
