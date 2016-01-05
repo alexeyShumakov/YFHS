@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   before_validation :downcase_fields
   validates :nickname, length: { in: 4..40 }, presence: true, uniqueness: true, format: { with: /\A\w+\Z/ }
+  validates :public_nickname, length: { in: 4..40 }, presence: true, uniqueness: true, format: { with: /\A\w+\Z/ }
   enum role: %w(user moderator admin)
 
   def downcase_fields
