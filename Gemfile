@@ -43,7 +43,21 @@ group :development, :test do
 
   gem 'spring'
   gem 'quiet_assets'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.4.0'
 end
+
+group :test do
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'formulaic'
+  gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+  gem 'timecop'
+  gem 'webmock'
+end
+
 
 group :development do
   gem 'bullet'
