@@ -1,13 +1,5 @@
 class TwitchStream < ActiveRecord::Base
-  def self.new(params)
-    t_params = Hash.new
-    @streamer = Twitch.new.user(params[:streamer_name])
-    t_params[:streamer_name] = @streamer[:body]['display_name']
-    t_params[:avatar] = @streamer[:body]['logo']
-    t_params[:online] = false
-    t_params[:viewers] = 0
-    super(t_params)
-  end
+  validates :streamer_name, presence: true
   def self.refresh
     all.each do |stream|
       @stream = Twitch.new.stream(stream.streamer_name)
