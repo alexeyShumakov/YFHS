@@ -32,9 +32,6 @@ class Deck < ActiveRecord::Base
     @decks = params[:limit].blank? ? @decks : @decks.limit(params[:limit].to_i)
   end
 
-  def comments_count
-    comments.size
-  end
   def set_curve
     curve_arr = []
     0.upto(7).each do |cost|

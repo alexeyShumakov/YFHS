@@ -9,9 +9,7 @@ class Card < ActiveRecord::Base
   pg_search_scope :search_by_name, against: [:name], using: {tsearch: {prefix: true}}
   pg_search_scope :search_by_params, against: [:rarity, :card_type, :name, :race, :card_set, :mechanics],
                   using: {tsearch: {prefix: true}}
-  def comments_count
-    comments.size
-  end
+
   has_attached_file :img
   validates_attachment_content_type :img, content_type: /\Aimage\/.*\Z/
 

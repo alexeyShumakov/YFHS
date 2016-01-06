@@ -22,7 +22,4 @@ class Synergy < ActiveRecord::Base
     @synergies = params[:limit].blank? ? @synergies : @synergies.limit(params[:limit].to_i)
     @synergies.includes(synergy_cards: :card  )
   end
-  def comments_count
-    comments.size
-  end
 end
