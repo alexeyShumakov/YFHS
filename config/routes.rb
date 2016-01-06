@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     post 'increase'
     post 'decrease'
   end
+  mount_ember_app :adminpanel, to: '/admin_panel'
   mount_ember_app :frontend, to: '/'
 
   namespace :api do
