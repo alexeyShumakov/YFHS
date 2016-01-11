@@ -2,6 +2,7 @@
   {{user-popup user=comment.user}}, <i>{{formated-date comment.createdAt}}</i>
   <div class="pull-right">
     {{#if canEdit}}
+      <span {{action 'removeComment'}} class="glyphicon glyphicon-remove comment-block__remove"></span>
       <span {{action 'toggleEdit'}} class="glyphicon glyphicon-pencil comment-block__edit"></span>
     {{/if}}
     {{vote-comp model=comment}}

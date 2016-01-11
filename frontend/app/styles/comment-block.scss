@@ -1,6 +1,19 @@
 .comment-block__textarea {
   max-width: 100%;
 }
+.comment-block__remove {
+  &:hover {
+    background-color: rgba(51, 122, 183, 0.15);
+  }
+  padding: 5px;
+  border-radius: 2px;
+  background-color: rgba(51, 122, 183, 0.07);
+  margin-right: 5px;
+  display: none;
+  cursor: pointer;
+  color: #337ab7;
+
+}
 .comment-block__edit {
   &:hover {
     background-color: rgba(51, 122, 183, 0.15);
@@ -15,4 +28,8 @@
 }
 .comment-block__user-comment:hover .comment-block__edit {
   display: inline;
+}
+.comment-block__user-comment:hover .comment-block__remove {
+  display: inline;
+
 }

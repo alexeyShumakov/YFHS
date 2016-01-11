@@ -13,6 +13,10 @@ export default Ember.Component.extend({
     saveComment() {
       this.get('comment').save();
       this.set('isEdit', false);
+    },
+    removeComment(){
+      this.get('comments').removeObject(this.get('comment'));
+      this.get('comment').destroyRecord();
     }
   }
 });

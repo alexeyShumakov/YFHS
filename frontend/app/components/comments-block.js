@@ -39,7 +39,7 @@ export default Ember.Component.extend({
         _this.set('comments', comments);
         _this.set('commentsLoading', false);
       }
-    )
+    );
   },
 
   comment: '',
