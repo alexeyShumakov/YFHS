@@ -3,12 +3,12 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   didInsertElement(){
     this.get('synergy.cards').forEach(function(sCard){
-      sCard.disableCard()
+      sCard.disableCard();
     });
   },
   willDestroyElement(){
     this.get('synergy.cards').forEach(function(sCard){
-        sCard.enableCard()
+        sCard.enableCard();
       });
   },
 
@@ -29,7 +29,7 @@ export default Ember.Component.extend({
         if (Ember.isBlank(currentBuilderCard)){
           let sCard = synergy.pushCard(card);
           if (this.get('currentUser.isLogIn')){
-            sCard.save()
+            sCard.save();
           }
         }
       }

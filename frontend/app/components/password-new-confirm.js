@@ -21,7 +21,6 @@ export default Ember.Component.extend(Validations, {
     createNewPassword(){
       console.log(this.get('model'));
       let _this = this;
-      let queryParams = this.get('currentUser.qParams');
       Ember.$.ajax({
         url: '/users/password',
         dataType: 'json',

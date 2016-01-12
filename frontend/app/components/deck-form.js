@@ -52,13 +52,13 @@ export default Ember.Component.extend({
             if (currentBuilderCard.get('count') < 2){
               currentBuilderCard.incrementProperty('count');
               if (this.get('currentUser.isLogIn')){
-                currentBuilderCard.save()
+                currentBuilderCard.save();
               }
             }
           }
         } else {
           var bCard = deck.pushCard(card);
-          if (this.get('currentUser.isLogIn')){ bCard.save() }
+          if (this.get('currentUser.isLogIn')){ bCard.save(); }
         }
       }
     }

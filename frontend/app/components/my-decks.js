@@ -28,7 +28,7 @@ export default Ember.Component.extend({
 
   actions: {
     removeDeck(deck){
-      deck.destroyRecord()
+      deck.destroyRecord();
     },
 
     showAll(){

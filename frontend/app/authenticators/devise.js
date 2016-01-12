@@ -45,7 +45,7 @@ export default BaseAuthenticator.extend({
         url: 'users/sign_out',
         dataType: 'json',
         type: 'delete'
-      })
+      });
   },
 
     makeRequest(data) {

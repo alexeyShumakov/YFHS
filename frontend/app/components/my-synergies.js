@@ -25,7 +25,7 @@ export default Ember.Component.extend({
 
   actions: {
     removeSynergy(synergy){
-      synergy.destroyRecord()
+      synergy.destroyRecord();
     },
 
     showAll(){
@@ -56,7 +56,7 @@ export default Ember.Component.extend({
         function(synergies){
           _this.set('synergies', synergies);
           _this.toggleProperty('open');
-        })
+        });
     }
   }
 });

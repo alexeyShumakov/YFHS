@@ -17,10 +17,10 @@ export default Ember.Component.extend({
     var cost = this.get('manaItem.cost');
     return this.get('deck.cards').filter(function(item){
       var itemCost = item.get('card.cost');
-      if (cost == 7){
+      if (cost === 7){
         return itemCost >= cost;
       } else {
-        return itemCost == cost;
+        return itemCost === cost;
       }
     });
 })

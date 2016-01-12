@@ -29,7 +29,7 @@ export default Ember.Component.extend({
               model.pushObjects(newDecks.get('content'));
               _this.set('loading', false);
               _this.incrementProperty('nextPage');
-            })
+            });
         }
       }
     }

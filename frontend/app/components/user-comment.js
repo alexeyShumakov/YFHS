@@ -15,8 +15,12 @@ export default Ember.Component.extend({
       this.set('isEdit', false);
     },
     removeComment(){
-      this.get('comments').removeObject(this.get('comment'));
-      this.get('comment').destroyRecord();
+      let _this = this;
+      this.get('comment').destroyRecord().then(
+        function(){
+          _this.get('comments').removeObject(_this.get('comment'));
+        }
+      );
     }
   }
 });

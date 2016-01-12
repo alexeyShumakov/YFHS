@@ -7,5 +7,15 @@ export default Ember.Route.extend({
         return users.get('firstObject');
       }
     );
+  },
+  actions: {
+    showSendMessage(user){
+      let controller = this.controllerFor('send-message');
+      controller.set('model', user);
+      this.render('sendMessage', {
+        outlet: 'modal',
+        controller: controller
+      });
+    }
   }
 });

@@ -18,7 +18,7 @@ export default Ember.Component.extend({
       this.set('position', cssPosition );
     });
   },
-  keyUp(key){
+  keyUp(){
     let _this = this;
     var input = this.$("textarea");
     var subString = input[0].value.substring(0, input[0].selectionStart);
@@ -30,7 +30,7 @@ export default Ember.Component.extend({
         function (users) {
           _this.set('users', users);
         }
-      )
+      );
     } else {
       _this.set('users', null);
     }
@@ -43,7 +43,7 @@ export default Ember.Component.extend({
         function(cards){
           _this.set('cards', cards);
         }
-      )
+      );
     } else {
       _this.set('cards', null);
     }

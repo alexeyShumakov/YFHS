@@ -20,14 +20,14 @@ export default Ember.Component.extend({
       let costCards = _this.get('deck.cards').filter(function (bCard) {
         let cost = bCard.get('card.cost');
         let itemCost = manaItem.get('cost');
-        if (cost == 7){
+        if (cost === 7){
           return itemCost >= cost;
         } else {
-          return itemCost == cost;
+          return itemCost === cost;
         }
       });
-      costCards.forEach(function(item){ sum += item.get('count') });
-      if (sum > max){ max = sum }
+      costCards.forEach(function(item){ sum += item.get('count'); });
+      if (sum > max){ max = sum; }
     });
     if (max <= 8){
       return 12.5;

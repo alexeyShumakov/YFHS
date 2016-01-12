@@ -15,7 +15,7 @@ export default Ember.Component.extend({
           function(){
             _this.set('loading', false);
             _this.toggleProperty('isDetailed');
-          })
+          });
       }
     }
   }
