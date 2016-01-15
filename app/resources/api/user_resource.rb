@@ -3,6 +3,8 @@ class Api::UserResource < BaseResource
   filters :email, :nickname
   has_many :decks
   has_many :synergies
+  has_many :owner_dialogs, foreign_key: 'owner_id', class_name: 'Dialog'
+  has_many :company_dialogs, foreign_key: 'company_id', class_name: 'Dialog'
 
   def self.records(options = {})
     params = options[:context][:params]

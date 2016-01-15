@@ -1,0 +1,37 @@
+<div class="overlay" {{action 'closeModal'}}> </div>
+<div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+        <button {{action 'closeModal'}} type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Отпарвить сообщение: {{model.publicNickname}}</h4>
+      </div>
+    <div class="modal-body">
+      <ul class="nav nav-tabs margin-bottom">
+        <li class="{{unless preview 'active'}}">
+          <a href="#" {{action 'showTa' preventDefalut=false}}>Написать</a>
+        </li>
+        <li class="{{if preview 'active' }}">
+          <a href="#" {{action 'showPre' preventDefalut=false}}>Предпросмотр</a>
+        </li>
+      </ul>
+      {{#if preview}}
+        <div class="bordered margin-bottom">
+          {{markdown-onebox text=message placeholder=true}}
+        </div>
+      {{else}}
+        <form>
+          {{#yfhs-textarea text=message}}
+            {{textarea value=message id='deck-description' cols='30' rows='10' class='form-control'}}
+          {{/yfhs-textarea}}
+        </form>
+      {{/if}}
+    </div>
+
+    <div class="modal-footer">
+      <button {{action 'closeModal'}} type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+      <button {{action 'sendMessage'}} type="button" class="btn btn-primary">Отправить сообщение</button>
+    </div>
+  </div>
+</div>

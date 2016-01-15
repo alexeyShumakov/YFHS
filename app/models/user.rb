@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :decks
   has_many :synergies
+  has_many :message
+  has_many :owner_dialogs, foreign_key: 'owner_id', class_name: 'Dialog'
+  has_many :company_dialogs, foreign_key: 'company_id', class_name: 'Dialog'
 
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,

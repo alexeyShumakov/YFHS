@@ -1,9 +1,11 @@
 <div class="col-md-4">
   <div class="bordered margin-bottom user__avatar"></div>
-  {{#if (not-eq currentUser.user model)}}
-    <button {{action 'showSendMessage' model}} class="btn btn-primary btn-block btn-lg margin-bottom">
-      Отправить сообщение
-    </button>
+  {{#if currentUser.isLogIn}}
+    {{#if (not-eq currentUser.user model)}}
+      <button {{action 'showSendMessage' model}} class="btn btn-primary btn-block btn-lg margin-bottom">
+        Отправить сообщение
+      </button>
+    {{/if}}
   {{/if}}
   {{random-card}}
 

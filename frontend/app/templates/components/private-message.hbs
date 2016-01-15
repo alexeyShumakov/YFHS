@@ -1,0 +1,6 @@
+<div class="bordered margin-bottom comment-block__user-comment">
+  {{user-popup user=message.user}}, <i>{{formated-date message.createdAt}}</i>
+  <hr>
+    {{markdown-onebox text=message.body}}
+</div>
+

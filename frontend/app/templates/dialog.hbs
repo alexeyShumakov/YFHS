@@ -1,0 +1,31 @@
+{{outlet}}
+<div class="col-md-3">
+</div>
+<div class="col-md-6">
+    {{#each model.dialogsMessages as |dm|}}
+      {{private-message message=dm.message}}
+    {{/each}}
+
+  <ul class="nav nav-tabs margin-bottom">
+    <li class="{{unless preview 'active'}}">
+      <a href="#" {{action 'showTa' preventDefalut=false}}>Написать</a>
+    </li>
+    <li class="{{if preview 'active' }}">
+      <a href="#" {{action 'showPre' preventDefalut=false}}>Предпросмотр</a>
+    </li>
+  </ul>
+  {{#if preview}}
+    <div class="bordered margin-bottom">
+      {{markdown-onebox text=message placeholder=true}}
+    </div>
+  {{else}}
+    <form>
+      {{#yfhs-textarea text=message}}
+        {{textarea value=message id='deck-description' cols='30' rows='10' class='form-control'}}
+      {{/yfhs-textarea}}
+    </form>
+  {{/if}}
+  <div class="modal-footer">
+    <button {{action 'sendMessage'}} type="button" class="btn btn-primary">Отправить сообщение</button>
+  </div>
+</div>

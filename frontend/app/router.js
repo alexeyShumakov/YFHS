@@ -38,6 +38,9 @@ Router.map(function() {
   this.route('news_index', {path: 'news'}, function(){
     this.route('new');
   });
+
+  this.route('dialogs', {path: 'dialogs'});
+  this.route('dialog', {path: 'dialog/:id'});
 });
 
 export default Router;

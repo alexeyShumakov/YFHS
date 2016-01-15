@@ -8,8 +8,10 @@ export default DS.Model.extend({
   updatedAt:      DS.attr('date'),
   role:           DS.attr('string'),
 
-  messages:       DS.hasMany('message'),
-  dialogs:        DS.hasMany('dialog'),
+  messages:       DS.hasMany('message', {inverse: 'user'}),
+  messageTarget:  DS.belongsTo('message', {inverse: 'target'}),
+  dialogsOwner:   DS.hasMany('dialog', {inverse: 'owner'}),
+  dialogsCompany: DS.hasMany('dialog', {inverse: 'company'}),
   decks:          DS.hasMany('deck'),
   synergies:      DS.hasMany('synergy'),
   news:           DS.hasMany('news'),

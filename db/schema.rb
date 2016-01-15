@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230050129) do
+ActiveRecord::Schema.define(version: 20160114072407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,39 @@ ActiveRecord::Schema.define(version: 20151230050129) do
   add_index "decks", ["deck_type_id"], name: "index_decks_on_deck_type_id", using: :btree
   add_index "decks", ["player_class_id"], name: "index_decks_on_player_class_id", using: :btree
   add_index "decks", ["user_id"], name: "index_decks_on_user_id", using: :btree
+
+  create_table "dialogs", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "company_id"
+    t.integer  "duplicate_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "unread",       default: true
+  end
+
+  add_index "dialogs", ["company_id"], name: "index_dialogs_on_company_id", using: :btree
+  add_index "dialogs", ["duplicate_id"], name: "index_dialogs_on_duplicate_id", using: :btree
+  add_index "dialogs", ["owner_id"], name: "index_dialogs_on_owner_id", using: :btree
+
+  create_table "dialogs_messages", force: :cascade do |t|
+    t.integer "dialog_id"
+    t.integer "message_id"
+  end
+
+  add_index "dialogs_messages", ["dialog_id"], name: "index_dialogs_messages_on_dialog_id", using: :btree
+  add_index "dialogs_messages", ["message_id"], name: "index_dialogs_messages_on_message_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "target_user_id"
+    t.boolean  "unread",         default: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "messages", ["target_user_id"], name: "index_messages_on_target_user_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "news", force: :cascade do |t|
     t.string   "name"

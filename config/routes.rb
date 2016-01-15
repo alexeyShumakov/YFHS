@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   mount_ember_app :frontend, to: '/'
 
   namespace :api do
+    jsonapi_resources :dialogs_messages
+    jsonapi_resources :dialogs
+    jsonapi_resources :messages
     jsonapi_resources :player_classes
     jsonapi_resources :deck_types
     jsonapi_resources :builder_cards
