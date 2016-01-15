@@ -4,6 +4,7 @@ class Api::MessageResource < BaseResource
   has_one :user
   has_many :dialogs_messages
   has_one :target, foreign_key: 'target_user_id', class_name: 'User'
+  filter :id
 
   private
     def update_models
@@ -17,6 +18,7 @@ class Api::MessageResource < BaseResource
 
       dialog_2.duplicate = dialog_1
       dialog_2.save
-      DialogsMessage.create(message: @model, dialog: dialog_2)
+      dialog_message = DialogsMessage.create(message: @model, dialog: dialog_2)
+      MessageBus.publish "/dialogs/#{dialog_2.id}", dialog_message.id #user_ids: [c_u.id, @model.target.id]
     end
 end

@@ -33,6 +33,7 @@ gem 'seedbank'
 
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
+gem 'message_bus'
 
 
 group :development, :test do

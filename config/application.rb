@@ -16,6 +16,14 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 
 module YFHS
+  if defined?(PhusionPassenger)
+    PhusionPassenger.on_event(:starting_worker_process) do |forked|
+      if forked
+        MessageBus.after_fork
+      else
+      end
+    end
+  end
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
