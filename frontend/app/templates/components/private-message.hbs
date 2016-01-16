@@ -1,4 +1,4 @@
-<div>
+<div class='private-message {{if message.unread 'private-message_unread'}}'>
   <hr class="private-message__margin">
   {{#link-to 'user' message.user.publicNickname}}
     {{message.user.publicNickname}}

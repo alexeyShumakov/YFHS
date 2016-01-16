@@ -8,16 +8,21 @@ export default Ember.Component.extend({
     MessageBus.enableChunkedEncoding = false;
     MessageBus.start();
 
-    MessageBus.callbackInterval = 100;
-    console.log(this.get('model.id'));
+    MessageBus.callbackInterval = 500;
     let _this = this;
-    MessageBus.subscribe(`/dialogs/${this.get('model.id')}`, function(dmId){
-      _this.get('store').query('dialogs-message',{
-        filter: {id: dmId},
-        include: 'message,message.user'
-      }).then(function(dialogMessages){
-        _this.get('model.dialogsMessages').pushObject(dialogMessages.get('firstObject'));
-      })
+    MessageBus.subscribe(`/dialogs/${this.get('model.id')}`, function(data){
+      let dataJson = JSON.parse(data);
+      if (Ember.isPresent(dataJson.dialogsMessageId)){
+        _this.get('store').query('dialogs-message',{
+          filter: {id: dataJson.dialogsMessageId},
+          include: 'message,message.user'
+        }).then(function(dialogMessages){
+          _this.get('model.dialogsMessages').pushObject(dialogMessages.get('firstObject'));
+        })
+      } else if (Ember.isPresent(dataJson.checkedMessageId)){
+        let checkedMessage = _this.get('store').peekRecord('message', dataJson.checkedMessageId);
+        checkedMessage.set('unread', false);
+      }
     });
   },
   willDestroyElement(){
@@ -41,11 +46,14 @@ export default Ember.Component.extend({
           unread: true
         });
         message.save().then(function(message){
-          _this.get('store').createRecord('dialogs-message',{
-            dialog: _this.get('model'),
-            message: message
-          }).save().then(function(dm){
-            _this.get('model.dialogsMessages').pushObject(dm);
+          _this.get('store').query('dialogs-message',{
+            include: 'message,message.user',
+            filter: {
+              dialog: _this.get('model.id'),
+              message: message.get('id')
+            }
+          }).then(function(dm){
+            _this.get('model.dialogsMessages').pushObject(dm.get('firstObject'));
             _this.set('message', '');
           });
         });
