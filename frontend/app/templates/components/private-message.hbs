@@ -3,7 +3,7 @@
   {{#link-to 'user' message.user.publicNickname}}
     {{message.user.publicNickname}}
   {{/link-to}}
-  <i class="pull-right">{{formated-date message.createdAt}}</i>
+  <i class="pull-right">{{currentTime}}</i>
   <div class="private-message__body">
     {{markdown-onebox text=message.body}}
   </div>

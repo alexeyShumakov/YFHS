@@ -111,8 +111,10 @@ ActiveRecord::Schema.define(version: 20160114072407) do
   add_index "dialogs", ["owner_id"], name: "index_dialogs_on_owner_id", using: :btree
 
   create_table "dialogs_messages", force: :cascade do |t|
-    t.integer "dialog_id"
-    t.integer "message_id"
+    t.integer  "dialog_id"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "dialogs_messages", ["dialog_id"], name: "index_dialogs_messages_on_dialog_id", using: :btree

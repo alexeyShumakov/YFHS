@@ -10,14 +10,14 @@ export default Ember.Component.extend({
 
     MessageBus.callbackInterval = 500;
     let _this = this;
-    MessageBus.subscribe(`/dialogs/${this.get('model.id')}`, function(data){
+    MessageBus.subscribe(`/dialogs/${this.get('model.dialog.id')}`, function(data){
       let dataJson = JSON.parse(data);
       if (Ember.isPresent(dataJson.dialogsMessageId)){
         _this.get('store').query('dialogs-message',{
           filter: {id: dataJson.dialogsMessageId},
           include: 'message,message.user'
         }).then(function(dialogMessages){
-          _this.get('model.dialogsMessages').pushObject(dialogMessages.get('firstObject'));
+          _this.get('model.dialogsMessages').pushObjects(dialogMessages.get('content'));
         })
       } else if (Ember.isPresent(dataJson.checkedMessageId)){
         let checkedMessage = _this.get('store').peekRecord('message', dataJson.checkedMessageId);
@@ -25,10 +25,46 @@ export default Ember.Component.extend({
       }
     });
   },
-  willDestroyElement(){
-    MessageBus.unsubscribe(`/dialogs/${this.get('model.id')}`);
+  bindScrollDownMessageWindow(){
+    let messagesWindow = $('.private-dialog__messages');
+    messagesWindow.bind('DOMNodeInserted DOMNodeRemoved', function(event) {
+      messagesWindow[0].scrollTop = messagesWindow[0].scrollHeight;
+    });
+
   },
+  scrollDownMessageWindow(){
+    let messagesWindow = $('.private-dialog__messages');
+    messagesWindow[0].scrollTop = messagesWindow[0].scrollHeight;
+  },
+  didInsertElement(){
+    this.scrollDownMessageWindow();
+    this.bindScrollDownMessageWindow();
+  },
+  willDestroyElement(){
+    MessageBus.unsubscribe(`/dialogs/${this.get('model.dialog.id')}`);
+  },
+  sortParam: ['createdAt'],
+  sortedMessages: Ember.computed.sort( 'model.dialogsMessages', 'sortParam'),
   actions: {
+    download(){
+      let _this = this;
+
+      let messagesWindow = $('.private-dialog__messages');
+      messagesWindow.off('DOMNodeInserted DOMNodeRemoved');
+
+      this.get('store').query('dialogs-message', {
+        filter: {dialog: _this.get('model.dialog.id')},
+        include: 'message,message.user',
+        sort: '-createdAt',
+        page: {
+          limit: 10,
+          offset: _this.get('model.dialogsMessages.length')
+        }
+      }).then(function(dialogsMessages){
+        _this.get('model.dialogsMessages').pushObjects(dialogsMessages.get('content'));
+        Ember.run.debounce(_this, _this.bindScrollDownMessageWindow, 500);
+      })
+    },
     showTa(){
       this.set('preview', false);
     },
@@ -42,18 +78,22 @@ export default Ember.Component.extend({
         let message = this.get('store').createRecord('message', {
           body: body,
           user: this.get('currentUser.user'),
-          target: this.get('model.company'),
+          target: this.get('model.dialog.company'),
           unread: true
         });
         message.save().then(function(message){
           _this.get('store').query('dialogs-message',{
             include: 'message,message.user',
             filter: {
-              dialog: _this.get('model.id'),
+              dialog: _this.get('model.dialog.id'),
               message: message.get('id')
             }
           }).then(function(dm){
-            _this.get('model.dialogsMessages').pushObject(dm.get('firstObject'));
+            _this.get('model.dialogsMessages').pushObjects(dm.get('content'));
+            _this.scrollDownMessageWindow();
+            Ember.run.schedule("afterRender",_this,function() {
+              this.scrollDownMessageWindow();
+            });
             _this.set('message', '');
           });
         });
