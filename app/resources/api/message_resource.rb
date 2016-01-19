@@ -10,11 +10,11 @@ class Api::MessageResource < BaseResource
   private
     def checked_message
       c_u = @context[:current_user]
-      dialog = @model.target.company_dialogs.where(company: c_u).first
-      dialog.duplicate.update_unread
-      unless @model.unread
-        if dialog.present?
-          MessageBus.publish "/dialogs/#{dialog.id}", { checkedMessageId: @model.id}.to_json
+      dialog = Dialog.where(owner: @model.user, company: c_u).first
+      if dialog.present?
+        dialog.duplicate.update_unread
+        unless @model.unread
+            MessageBus.publish "/dialogs/#{dialog.id}", { checkedMessageId: @model.id}.to_json
         end
       end
 

@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
     self.nickname = self.public_nickname.downcase if self.public_nickname.present?
     self.email.downcase! if self.email.present?
   end
+
+  def total_unread_messages
+    Message.where( target: self,  unread: true).length
+  end
 end

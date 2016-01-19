@@ -7,6 +7,7 @@ export default DS.Model.extend({
   publicNickname: DS.attr('string'),
   updatedAt:      DS.attr('date'),
   role:           DS.attr('string'),
+  totalUnreadMessages: DS.attr('number'),
 
   messages:       DS.hasMany('message', {inverse: 'user'}),
   messageTarget:  DS.belongsTo('message', {inverse: 'target'}),

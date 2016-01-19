@@ -1,5 +1,5 @@
 class Api::UserResource < BaseResource
-  attributes :email, :nickname, :public_nickname, :updated_at, :role
+  attributes :email, :nickname, :public_nickname, :updated_at, :role, :total_unread_messages
   filters :email, :nickname
   has_many :decks
   has_many :synergies

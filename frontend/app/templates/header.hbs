@@ -16,7 +16,12 @@
 
       <ul class="nav navbar-nav navbar-right">
         {{#if currentUser.isLogIn}}
-          <li>{{#link-to 'dialogs'}}Сообщения{{/link-to}}</li>
+          <li>{{#link-to 'dialogs'}}
+            Сообщения
+            <span class="label label-default">{{currentUser.user.totalUnreadMessages}}</span>
+          {{/link-to}}
+          </li>
+
           <li>
             {{#link-to 'user' currentUser.user.nickname}}
               {{currentUser.user.email}}
