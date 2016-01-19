@@ -1,5 +1,5 @@
 class Api::DialogResource < BaseResource
-  attributes :unread
+  attributes :unread, :unread_count
   has_many :dialogs_messages
   has_one :owner, class_name: 'User', foreign_key: 'owner_id'
   has_one :company, class_name: 'User', foreign_key: 'company_id'

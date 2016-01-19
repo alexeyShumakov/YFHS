@@ -11,6 +11,7 @@ class Api::MessageResource < BaseResource
     def checked_message
       c_u = @context[:current_user]
       dialog = @model.target.company_dialogs.where(company: c_u).first
+      dialog.duplicate.update_unread
       unless @model.unread
         if dialog.present?
           MessageBus.publish "/dialogs/#{dialog.id}", { checkedMessageId: @model.id}.to_json
@@ -29,6 +30,7 @@ class Api::MessageResource < BaseResource
         dialog_1.save
 
         dialog_2.duplicate = dialog_1
+        dialog_2.update_unread
         dialog_2.save
         DialogsMessage.where(message: @model, dialog: dialog_1).first_or_create
         dialog_message = DialogsMessage.create(message: @model, dialog: dialog_2)

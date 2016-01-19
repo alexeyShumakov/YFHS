@@ -6,9 +6,14 @@
   <h3 class="text-center">Диалоги</h3>
   <ul class="list-group">
     {{#each model as |dialog|}}
-      {{#link-to 'dialog' dialog.id class='list-group-item'}}
-        {{#link-to 'user' dialog.company.nickname}}{{dialog.company.publicNickname}}{{/link-to}}
-      {{/link-to}}
+      <div class="{{if dialog.unread 'private-dialog_unread'}}">
+        {{#link-to 'dialog' dialog.id class='list-group-item'}}
+          {{#link-to 'user' dialog.company.nickname}}{{dialog.company.publicNickname}}{{/link-to}}
+          {{#if dialog.unread}}
+            <span class="badge pull-right">{{dialog.unreadCount}}</span>
+          {{/if}}
+        {{/link-to}}
+      </div>
     {{/each}}
   </ul>
 </div>
