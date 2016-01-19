@@ -7,7 +7,6 @@ export default Ember.Route.extend({
     }
   },
   model(params){
-    console.log(this.get('currentUser.user.email'));
     return this.store.query('dialog', {
         include: 'company',
         filter: {
@@ -15,5 +14,10 @@ export default Ember.Route.extend({
         }
       }
     );
+  },
+  actions: {
+    removeDialog(dialog){
+      dialog.destroyRecord();
+    }
   }
 });

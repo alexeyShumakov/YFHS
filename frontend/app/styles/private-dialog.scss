@@ -1,4 +1,20 @@
 .private-dialog__messages {
-  height: 600px;
-  overflow-y: scroll;
+  max-height: 600px;
+  overflow-y: auto;
+}
+.private-dialog__remove {
+  &:hover {
+    background-color: rgba(51, 122, 183, 0.15);
+  }
+  z-index: 10;
+  margin: 8px;
+  padding: 5px;
+  border-radius: 2px;
+  background-color: rgba(51, 122, 183, 0.07);
+  display: none;
+  cursor: pointer;
+  color: #337ab7;
+}
+.private-dialog:hover .private-dialog__remove {
+  display: inline;
 }

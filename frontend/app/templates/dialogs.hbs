@@ -6,12 +6,15 @@
   <h3 class="text-center">Диалоги</h3>
   <ul class="list-group">
     {{#each model as |dialog|}}
-      <div class="{{if dialog.unread 'private-dialog_unread'}}">
+      <div class="{{if dialog.unread 'private-dialog_unread'}} private-dialog">
+        <span {{action 'removeDialog' dialog preventDefault=false}} class="pull-right glyphicon glyphicon-remove private-dialog__remove"></span>
         {{#link-to 'dialog' dialog.id class='list-group-item'}}
           {{#link-to 'user' dialog.company.nickname}}{{dialog.company.publicNickname}}{{/link-to}}
-          {{#if dialog.unread}}
-            <span class="badge pull-right">{{dialog.unreadCount}}</span>
-          {{/if}}
+          <div class="pull-right">
+            {{#if dialog.unread}}
+              <span class="badge">{{dialog.unreadCount}}</span>
+            {{/if}}
+          </div>
         {{/link-to}}
       </div>
     {{/each}}
