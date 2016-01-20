@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  notifications: Ember.inject.service(),
   beforeModel(transition){
+    this.get('notifications').subscribe();
     this.set('currentUser.qParams', transition.queryParams);
     if( transition.queryParams['account_confirmation_success'] === 'true' ) {
       this.set('modal', 'hint-confirm');

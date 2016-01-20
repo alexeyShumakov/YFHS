@@ -14,7 +14,8 @@ class Api::MessageResource < BaseResource
       if dialog.present?
         dialog.duplicate.update_unread
         unless @model.unread
-            MessageBus.publish "/dialogs/#{dialog.id}", { checkedMessageId: @model.id}.to_json
+          MessageBus.publish "/users/#{c_u.id}/event", { totalUnreadMessages: c_u.total_unread_messages }.to_json
+          MessageBus.publish "/dialogs/#{dialog.id}", { checkedMessageId: @model.id }.to_json
         end
       end
 
@@ -23,18 +24,21 @@ class Api::MessageResource < BaseResource
       c_u = @context[:current_user]
 
       if c_u != @model.target
-        dialog_1 = Dialog.where(company: @model.target, owner: c_u).first_or_create
-        dialog_2 = Dialog.where(company: c_u, owner: @model.target).first_or_create
+        current_users_dialog = Dialog.where(company: @model.target, owner: c_u).first_or_create
+        companies_dialog = Dialog.where(company: c_u, owner: @model.target).first_or_create
 
-        dialog_1.duplicate = dialog_2
-        dialog_1.save
+        current_users_dialog.duplicate = companies_dialog
+        current_users_dialog.save
 
-        dialog_2.duplicate = dialog_1
-        dialog_2.update_unread
-        dialog_2.save
-        DialogsMessage.where(message: @model, dialog: dialog_1).first_or_create
-        dialog_message = DialogsMessage.create(message: @model, dialog: dialog_2)
-        MessageBus.publish "/dialogs/#{dialog_2.id}", { dialogsMessageId: dialog_message.id}.to_json
+        companies_dialog.duplicate = current_users_dialog
+        companies_dialog.update_unread
+        companies_dialog.save
+        DialogsMessage.where(message: @model, dialog: current_users_dialog).first_or_create
+        dialog_message = DialogsMessage.create(message: @model, dialog: companies_dialog)
+
+        MessageBus.publish "/users/#{@model.target.id}/event", { totalUnreadMessages: @model.target.total_unread_messages }.to_json
+        MessageBus.publish "/dialogs/#{companies_dialog.id}", { dialogsMessageId: dialog_message.id }.to_json
+
       end
     end
 end

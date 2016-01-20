@@ -5,10 +5,6 @@ export default Ember.Component.extend({
   message: '',
   preview: false,
   willInsertElement(){
-    MessageBus.enableChunkedEncoding = false;
-    MessageBus.start();
-
-    MessageBus.callbackInterval = 500;
     let _this = this;
     MessageBus.subscribe(`/dialogs/${this.get('model.dialog.id')}`, function(data){
       let dataJson = JSON.parse(data);
@@ -45,6 +41,8 @@ export default Ember.Component.extend({
   },
   sortParam: ['createdAt'],
   sortedMessages: Ember.computed.sort( 'model.dialogsMessages', 'sortParam'),
+
+
   actions: {
     download(){
       let _this = this;
