@@ -38,6 +38,7 @@ class Api::MessageResource < BaseResource
 
         MessageBus.publish "/users/#{@model.target.id}/event", { totalUnreadMessages: @model.target.total_unread_messages }.to_json
         MessageBus.publish "/dialogs/#{companies_dialog.id}", { dialogsMessageId: dialog_message.id }.to_json
+        MessageBus.publish "/dialogs-list/#{@model.target.id}", { id: companies_dialog.id }.to_json
 
       end
     end

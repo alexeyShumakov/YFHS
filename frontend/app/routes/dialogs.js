@@ -14,10 +14,5 @@ export default Ember.Route.extend({
         }
       }
     );
-  },
-  actions: {
-    removeDialog(dialog){
-      dialog.destroyRecord();
-    }
   }
 });

@@ -6,20 +6,22 @@ export default Ember.Component.extend({
   preview: false,
   willInsertElement(){
     let _this = this;
-    MessageBus.subscribe(`/dialogs/${this.get('model.dialog.id')}`, function(data){
-      let dataJson = JSON.parse(data);
-      if (Ember.isPresent(dataJson.dialogsMessageId)){
-        _this.get('store').query('dialogs-message',{
-          filter: {id: dataJson.dialogsMessageId},
-          include: 'message,message.user'
-        }).then(function(dialogMessages){
-          _this.get('model.dialogsMessages').pushObjects(dialogMessages.get('content'));
-        })
-      } else if (Ember.isPresent(dataJson.checkedMessageId)){
-        let checkedMessage = _this.get('store').peekRecord('message', dataJson.checkedMessageId);
-        checkedMessage.set('unread', false);
-      }
-    });
+    if (this.get('currentUser.isLogIn')){
+      MessageBus.subscribe(`/dialogs/${this.get('model.dialog.id')}`, function(data){
+        let dataJson = JSON.parse(data);
+        if (Ember.isPresent(dataJson.dialogsMessageId)){
+          _this.get('store').query('dialogs-message',{
+            filter: {id: dataJson.dialogsMessageId},
+            include: 'message,message.user'
+          }).then(function(dialogMessages){
+            _this.get('model.dialogsMessages').pushObjects(dialogMessages.get('content'));
+          })
+        } else if (Ember.isPresent(dataJson.checkedMessageId)){
+          let checkedMessage = _this.get('store').peekRecord('message', dataJson.checkedMessageId);
+          checkedMessage.set('unread', false);
+        }
+      });
+    }
   },
   bindScrollDownMessageWindow(){
     let messagesWindow = $('.private-dialog__messages');
@@ -37,7 +39,9 @@ export default Ember.Component.extend({
     this.bindScrollDownMessageWindow();
   },
   willDestroyElement(){
-    MessageBus.unsubscribe(`/dialogs/${this.get('model.dialog.id')}`);
+    if (this.get('currentUser.isLogIn')){
+      MessageBus.unsubscribe(`/dialogs/${this.get('model.dialog.id')}`);
+    }
   },
   sortParam: ['createdAt'],
   sortedMessages: Ember.computed.sort( 'model.dialogsMessages', 'sortParam'),
