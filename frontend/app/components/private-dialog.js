@@ -2,9 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+  notifications: Ember.inject.service(),
   message: '',
   preview: false,
   willInsertElement(){
+    this.set('notifications.companyPublicNickname', this.get('model.dialog.company.publicNickname'));
     let _this = this;
     if (this.get('currentUser.isLogIn')){
       MessageBus.subscribe(`/dialogs/${this.get('model.dialog.id')}`, function(data){
@@ -40,6 +42,7 @@ export default Ember.Component.extend({
   },
   willDestroyElement(){
     if (this.get('currentUser.isLogIn')){
+      this.set('notifications.companyPublicNickname', null);
       MessageBus.unsubscribe(`/dialogs/${this.get('model.dialog.id')}`);
     }
   },

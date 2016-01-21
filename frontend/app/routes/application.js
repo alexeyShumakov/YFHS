@@ -13,7 +13,29 @@ export default Ember.Route.extend({
     }
     return this.get('currentUser').setCurrentUser();
   },
+  afterModel(){
+    if (this.get('currentUser.isLogIn')) {
+      let _this = this;
+      let userId = this.get('currentUser.session.session.content.authenticated.id');
+      MessageBus.subscribe(`/users/${userId}/event`, function (data) {
+        let model = JSON.parse(data);
 
+        if (Ember.isPresent(model.totalUnreadMessages)){
+          _this.set('currentUser.user.totalUnreadMessages', model.totalUnreadMessages);
+        }
+
+        if (Ember.isPresent(model.publicNickname)) {
+          if(!Ember.isEqual(_this.get('notifications.companyPublicNickname'), model.publicNickname)){
+            _this.render( 'notifi',{
+              into: 'application',
+              outlet: 'modal',
+              model: model
+            });
+          }
+        }
+      });
+    }
+  },
   renderTemplate(controller, model){
     this._super(controller, model);
     let modal = this.get('modal');
@@ -27,6 +49,9 @@ export default Ember.Route.extend({
 
   },
   actions: {
+    transition(routeName, id){
+      this.transitionTo(routeName, id);
+    },
     out(){
       this.get('currentUser').invalidate().then(
         function(){

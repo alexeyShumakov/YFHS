@@ -8,7 +8,9 @@ export default Ember.Route.extend({
       sort: '-createdAt',
       page: { limit: 10 }
     });
-    let dialog = this.store.findRecord('dialog', params.id);
+    let dialog = this.store.query('dialog', {filter:{id: params.id}, include: 'company'}).then(function(dialog){
+      return dialog.get('firstObject');
+    });
     return Ember.RSVP.hash({
       dialogsMessages: dialogsMessages,
       dialog: dialog

@@ -36,7 +36,17 @@ class Api::MessageResource < BaseResource
         DialogsMessage.where(message: @model, dialog: current_users_dialog).first_or_create
         dialog_message = DialogsMessage.create(message: @model, dialog: companies_dialog)
 
-        MessageBus.publish "/users/#{@model.target.id}/event", { totalUnreadMessages: @model.target.total_unread_messages }.to_json
+        event = {
+            totalUnreadMessages: @model.target.total_unread_messages,
+            publicNickname: @model.user.public_nickname,
+            text: 'оставил вам личное',
+            entity: {
+                route: 'dialog',
+                id: companies_dialog.id,
+                name: 'сообщение'
+            }
+        }.to_json
+        MessageBus.publish "/users/#{@model.target.id}/event", event
         MessageBus.publish "/dialogs/#{companies_dialog.id}", { dialogsMessageId: dialog_message.id }.to_json
         MessageBus.publish "/dialogs-list/#{@model.target.id}", { id: companies_dialog.id }.to_json
 
