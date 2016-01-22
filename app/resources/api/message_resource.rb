@@ -14,7 +14,7 @@ class Api::MessageResource < BaseResource
       if dialog.present?
         dialog.duplicate.update_unread
         unless @model.unread
-          MessageBus.publish "/users/#{c_u.id}/event", { totalUnreadMessages: c_u.total_unread_messages }.to_json
+          Notifier.notify c_u.id, { totalUnreadMessages: c_u.total_unread_messages }
           MessageBus.publish "/dialogs/#{dialog.id}", { checkedMessageId: @model.id }.to_json
         end
       end
@@ -45,8 +45,8 @@ class Api::MessageResource < BaseResource
                 id: companies_dialog.id,
                 name: 'сообщение'
             }
-        }.to_json
-        MessageBus.publish "/users/#{@model.target.id}/event", event
+        }
+        Notifier.notify(@model.target.id, event)
         MessageBus.publish "/dialogs/#{companies_dialog.id}", { dialogsMessageId: dialog_message.id }.to_json
         MessageBus.publish "/dialogs-list/#{@model.target.id}", { id: companies_dialog.id }.to_json
 

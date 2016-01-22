@@ -1,4 +1,5 @@
 class Api::CommentResource < BaseResource
+  after_create :send_notification
   attributes :votes, :target_name, :evaluation_value, :body, :commentable_id, :commentable_type, :created_at
   has_one :user
 
@@ -38,4 +39,24 @@ class Api::CommentResource < BaseResource
   def votes
     @model.reputation_for :vote
   end
+
+  private
+    def send_notification
+      if @model.commentable.instance_of? Deck
+        Notifier.notify @model.commentable.user.id, get_hash('колоде')
+      elsif @model.commentable.instance_of? Synergy
+        Notifier.notify @model.commentable.user.id, get_hash('синергии')
+      end
+    end
+    def get_hash(name)
+      {
+          publicNickname: current_user.public_nickname,
+          text: 'оставил комментарий к ',
+          entity: {
+              route: @model.commentable.class.name.downcase,
+              id: @model.commentable.id,
+              name: name
+          }
+      }
+    end
 end
