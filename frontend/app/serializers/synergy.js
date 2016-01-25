@@ -3,7 +3,8 @@ import Votable from './votable';
 
 export default Votable.extend({
   attrs: {
-    createdAt: {serialize: false}
+    createdAt: {serialize: false},
+    commentsCount: {serialize: false}
   }
 });
 
