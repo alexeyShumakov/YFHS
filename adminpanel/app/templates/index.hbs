@@ -1,0 +1,4 @@
+<h3>{{currentUser.user.email}}</h3>
+<button class="btn btn-primary"{{action 'logOut'}}>log out</button>
+{{#link-to 'login'}}login{{/link-to}}
+{{outlet}}
