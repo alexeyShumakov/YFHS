@@ -1,4 +1,4 @@
-gc
+gc {{#link-to 'new_guide_category' class='btn btn-primary'}}new guide category{{/link-to}}
 {{outlet}}
 <table class="table table-striped">
   <thead>
@@ -14,17 +14,17 @@ gc
   {{#each model as |gc|}}
     <tr>
       <td>{{gc.id}}</td>
-      <td>{{gc.name}}</td>
+      <td>{{#link-to 'guide_category' gc.id}}{{gc.name}}{{/link-to}}</td>
       <td>
         <ul class="list-inline">
           {{#each gc.guides as |guide|}}
-            <li>{{guide.name}}</li>
+            <li>{{#link-to 'guide' guide.id}}{{guide.name}}{{/link-to}}</li>
           {{/each}}
         </ul>
       </td>
       <td>
-        <span class="glyphicon glyphicon-remove"></span>
-        <span class="glyphicon glyphicon-edit"></span>
+        <a href="#" {{action 'destroy' gc}}><span class="glyphicon glyphicon-remove"></span></a>
+        {{#link-to 'edit_guide_category' gc.id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}
       </td>
     </tr>
   {{/each}}

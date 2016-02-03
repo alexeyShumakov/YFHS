@@ -1,0 +1,18 @@
+{{outlet}}
+{{#link-to 'edit_guide' model.id class='btn btn-primary pull-right'}}edit{{/link-to}}
+<h3>{{model.name}}</h3>
+<hr>
+<dl>
+  <dt>name</dt>
+  <dd>{{model.name}}</dd>
+
+  <dt>guides</dt>
+  <dd>
+    <ul>
+      {{#each model.guides as |guide|}}
+        <li>{{#link-to 'guide' guide.id}}{{guide.name}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+  </dd>
+</dl>
+

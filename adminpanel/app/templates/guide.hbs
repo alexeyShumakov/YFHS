@@ -10,5 +10,5 @@
   <dd>{{model.body}}</dd>
 
   <dt>category</dt>
-  <dd>{{model.guideCategory.name}}</dd>
+  <dd>{{#link-to 'guide_category' model.guideCategory.id}}{{model.guideCategory.name}}{{/link-to}}</dd>
 </dl>
