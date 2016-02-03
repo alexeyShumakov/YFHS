@@ -7,7 +7,9 @@
   <dd>{{model.name}}</dd>
 
   <dt>body</dt>
-  <dd>{{model.body}}</dd>
+  <dd>
+    {{markdown-onebox text=model.body}}
+  </dd>
 
   <dt>category</dt>
   <dd>{{#link-to 'guide_category' model.guideCategory.id}}{{model.guideCategory.name}}{{/link-to}}</dd>

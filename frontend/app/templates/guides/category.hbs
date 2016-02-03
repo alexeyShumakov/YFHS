@@ -2,6 +2,7 @@
 {{#each model as |guide|}}
     <li>
       {{#link-to 'guides.guide' guide.id}}{{guide.name}}{{/link-to}}
+      {{markdown-onebox text=guide.body cut=true}}
     </li>
 {{/each}}
 </ul>

@@ -1,0 +1,26 @@
+<div class="auto-comp__textarea">
+  {{yield}}
+  {{#if users}}
+    <div class="auto-comp__list list-group" style={{position}}>
+      {{#each users as |user|}}
+        <a href="#" class="list-group-item" {{action 'selectUser' user.publicNickname}}>
+          {{user.publicNickname}}
+        </a>
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{#if cards}}
+    <div class="auto-comp__list list-group" style={{position}}>
+      {{#each cards as |card|}}
+        <a href="#" class="list-group-item" {{action 'selectCard' card.name}}>
+          {{card.name}}
+        </a>
+      {{/each}}
+    </div>
+
+  {{/if}}
+
+</div>
+<div class="auto-comp__shadow-textarea">{{preCaret}}<span class="caret">.</span></div>
+

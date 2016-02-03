@@ -1812,9 +1812,6 @@
       return [1, "@"];
     }
   };
-  Yfhs.inline[ "<cut>" ] = function cut(text) {
-    return [5, ''];
-  };
   Yfhs.inline[ "ht" ] = function autoLink(text){
     var m = text.match(/^((?:https?:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.])(?:[^\s()<>]+|\([^\s()<>]+\))+(?:\([^\s()<>]+\)|[^`!()\[\]{};:'".,<>?«»“”‘’\s]))/);
     if ( m ) {
