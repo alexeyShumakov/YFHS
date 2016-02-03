@@ -14,9 +14,17 @@ guides {{#link-to 'new_guide' class='btn btn-primary'}}new{{/link-to}}
   {{#each model as |guide|}}
     <tr>
       <td>{{guide.id}}</td>
-      <td>{{guide.name}}</td>
+      <td>
+        {{#link-to 'guide' guide.id}}
+          {{guide.name}}
+        {{/link-to}}
+      </td>
       <td>{{guide.body}}</td>
       <td>{{guide.guideCategory.name}}</td>
+      <td>
+        <a href="#" {{action 'destroy' guide}}><span class="glyphicon glyphicon-remove"></span></a>
+        {{#link-to 'edit_guide' guide.id}}<span class="glyphicon glyphicon-edit"></span>{{/link-to}}
+      </td>
     </tr>
   {{/each}}
   </tbody>

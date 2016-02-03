@@ -1,2 +1,32 @@
 gc
 {{outlet}}
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>name</th>
+    <th>guides</th>
+    <th>actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  {{#each model as |gc|}}
+    <tr>
+      <td>{{gc.id}}</td>
+      <td>{{gc.name}}</td>
+      <td>
+        <ul class="list-inline">
+          {{#each gc.guides as |guide|}}
+            <li>{{guide.name}}</li>
+          {{/each}}
+        </ul>
+      </td>
+      <td>
+        <span class="glyphicon glyphicon-remove"></span>
+        <span class="glyphicon glyphicon-edit"></span>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>

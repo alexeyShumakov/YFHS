@@ -8,10 +8,12 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('forbidden');
-  this.route('guides', function(){
-    this.route('new');
-  });
+
+  this.route('guides');
+  this.route('guide', {path: '/guides/:id'});
   this.route('new_guide', {path: '/guides/new'});
+  this.route('edit_guide', {path: '/guides/:id/edit'});
+
   this.route('guide_categories');
 });
 
