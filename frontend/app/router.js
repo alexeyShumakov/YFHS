@@ -41,6 +41,11 @@ Router.map(function() {
 
   this.route('dialogs', {path: 'dialogs'});
   this.route('dialog', {path: 'dialog/:id'});
+
+  this.route('guides', function() {
+    this.route('guide', {path: ':id'});
+    this.route('category', {path: 'category/:id'});
+  });
 });
 
 export default Router;

@@ -1,0 +1,12 @@
+<div class="col-md-8">
+  {{outlet}}
+</div>
+<div class="col-md-4">
+    <div class="list-group">
+      {{#each model as |gc|}}
+        <div class="list-group-item">
+          {{#link-to 'guides.category' gc.id}}{{gc.name}}{{/link-to}}
+        </div>
+      {{/each}}
+    </div>
+</div>

@@ -21,11 +21,14 @@ class VotesController < ApplicationController
   end
 
   def send_notification
-    unless current_user == @model.user
-      if @model.instance_of? Deck
-        Notifier.notify @model.user.id, get_hash('колода')
-      elsif @model.instance_of? Synergy
-        Notifier.notify @model.user.id, get_hash('синергия')
+    user = @model.try(:user) rescue nil
+    if user.present?
+      unless current_user == @model.user
+        if @model.instance_of? Deck
+          Notifier.notify @model.user.id, get_hash('колода')
+        elsif @model.instance_of? Synergy
+          Notifier.notify @model.user.id, get_hash('синергия')
+        end
       end
     end
   end

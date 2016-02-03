@@ -1,0 +1,12 @@
+<div class="pull-right vote_large">
+  {{vote-comp model=model}}
+</div>
+<h3>{{model.name}}</h3>
+<hr>
+<div class="bordered">
+  {{markdown-onebox text=model.body}}
+</div>
+{{outlet}}
+
+<hr>
+{{comments-block commentable=model}}

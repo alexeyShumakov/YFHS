@@ -1,0 +1,8 @@
+<ul>
+{{#each model as |guide|}}
+    <li>
+      {{#link-to 'guides.guide' guide.id}}{{guide.name}}{{/link-to}}
+    </li>
+{{/each}}
+</ul>
+{{outlet}}
