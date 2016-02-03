@@ -1,0 +1,20 @@
+New guide
+<form {{action 'create' on='submit'}}>
+  <div class="form-group">
+    <label>name</label>
+    {{input class='form-control' value=name}}
+  </div>
+  <div class="form-group">
+    <label>body</label>
+    {{textarea value=body id='deck-description' cols='30' rows='10' class='form-control'}}
+  </div>
+  <div class="form-group">
+    <label>category</label>
+    {{#power-select options=model.guideCategories selected=selectedCategory onchange=(action 'setGC') as |guideCategory|}}
+      {{guideCategory.name}}
+    {{/power-select}}
+  </div>
+  <button type="submit" class="btn btn-default">create</button>
+</form>
+{{outlet}}
+

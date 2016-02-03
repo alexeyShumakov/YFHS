@@ -1,0 +1,23 @@
+{{outlet}}
+guides {{#link-to 'new_guide' class='btn btn-primary'}}new{{/link-to}}
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>name</th>
+    <th>body</th>
+    <th>category</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  {{#each model as |guide|}}
+    <tr>
+      <td>{{guide.id}}</td>
+      <td>{{guide.name}}</td>
+      <td>{{guide.body}}</td>
+      <td>{{guide.guideCategory.name}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>

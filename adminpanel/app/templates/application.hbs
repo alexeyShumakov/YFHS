@@ -1,6 +1,16 @@
 <div class="container">
   <div class="row">
-    <h2 id="title">Welcome to Ember</h2>
+    {{#if currentUser.isLogIn}}
+      {{#if currentUser.user.isAdmin}}
+        <h3>{{currentUser.user.email}}</h3>
+        <button class="btn btn-primary"{{action 'logOut'}}>log out</button>
+        {{#link-to 'login'}}login{{/link-to}}
+        <hr>
+        {{#link-to 'guides'}}guides{{/link-to}}
+        {{#link-to 'guide_categories'}}guide-category{{/link-to}}
+        <hr>
+      {{/if}}
+    {{/if}}
     {{outlet}}
   </div>
 </div>

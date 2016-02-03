@@ -3,6 +3,5 @@ import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: 'api',
-  authorizer: 'authorizer:devise',
-  shouldBackgroundReloadRecord: function() { return true; }
+  authorizer: 'authorizer:devise'
 });
