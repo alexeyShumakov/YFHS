@@ -1,9 +1,14 @@
-<ul>
 {{#each model as |guide|}}
-    <li>
-      {{#link-to 'guides.guide' guide.id}}{{guide.name}}{{/link-to}}
-      {{markdown-onebox text=guide.body cut=true}}
-    </li>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <b>{{guide.name}}</b>, {{formated-date guide.createdAt}}
+    </div>
+    <div class="panel-body">{{markdown-onebox text=guide.body cut=true}}</div>
+    <div class="pull-right">{{vote-comp model=guide}}</div>
+    <div class="panel-footer">
+      {{#link-to 'guides.guide' guide.id}}go to guide{{/link-to}}
+    </div>
+  </div>
 {{/each}}
-</ul>
 {{outlet}}
+
